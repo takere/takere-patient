@@ -31,6 +31,7 @@ export const UserProvider = ({children}) => {
     setIsLoading(true);
     try {
       const response = await new Requests().makeLogin(email, password);
+      console.log(response);
       if (response.token) {
         await AsyncStorage.setItem('cookie', response?.token);
         await getMe();
@@ -46,6 +47,7 @@ export const UserProvider = ({children}) => {
         return false;
       }
     } catch (e) {
+      console.log(e);
       toast.show({
         description: 'Oops! Verifique seus dados!',
       });

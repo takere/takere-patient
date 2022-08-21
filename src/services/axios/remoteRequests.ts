@@ -6,12 +6,12 @@ export class Requests {
       const response = await axiosInstance.get('users/me');
       return response.data;
     } catch (e) {
-      console.log(e);
     }
   }
 
   async getBoards(email: string) {
-    const response = await axiosInstance.get('board/me', {params: {email}});
+    //const response = await axiosInstance.get('board/me', {params: {email}});
+    const response = await axiosInstance.get('board/me?email=' + email);
     return response.data;
   }
 

@@ -2,8 +2,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 const axios = require('axios');
 
-const API_URL = 'https://tg2-api.herokuapp.com/';
-// const API_URL = 'http://localhost:3000/';
+//const API_URL = 'https://tg2-api.herokuapp.com/';
+ const API_URL = 'http://10.0.2.2:3002/';
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
