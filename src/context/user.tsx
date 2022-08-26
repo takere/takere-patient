@@ -11,30 +11,15 @@ export const UserProvider = ({children}) => {
   const [initialized, setInitialized] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const getMe = async () => {
-    const response = await new Requests().getMe();
-    setUser(response);
-  };
-
-  useEffect(() => {
-    async function handler() {
-      const token = await AsyncStorage.getItem('cookie');
-      if (token) {
-        await getMe();
-      }
-      setInitialized(true);
-    }
-    handler();
-  }, []);
-
-  async function login(email: string, password: string) {
+  const login = async (email: string, password: string) => {
     setIsLoading(true);
     try {
       const response = await new Requests().makeLogin(email, password);
-      console.log(response);
+
       if (response.token) {
         await AsyncStorage.setItem('cookie', response?.token);
-        await getMe();
+        setUser(response?.userData)
+        setInitialized(true)
         toast.show({
           description: 'Login com sucesso!',
         });

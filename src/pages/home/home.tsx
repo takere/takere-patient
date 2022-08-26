@@ -40,19 +40,19 @@ export function HomeScreen({navigation}: {navigation: any}) {
     });
     modalizeRef.current?.close();
     setLoading(true);
-    const response = await new Requests().getBoards(user.user.data.email);
+    const response = await new Requests().getBoards(user.user.email);
     setBoards(response);
     setLoading(false);
   };
 
   useEffect(() => {
     const getData = async () => {
-      const response = await new Requests().getBoards(user.user.data.email);
+      const response = await new Requests().getBoards(user.user.email);
       setBoards(response);
       setLoading(false);
     };
 
-    if (user?.user?.data?.email) {
+    if (user?.user?.email) {
       getData();
     }
   }, [user.user]);
@@ -61,7 +61,7 @@ export function HomeScreen({navigation}: {navigation: any}) {
     <>
       <SafeAreaView style={{flex: 1}}>
         <Heading size="lg" ml={3} mb={5}>
-          conecta saúde
+          Takere APP
         </Heading>
         <ScrollView>
           <Pressable

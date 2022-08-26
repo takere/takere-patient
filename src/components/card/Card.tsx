@@ -8,7 +8,6 @@ export interface ICard {
   id: string;
   name: string;
   description: string;
-  type: string;
   executed: {
     id: string;
     executedAt: string;
@@ -16,29 +15,30 @@ export interface ICard {
   };
   node: {
     id: string;
+    icon: string;
+    type: string;
     results: any;
   };
 }
 
 export const Card = ({
+  id,
   name,
   description,
-  type,
+  node,
   executed,
   onOpen,
-  id,
-  node,
 }: ICard) => {
   return (
     <Pressable
       w="100%"
       pl={2}
       pr={2}
-      onPress={() => onOpen({name, description, type, executed, id, node})}>
+      onPress={() => onOpen({name, description, executed, id, node})}>
       <Box p="5" rounded="8" bg="darkBlue.500">
         <HStack alignItems="flex-start">
           <Text fontSize={12} color="cyan.50" fontWeight="medium">
-            {type}
+            {node.type.toUpperCase()}
           </Text>
           <Spacer />
           <Text fontSize={10} color="cyan.100">
