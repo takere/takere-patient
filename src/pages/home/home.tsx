@@ -101,8 +101,8 @@ export function HomeScreen({navigation}: {navigation: any}) {
             <Spinner size="lg" color="warning.500" />
           ) : (
             <VStack space={2} mt={4} alignItems="center">
-              {boards.map((e, i) => {
-                return <Card onOpen={onOpen} key={i} {...e} />;
+              {boards.map((board, i) => {
+                return <Card onOpen={onOpen} key={i} {...board} />;
               })}
             </VStack>
           )}
