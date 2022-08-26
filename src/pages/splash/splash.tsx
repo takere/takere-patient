@@ -7,7 +7,7 @@ export function SplashScreen({navigation}: {navigation: any}) {
   const user = useUser();
 
   useEffect(() => {
-    if (!user?.signed && user?.initialized) {
+    if (!user?.signed && !user?.initialized) {
       navigation.navigate('Login');
     } else {
       navigation.navigate('Home');

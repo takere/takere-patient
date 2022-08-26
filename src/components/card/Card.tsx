@@ -1,5 +1,6 @@
 import React from 'react';
-import {Pressable, Text, Box, HStack, Spacer} from 'native-base';
+import {Pressable, Text, Box, HStack, Spacer, Flex} from 'native-base';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import {ptBR} from 'date-fns/locale';
 
@@ -35,26 +36,31 @@ export const Card = ({
       pl={2}
       pr={2}
       onPress={() => onOpen({name, description, executed, id, node})}>
-      <Box p="5" rounded="8" bg="darkBlue.500">
-        <HStack alignItems="flex-start">
-          <Text fontSize={12} color="cyan.50" fontWeight="medium">
-            {node.type.toUpperCase()}
+      <Flex p="5" rounded="8" bg="darkBlue.500" direction='row' justifyContent='space-between'>
+        <Box>
+          <HStack alignItems="flex-start">
+            <Text fontSize={12} color="cyan.50" fontWeight="medium">
+              {node.type.toUpperCase()}
+            </Text>
+            <Spacer />
+            <Text fontSize={10} color="cyan.100">
+              {executed.executedAt &&
+                formatDistanceToNow(new Date(executed.executedAt), {
+                  locale: ptBR,
+                })}
+            </Text>
+          </HStack>
+          <Text color="cyan.50" mt="3" fontWeight="medium" fontSize={20}>
+            {name}
           </Text>
-          <Spacer />
-          <Text fontSize={10} color="cyan.100">
-            {executed.executedAt &&
-              formatDistanceToNow(new Date(executed.executedAt), {
-                locale: ptBR,
-              })}
+          <Text mt="2" fontSize={14} color="cyan.100">
+            {description}
           </Text>
-        </HStack>
-        <Text color="cyan.50" mt="3" fontWeight="medium" fontSize={20}>
-          {name}
-        </Text>
-        <Text mt="2" fontSize={14} color="cyan.100">
-          {description}
-        </Text>
-      </Box>
+        </Box>
+        <Box justifyContent='center' alignItems='center' marginRight={5}>
+          <Icon name={node.icon} size={30} color="#fff" />
+        </Box>
+      </Flex>
     </Pressable>
   );
 };
