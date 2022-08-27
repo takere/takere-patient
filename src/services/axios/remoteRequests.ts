@@ -38,7 +38,7 @@ export class Requests {
       terms.push(this.capitalize(term));
     })
 
-    return terms.join('');
+    return terms.join(' ');
   }
 
   private capitalize(str: string): string {

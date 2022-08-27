@@ -1,4 +1,4 @@
-import {Button, Heading, Input, useToast} from 'native-base';
+import {Button, Heading, Text, Input, useToast} from 'native-base';
 import * as React from 'react';
 import {ICard} from '../card/Card';
 import WebView from 'react-native-webview';
@@ -18,7 +18,7 @@ interface IBottomDrawer {
 }
 
 interface IHandler extends Omit<IBottomDrawer, 'board'> {
-  data: Pick<ICard, 'executed'>;
+  data: Pick<ICard, 'node'>;
 }
 
 interface IDataHandler extends Omit<IBottomDrawer, 'board'> {
@@ -63,120 +63,132 @@ const ReminderHandler = ({data, onUpdateData}: IHandler) => {
   return (
     <>
       <Heading size="xl" ml={3} mt={1} color="muted.800">
-        {data.executed.result}
+        {data.node.results.name ?? 'NAME'}
       </Heading>
+      <Heading size="sm" ml={3} mt={1}>
+        {data.node.results.description ?? 'DESC'}
+      </Heading>
+      <Text ml={3} mt={1}>
+        {data.node.results.content}
+      </Text>
+      
       <HandleSubmit onClick={handleSub} />
     </>
   );
 };
 
-const MotivationalHandler = ({data, onUpdateData}: IHandler) => {
-  const toast = useToast();
-  const handleSub = async () => {
-    toast.show({
-      description: 'Salvando atualização!',
-    });
-    await new Requests().postBoardResponse(data.id);
-    onUpdateData();
-  };
 
-  return (
-    <>
-      <Heading size="xl" ml={3} mt={1} color="muted.800">
-        {data.executed.result}
-      </Heading>
-      <HandleSubmit onClick={handleSub} />
-    </>
-  );
-};
+// const MotivationalHandler = ({data, onUpdateData}: IHandler) => {
+//   const toast = useToast();
+//   const handleSub = async () => {
+//     toast.show({
+//       description: 'Salvando atualização!',
+//     });
+//     await new Requests().postBoardResponse(data.id);
+//     onUpdateData();
+//   };
 
-const ExternalLinkHandler = ({data, onUpdateData}: IHandler) => {
-  const toast = useToast();
-  const webViewRef = useRef<WebView>(null);
+//   return (
+//     <>
+//       <Heading size="xl" ml={3} mt={1} color="muted.800">
+//         {data.executed.result}
+//       </Heading>
+//       <HandleSubmit onClick={handleSub} />
+//     </>
+//   );
+// };
 
-  const handleSub = async () => {
-    toast.show({
-      description: 'Salvando atualização!',
-    });
-    await new Requests().postBoardResponse(data.id);
-    onUpdateData();
-  };
+// const ExternalLinkHandler = ({data, onUpdateData}: IHandler) => {
+//   const toast = useToast();
+//   const webViewRef = useRef<WebView>(null);
 
-  return (
-    <>
-      <HandleSubmit onClick={handleSub} />
-      <WebView
-        webViewRef={webViewRef}
-        startInLoadingState={true}
-        source={{uri: data.executed.result}}
-        style={{flex: 1, height}}
-      />
-    </>
-  );
-};
+//   const handleSub = async () => {
+//     toast.show({
+//       description: 'Salvando atualização!',
+//     });
+//     await new Requests().postBoardResponse(data.id);
+//     onUpdateData();
+//   };
 
-const DataInputHandler = ({data, onUpdateData}: IDataHandler) => {
-  const toast = useToast();
-  const [value, setValue] = useState<string>('');
-  const handleChange = (inputValue: any) => {
-    setValue(inputValue);
-  };
+//   return (
+//     <>
+//       <HandleSubmit onClick={handleSub} />
+//       <WebView
+//         webViewRef={webViewRef}
+//         startInLoadingState={true}
+//         source={{uri: data.executed.result}}
+//         style={{flex: 1, height}}
+//       />
+//     </>
+//   );
+// };
 
-  const handleSub = async () => {
-    toast.show({
-      description: 'Salvando atualização!',
-    });
-    await new Requests().postBoardResponse(data.id, value);
-    onUpdateData();
-  };
+// const DataInputHandler = ({data, onUpdateData}: IDataHandler) => {
+//   const toast = useToast();
+//   const [value, setValue] = useState<string>('');
+//   const handleChange = (inputValue: any) => {
+//     setValue(inputValue);
+//   };
 
-  return (
-    <>
-      <Heading size="xl" ml={3} mt={1} color="muted.800">
-        {data.node.results.text_name}
-      </Heading>
-      <Heading size="sm" ml={3} mt={1} color="muted.400">
-        {data.node.results.text_description}
-      </Heading>
-      <Input
-        value={value}
-        onChangeText={handleChange}
-        ml={3}
-        mr={3}
-        mt={5}
-        size="2xl"
-        placeholder={data.node.results.text_name}
-        multiline={true}
-      />
-      <HandleSubmit onClick={handleSub} />
-    </>
-  );
-};
+//   const handleSub = async () => {
+//     toast.show({
+//       description: 'Salvando atualização!',
+//     });
+//     await new Requests().postBoardResponse(data.id, value);
+//     onUpdateData();
+//   };
+
+//   return (
+//     <>
+//       <Heading size="xl" ml={3} mt={1} color="muted.800">
+//         {data.node.results.text_name}
+//       </Heading>
+//       <Heading size="sm" ml={3} mt={1} color="muted.400">
+//         {data.node.results.text_description}
+//       </Heading>
+//       <Input
+//         value={value}
+//         onChangeText={handleChange}
+//         ml={3}
+//         mr={3}
+//         mt={5}
+//         size="2xl"
+//         placeholder={data.node.results.text_name}
+//         multiline={true}
+//       />
+//       <HandleSubmit onClick={handleSub} />
+//     </>
+//   );
+// };
 
 export const BottomDrawer = ({board, onUpdateData}: IBottomDrawer) => {
   return (
     <>
       <Heading size="lg" ml={3} mt={5}>
-        {board.name}
+        Care plan: {board.name}
       </Heading>
       <Heading size="sm" ml={3} mt={1} mb={5} color="muted.400">
         {board.description}
       </Heading>
       {(() => {
-        switch (board.type) {
+        switch (board.node.type.toUpperCase()) {
           case 'REMINDER':
             return <ReminderHandler onUpdateData={onUpdateData} data={board} />;
-          case 'MOTIVATIONAL':
+          case 'INFORMATION':
             return (
-              <MotivationalHandler onUpdateData={onUpdateData} data={board} />
+              <ReminderHandler onUpdateData={onUpdateData} data={board} />
             );
-          case 'EXTERNAL_LINK':
+          case 'EXPLANATION':
             return (
-              <ExternalLinkHandler onUpdateData={onUpdateData} data={board} />
+              <ReminderHandler onUpdateData={onUpdateData} data={board} />
             );
-          case 'DATA_INPUT':
+          case 'QUIZ':
             return (
-              <DataInputHandler onUpdateData={onUpdateData} data={board} />
+              <ReminderHandler onUpdateData={onUpdateData} data={board} />
+            );
+          case 'MEDICATION CONTROL':
+            return (
+              <ReminderHandler onUpdateData={onUpdateData} data={board} />
             );
         }
       })()}

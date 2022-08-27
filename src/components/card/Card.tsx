@@ -52,7 +52,7 @@ export const Card = ({
             </Text>
           </HStack>
           <Text color="cyan.50" mt="3" fontWeight="medium" fontSize={20}>
-            {name}
+            Care plan: {name}
           </Text>
           <Text mt="2" fontSize={14} color="cyan.100">
             {description}
