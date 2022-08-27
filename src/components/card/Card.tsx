@@ -1,6 +1,6 @@
 import React from 'react';
 import {Pressable, Text, Box, HStack, Spacer, Flex} from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import {ptBR} from 'date-fns/locale';
 
@@ -18,6 +18,7 @@ export interface ICard {
     id: string;
     icon: string;
     type: string;
+    bgColor: string;
     results: any;
   };
 }
@@ -36,7 +37,7 @@ export const Card = ({
       pl={2}
       pr={2}
       onPress={() => onOpen({name, description, executed, id, node})}>
-      <Flex p="5" rounded="8" bg="darkBlue.500" direction='row' justifyContent='space-between'>
+      <Flex p="5" rounded="8" bg={node.bgColor} direction='row' justifyContent='space-between'>
         <Box>
           <HStack alignItems="flex-start">
             <Text fontSize={12} color="cyan.50" fontWeight="medium">

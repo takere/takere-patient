@@ -6,6 +6,7 @@ interface BoardDTO {
     id: string, 
     results: any,
     type: string,
+    bgColor: string,
     icon: string,
   }
 }
