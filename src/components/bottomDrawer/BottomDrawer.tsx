@@ -77,6 +77,23 @@ const ReminderHandler = ({data, onUpdateData}: IHandler) => {
   );
 };
 
+const InformationHandler = ({data, onUpdateData}: IHandler) => {
+  const toast = useToast();
+
+  return (
+    <>
+      <Heading size="xl" ml={3} mt={1} color="muted.800">
+        {data.node.results.name ?? 'NAME'}
+      </Heading>
+      <Heading size="sm" ml={3} mt={1}>
+        {data.node.results.description ?? 'DESC'}
+      </Heading>
+      <Text ml={3} mt={1}>
+        {data.node.results.content}
+      </Text>
+    </>
+  );
+};
 
 // const MotivationalHandler = ({data, onUpdateData}: IHandler) => {
 //   const toast = useToast();
@@ -176,7 +193,7 @@ export const BottomDrawer = ({board, onUpdateData}: IBottomDrawer) => {
             return <ReminderHandler onUpdateData={onUpdateData} data={board} />;
           case 'INFORMATION':
             return (
-              <ReminderHandler onUpdateData={onUpdateData} data={board} />
+              <InformationHandler onUpdateData={onUpdateData} data={board} />
             );
           case 'EXPLANATION':
             return (
