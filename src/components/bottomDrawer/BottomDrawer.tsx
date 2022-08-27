@@ -95,6 +95,93 @@ const InformationHandler = ({data, onUpdateData}: IHandler) => {
   );
 };
 
+const ExplanationHandler = ({data, onUpdateData}: IHandler) => {
+  const toast = useToast();
+  const handleSub = async () => {
+    toast.show({
+      description: 'Salvando atualização!',
+    });
+    await new Requests().postBoardResponse(data.id);
+    onUpdateData();
+  };
+
+  return (
+    <>
+      <Heading size="xl" ml={3} mt={1} color="muted.800">
+        Total pages: {data.node.results.pages.length}
+      </Heading>
+      <Text ml={3} mt={1}>
+        {data.node.results.pages[0]}
+      </Text>
+    </>
+  );
+};
+
+const QuizHandler = ({data, onUpdateData}: IHandler) => {
+  const toast = useToast();
+  const handleSub = async () => {
+    toast.show({
+      description: 'Salvando atualização!',
+    });
+    await new Requests().postBoardResponse(data.id);
+    onUpdateData();
+  };
+
+  return (
+    <>
+      <Heading size="xl" ml={3} mt={1} color="muted.800">
+        Total questions: {data.node.results.questions.length}
+      </Heading>
+      <Text ml={3} mt={1}>
+        {data.node.results.questions[0].question}
+      </Text>
+      <Text ml={3} mt={1}>
+        {data.node.results.questions[0].answer.type}
+      </Text>
+    </>
+  );
+};
+
+const MedicationControlHandler = ({data, onUpdateData}: IHandler) => {
+  const toast = useToast();
+  const handleSub = async () => {
+    toast.show({
+      description: 'Salvando atualização!',
+    });
+    await new Requests().postBoardResponse(data.id);
+    onUpdateData();
+  };
+
+  return (
+    <>
+      <Heading size="xl" ml={3} mt={1} color="muted.800">
+        {data.node.results.name ?? 'Name'}
+      </Heading>
+      <Text ml={3} mt={1}>
+        {data.node.results.description ?? 'Desc'}
+      </Text>
+      <Text ml={3} mt={1}>
+        {data.node.results.why}
+      </Text>
+      <Text ml={3} mt={1}>
+        {data.node.results.notes}
+      </Text>
+      <Text ml={3} mt={1}>
+        {data.node.results.dosage}
+      </Text>
+      <Text ml={3} mt={1}>
+        {data.node.results.beginDate}
+      </Text>
+      <Text ml={3} mt={1}>
+        {data.node.results.endDate}
+      </Text>
+      <Text ml={3} mt={1}>
+        {data.node.results.undefinedEnd}
+      </Text>
+    </>
+  );
+};
+
 // const MotivationalHandler = ({data, onUpdateData}: IHandler) => {
 //   const toast = useToast();
 //   const handleSub = async () => {
@@ -197,15 +284,15 @@ export const BottomDrawer = ({board, onUpdateData}: IBottomDrawer) => {
             );
           case 'EXPLANATION':
             return (
-              <ReminderHandler onUpdateData={onUpdateData} data={board} />
+              <ExplanationHandler onUpdateData={onUpdateData} data={board} />
             );
           case 'QUIZ':
             return (
-              <ReminderHandler onUpdateData={onUpdateData} data={board} />
+              <QuizHandler onUpdateData={onUpdateData} data={board} />
             );
           case 'MEDICATION CONTROL':
             return (
-              <ReminderHandler onUpdateData={onUpdateData} data={board} />
+              <MedicationControlHandler onUpdateData={onUpdateData} data={board} />
             );
         }
       })()}
