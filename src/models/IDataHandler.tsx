@@ -2,7 +2,7 @@ import IBottomDrawer from "./IBottomDrawer";
 import ICard from "./ICard";
 
 interface IDataHandler extends Omit<IBottomDrawer, 'board'> {
-  data: Pick<ICard, 'node'>;
+  data: Omit<ICard, 'onOpen'>;
 }
 
 export default IDataHandler;
