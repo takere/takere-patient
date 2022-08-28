@@ -73,7 +73,7 @@ export function HomeScreen({navigation}: {navigation: any}) {
                 ml={3}
                 bg="cyan.500"
                 source={{
-                  uri: 'https://pbs.twimg.com/profile_images/1188747996843761665/8CiUdKZW_400x400.jpg',
+                  uri: 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png',
                 }}>
                 {user.user?.data?.firstName.substring(0, 2).toUpperCase()}
               </Avatar>
