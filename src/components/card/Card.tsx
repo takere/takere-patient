@@ -3,25 +3,7 @@ import {Pressable, Text, Box, HStack, Spacer, Flex} from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import {ptBR} from 'date-fns/locale';
-
-export interface ICard {
-  onOpen: (data: Omit<ICard, 'onOpen'>) => {};
-  id: string;
-  name: string;
-  description: string;
-  executed: {
-    id: string;
-    executedAt: string;
-    result: any;
-  };
-  node: {
-    id: string;
-    icon: string;
-    type: string;
-    bgColor: string;
-    results: any;
-  };
-}
+import ICard from '../../models/ICard';
 
 export const Card = ({
   id,
