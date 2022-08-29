@@ -1,4 +1,4 @@
-import {Button, Heading, Text, Input, useToast} from 'native-base';
+import {Button, Heading, Box, Text, Input, useToast} from 'native-base';
 import * as React from 'react';
 import WebView from 'react-native-webview';
 import {useRef, useState} from 'react';
@@ -110,6 +110,7 @@ export const BottomDrawer = ({board, onUpdateData}: IBottomDrawer) => {
       <Heading size="sm" ml={3} mt={1} mb={5} color="muted.400">
         {board.description}
       </Heading>
+      <Box paddingX={5}>
       {(() => {
         switch (board.node.type.toUpperCase()) {
           case 'REMINDER':
@@ -132,6 +133,7 @@ export const BottomDrawer = ({board, onUpdateData}: IBottomDrawer) => {
             );
         }
       })()}
+      </Box>
     </>
   );
 };

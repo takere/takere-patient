@@ -16,13 +16,13 @@ const ReminderHandler = ({data, onUpdateData}: IHandler) => {
 
   return (
     <>
-      <Heading size="xl" ml={3} mt={1} color="muted.800">
+      <Heading size="xl" mt={1} color="muted.800">
         {data.node.results.name ?? 'NAME'}
       </Heading>
-      <Heading size="sm" ml={3} mt={1}>
+      <Heading size="sm"  mt={1}>
         {data.node.results.description ?? 'DESC'}
       </Heading>
-      <Text ml={3} mt={1}>
+      <Text mt={1}>
         {data.node.results.content}
       </Text>
       

@@ -1,10 +1,15 @@
-import React from 'react';
-import {Button, Heading, Text, Input, useToast} from 'native-base';
+import React, { useState } from 'react';
+import {Button, Heading, Text, Input, useToast, HStack, Divider} from 'native-base';
 import IHandler from '../../../models/IHandler';
 import {Requests} from '../../../services/axios/remoteRequests';
 import HandleSubmit from '../HandleSubmit';
 
 const QuizHandler = ({data, onUpdateData}: IHandler) => {
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [input, setInput] = useState('');
+
+  const questions = data.node.results.questions;
+
   const toast = useToast();
   const handleSub = async () => {
     toast.show({
@@ -14,19 +19,61 @@ const QuizHandler = ({data, onUpdateData}: IHandler) => {
     onUpdateData();
   };
 
+  const handleNextQuestion = () => {
+    if (currentQuestion + 1 >= questions.length) {
+      return;
+    }
+
+    setCurrentQuestion(currentQuestion+1);
+  }
+
+  const handleBackQuestion = () => {
+    if (currentQuestion - 1 < 0) {
+      return;
+    }
+
+    setCurrentQuestion(currentQuestion-1);
+  }
+
   return (
     <>
-      <Heading size="xl" ml={3} mt={1} color="muted.800">
-        Total questions: {data.node.results.questions.length}
+      <Heading size="xl" color="muted.800">
+        Quiz
       </Heading>
-      <Text ml={3} mt={1}>
-        {data.node.results.questions[0].question}
-      </Text>
-      <Text ml={3} mt={1}>
-        {data.node.results.questions[0].answer.type}
-      </Text>
+      <Heading size='md' mt={3}>
+        {`${currentQuestion+1}. ${questions[currentQuestion].question}`}
+      </Heading>
+      <QuestionInput 
+        type={questions[currentQuestion].answer.type}
+        value={input}
+        onChange={setInput}
+      />
+      <HStack space={3} divider={<Divider />} w="100%" paddingY="10" justifyContent='space-between'>
+        <Button onPress={handleBackQuestion} display={currentQuestion - 1 >= 0 ? 'flex' : 'none'}>
+          Back
+        </Button>
+        <Button onPress={handleNextQuestion} display={currentQuestion + 1 < questions.length ? 'flex' : 'none'}>
+          Next
+        </Button>
+      </HStack>
+      {currentQuestion+1 === questions.length &&
+        <HandleSubmit onClick={handleSub} />
+      }
     </>
   );
 };
 
 export default QuizHandler;
+
+const QuestionInput = ({ type, value, onChange }: any) => {
+  //if (type === 'text') {
+     return <Input
+        mt={3}
+        value={value}
+        onChangeText={onChange}
+        size="2xl"
+        placeholder='Type your answer'
+        multiline={false}
+      />
+  //}
+}

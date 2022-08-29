@@ -15,10 +15,6 @@ const HandleSubmit = ({onClick}: IHandleSubmit) => {
       <Button
         isLoading={value}
         isDisabled={value}
-        ml={3}
-        mr={3}
-        mt={3}
-        mb={3}
         size="lg"
         colorScheme="success"
         onPress={() => handleSubmit()}>
