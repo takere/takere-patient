@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Heading, Text, Input, useToast} from 'native-base';
+import {Button, Heading, Text, Input, useToast, Box} from 'native-base';
 import IHandler from '../../../models/IHandler';
 import {Requests} from '../../../services/axios/remoteRequests';
 import HandleSubmit from '../HandleSubmit';
@@ -25,8 +25,9 @@ const ReminderHandler = ({data, onUpdateData}: IHandler) => {
       <Text mt={1}>
         {data.node.results.content}
       </Text>
-      
+      <Box mt={5}>
       <HandleSubmit onClick={handleSub} />
+      </Box>
     </>
   );
 };
