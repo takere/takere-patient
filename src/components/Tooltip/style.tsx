@@ -1,8 +1,7 @@
 import colors from "../../resources/colors";
 
 export const container: any = {
-  backgroundColor: colors.dark,
-  color: '#fff'
+  backgroundColor: colors.dark
 };
 
 export const pointerColor: string = container.backgroundColor;
