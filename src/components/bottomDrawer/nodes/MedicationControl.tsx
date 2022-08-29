@@ -1,12 +1,21 @@
 import React from 'react';
-import {Button, Heading, Text, Input, useToast, Divider, HStack, VStack } from 'native-base';
+import {
+  Button,
+  Heading,
+  Text,
+  Input,
+  useToast,
+  Divider,
+  HStack,
+  VStack,
+} from 'native-base';
 import IHandler from '../../../models/IHandler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {Requests} from '../../../services/axios/remoteRequests';
+import { Requests } from '../../../services/axios/remoteRequests';
 import HandleSubmit from '../HandleSubmit';
 import Tooltip from '../../Tooltip';
 
-const MedicationControlHandler = ({data, onUpdateData}: IHandler) => {
+const MedicationControlHandler = ({ data, onUpdateData }: IHandler) => {
   const toast = useToast();
   const handleSub = async () => {
     toast.show({
@@ -16,13 +25,12 @@ const MedicationControlHandler = ({data, onUpdateData}: IHandler) => {
     onUpdateData();
   };
 
-  const beginDate = formatDateHour(new Date(data.node.results.beginDate))
+  const beginDate = formatDateHour(new Date(data.node.results.beginDate));
   let endDate;
 
   if (data.node.results.undefinedEnd) {
     endDate = 'Undefined';
-  }
-  else {
+  } else {
     endDate = formatDateHour(new Date(data.node.results.endDate));
   }
 
@@ -31,9 +39,9 @@ const MedicationControlHandler = ({data, onUpdateData}: IHandler) => {
       <Heading size="xl" ml={3} mt={1} color="muted.800">
         {data.node.results.name ?? 'Name'}
       </Heading>
-      <VStack space={3} divider={<Divider />} w="100%" p='10'>
+      <VStack space={3} divider={<Divider />} w="100%" p="10">
         <HStack justifyContent="space-between">
-          <Tooltip label='Description'>
+          <Tooltip label="Description">
             <Text>
               {data.node.results.description ?? 'Desc'}
             </Text>
@@ -41,23 +49,43 @@ const MedicationControlHandler = ({data, onUpdateData}: IHandler) => {
           <Icon name="notes" size={30} />
         </HStack>
         <HStack justifyContent="space-between">
-          <Text>{data.node.results.why}</Text>
+          <Tooltip label='Why'>
+            <Text>
+              {data.node.results.why}
+            </Text>
+          </Tooltip>
           <Icon name="help" size={30} />
         </HStack>
         <HStack justifyContent="space-between">
-          <Text>{data.node.results.notes}</Text>
+          <Tooltip label='Notes'>
+            <Text>
+              {data.node.results.notes}
+            </Text>
+          </Tooltip>
           <Icon name="comment" size={30} />
         </HStack>
         <HStack justifyContent="space-between">
-          <Text>{data.node.results.dosage}</Text>
+          <Tooltip label='Dosage'>
+            <Text>
+              {data.node.results.dosage}
+            </Text>
+          </Tooltip>
           <Icon name="medical-services" size={30} />
         </HStack>
         <HStack justifyContent="space-between">
-          <Text>{beginDate}</Text>
+          <Tooltip label='Begin date'>
+            <Text>
+              {beginDate}
+            </Text>
+          </Tooltip>
           <Icon name="play-arrow" size={30} />
         </HStack>
         <HStack justifyContent="space-between">
-          <Text>{endDate}</Text>
+          <Tooltip label='End date'>
+            <Text>
+              {endDate}
+            </Text>
+          </Tooltip>
           <Icon name="stop" size={30} />
         </HStack>
       </VStack>
@@ -69,8 +97,9 @@ const MedicationControlHandler = ({data, onUpdateData}: IHandler) => {
 export default MedicationControlHandler;
 
 function formatDateHour(date: Date): string {
-  const formattedDate = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
+  const formattedDate = `${date.getDate()}/${date.getMonth() + 1
+    }/${date.getFullYear()}`;
   const formattedHour = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-  
-  return (formattedDate + ' ' + formattedHour);
+
+  return formattedDate + ' ' + formattedHour;
 }
