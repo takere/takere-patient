@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Button, Heading, Text, Input, useToast, HStack, Divider} from 'native-base';
+import {Button, Heading, Text, Input, useToast, HStack, Divider, VStack, Radio, Checkbox} from 'native-base';
 import IHandler from '../../../models/IHandler';
 import {Requests} from '../../../services/axios/remoteRequests';
 import HandleSubmit from '../HandleSubmit';
@@ -47,6 +47,7 @@ const QuizHandler = ({data, onUpdateData}: IHandler) => {
         type={questions[currentQuestion].answer.type}
         value={input}
         onChange={setInput}
+        options={questions[currentQuestion].answer.options}
       />
       <HStack space={3} divider={<Divider />} w="100%" paddingY="10" justifyContent='space-between'>
         <Button onPress={handleBackQuestion} display={currentQuestion - 1 >= 0 ? 'flex' : 'none'}>
@@ -65,8 +66,8 @@ const QuizHandler = ({data, onUpdateData}: IHandler) => {
 
 export default QuizHandler;
 
-const QuestionInput = ({ type, value, onChange }: any) => {
-  //if (type === 'text') {
+const QuestionInput = ({ type, value, onChange, options }: any) => {
+  if (type === 'text') {
      return <Input
         mt={3}
         value={value}
@@ -75,5 +76,51 @@ const QuestionInput = ({ type, value, onChange }: any) => {
         placeholder='Type your answer'
         multiline={false}
       />
-  //}
+  }
+  else if (type === 'text-area') {
+    return <Input
+      mt={3}
+      value={value}
+      onChangeText={onChange}
+      size='2xs'
+      placeholder='Type your answer'
+      multiline={true}
+    />
+  }
+  else if (type === 'radio') {
+    return (
+      <Radio.Group
+        name="radio"
+        value={value}
+        onChange={onChange}
+      >
+        {options.map((option: any, index: any) => (
+          <Radio value={index} my="1" key={index}>
+            {option}
+          </Radio>
+        ))}
+      </Radio.Group>
+    )
+  }
+  else if (type === 'checkbox') {
+    return (
+      <Checkbox.Group onChange={onChange} value={value}>
+        {options.map((option: any, index: any) => (
+          <Checkbox value={index} my="1" key={index}>
+            {option}
+          </Checkbox>
+        ))}
+      </Checkbox.Group>
+    );
+  }
+  
+  return <Input
+    mt={3}
+    keyboardType="numeric"
+    value={value}
+    onChangeText={onChange}
+    size='2xs'
+    placeholder='Type your answer'
+    multiline={false}
+  />
 }
