@@ -53,14 +53,14 @@ export function HomeScreen({navigation}: {navigation: any}) {
                 bgColor='#49a9ff'
                 icon="dynamic-feed"
                 width={width}
-                onPress={() => console.log('clicou')}
+                onPress={() => navigation.navigate('Board')}
               />
               <MenuButton 
                 title='My progress'
                 bgColor='#34a853'
                 icon="domain-verification"
                 width={width}
-                onPress={() => console.log('clicou')}
+                onPress={() => {}}
               />
             </HStack>
             <HStack space={2} mt={4} justifyContent="space-between" alignItems='center'>
@@ -69,14 +69,14 @@ export function HomeScreen({navigation}: {navigation: any}) {
                 bgColor='#db594f'
                 icon="account-circle"
                 width={width}
-                onPress={() => console.log('clicou')}
+                onPress={() => {}}
               />
               <MenuButton 
                 title='Calendar'
                 bgColor='#f974bc'
                 icon="calendar-today"
                 width={width}
-                onPress={() => console.log('clicou')}
+                onPress={() => {}}
               />
             </HStack>
           </VStack>
