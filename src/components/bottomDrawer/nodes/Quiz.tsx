@@ -16,7 +16,7 @@ const QuizHandler = ({data, onUpdateData}: IHandler) => {
     toast.show({
       description: 'Salvando atualização!',
     });
-    await new Requests().postBoardResponse(data.id);
+    await new Requests().postBoardResponse(data.id, { payload: answers });
     onUpdateData();
   };
 

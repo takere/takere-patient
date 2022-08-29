@@ -52,7 +52,7 @@ export class Requests {
     return firstCharacter.toUpperCase() + remainingCharacters.toLowerCase();
   }
 
-  async postBoardResponse(boardId: string, result?: string) {
+  async postBoardResponse(boardId: string, result?: any) {
     const response = await axiosInstance.post('board/resolve', {
       boardId,
       result,
