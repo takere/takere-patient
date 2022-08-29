@@ -41,7 +41,7 @@ export const Card = ({
           </Text>
         </Box>
         <Box justifyContent='center' alignItems='center' marginRight={5}>
-          <Icon name={node.icon} size={30} color="#fff" />
+          <Icon name={node.icon === 'question' ? 'help' : node.icon} size={30} color="#fff" />
         </Box>
       </Flex>
     </Pressable>
