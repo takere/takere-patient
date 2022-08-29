@@ -69,7 +69,7 @@ export function HomeScreen({navigation}: {navigation: any}) {
                 bgColor='#db594f'
                 icon="account-circle"
                 width={width}
-                onPress={() => {}}
+                onPress={() => navigation.navigate('Profile')}
               />
               <MenuButton 
                 title='Calendar'
