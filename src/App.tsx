@@ -1,23 +1,13 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
 import React from 'react';
-
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {HomeScreen} from './src/pages/home/home';
-import {NativeBaseProvider} from 'native-base';
-import {UserProvider} from './src/context/user';
-import {SplashScreen} from './src/pages/splash/splash';
-import {LoginScreen} from './src/pages/login/login';
-import { ProfileScreen } from "./src/pages/profile/profile";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { BoardScreen } from './pages/board/board';
+import { NativeBaseProvider } from 'native-base';
+import { UserProvider } from './context/user';
+import { SplashScreen } from './pages/splash/splash';
+import { LoginScreen } from './pages/login/login';
+import { HomeScreen } from './pages/home/home';
+import { ProfileScreen } from "./pages/profile/profile";
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -30,6 +20,11 @@ const App = () => {
             <Stack.Screen
               name="Home"
               component={HomeScreen}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Board"
+              component={BoardScreen}
               options={{headerShown: false}}
             />
             <Stack.Screen
