@@ -60,28 +60,10 @@ export function BoardScreen({navigation}: {navigation: any}) {
   return (
     <>
       <SafeAreaView style={{flex: 1}}>
-        <Heading size="lg" ml={3} mb={5}>
-          Takere APP
+        <Heading size="lg" ml={3} mb={5} mt={5}>
+          Board
         </Heading>
         <ScrollView>
-          <Pressable
-            onPress={() => {
-              navigation.navigate('Profile');
-            }}>
-            <HStack space={2} alignItems="center">
-              <Avatar
-                ml={3}
-                bg="cyan.500"
-                source={{
-                  uri: 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png',
-                }}>
-                {user.user?.data?.firstName.substring(0, 2).toUpperCase()}
-              </Avatar>
-              <Heading size="lg" ml={3}>
-                {user.user?.data?.firstName}
-              </Heading>
-            </HStack>
-          </Pressable>
           {!loading && boards.length === 0 ? (
             <Center mt={16}>
               <Heading textAlign="center" size="md">

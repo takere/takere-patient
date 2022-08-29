@@ -25,7 +25,7 @@ export function HomeScreen({navigation}: {navigation: any}) {
   return (
     <>
       <SafeAreaView style={{flex: 1}}>
-        <Heading size="lg" ml={3} mb={5}>
+        <Heading size="lg" ml={3} mb={5} mt={5}>
           Takere APP
         </Heading>
         <ScrollView marginX={3}>
@@ -49,7 +49,7 @@ export function HomeScreen({navigation}: {navigation: any}) {
           <VStack>
             <HStack space={2} mt={4} justifyContent="space-between" alignItems='center'>
               <MenuButton 
-                title='Boards'
+                title='Board'
                 bgColor='#49a9ff'
                 icon="dynamic-feed"
                 width={width}
