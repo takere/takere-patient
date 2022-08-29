@@ -3,12 +3,15 @@ import {Button, Heading, Text, Input, useToast, Divider, HStack, Box} from 'nati
 import IHandler from '../../../models/IHandler';
 import {Requests} from '../../../services/axios/remoteRequests';
 import HandleSubmit from '../HandleSubmit';
+import RenderHtml from 'react-native-render-html';
+import { useWindowDimensions } from 'react-native';
 
 const ExplanationHandler = ({data, onUpdateData}: IHandler) => {
 
   const [currentPage, setCurrentPage] = useState(0);
 
   const pages = data.node.results.pages;
+  const { width } = useWindowDimensions();
   const toast = useToast();
 
   const handleSub = async () => {
@@ -41,9 +44,10 @@ const ExplanationHandler = ({data, onUpdateData}: IHandler) => {
         Explanation ({currentPage+1}/{data.node.results.pages.length})
       </Heading>
       <Box height='75%'>
-        <Text mt={3}>
-          {data.node.results.pages[currentPage]}
-        </Text>
+        <RenderHtml 
+          contentWidth={width}
+          source={{html: data.node.results.pages[currentPage]}}
+        />
       </Box>
       <Box height='15%' justifyContent='space-between'>
         <HStack w="100%" justifyContent='space-between'>
