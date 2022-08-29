@@ -108,7 +108,7 @@ export function HomeScreen({navigation}: {navigation: any}) {
           )}
         </ScrollView>
       </SafeAreaView>
-      <Modalize ref={modalizeRef}>
+      <Modalize ref={modalizeRef} >
         {selectedBoard && (
           <BottomDrawer onUpdateData={onUpdateData} board={selectedBoard} />
         )}
