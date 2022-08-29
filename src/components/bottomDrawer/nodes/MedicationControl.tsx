@@ -36,7 +36,7 @@ const MedicationControlHandler = ({ data, onUpdateData }: IHandler) => {
 
   return (
     <>
-      <Heading size="xl" mt={1} color="muted.800">
+      <Heading size="xl" color="muted.800">
         {data.node.results.name ?? 'Name'}
       </Heading>
       <VStack space={3} divider={<Divider />} w="100%" p="10">
