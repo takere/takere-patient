@@ -6,7 +6,8 @@ import HandleSubmit from '../HandleSubmit';
 
 const QuizHandler = ({data, onUpdateData}: IHandler) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [input, setInput] = useState('');
+  const [answers, setAnswers] = useState(buildEmptyAnswers(data.node.results.questions));
+  const [currentAnswer, setCurrentAnswer] = useState('');
 
   const questions = data.node.results.questions;
 
@@ -24,14 +25,26 @@ const QuizHandler = ({data, onUpdateData}: IHandler) => {
       return;
     }
 
+    persistCurrentAnswer();
+    setCurrentAnswer(answers[currentQuestion+1]);
     setCurrentQuestion(currentQuestion+1);
   }
+
+  const persistCurrentAnswer = () => {
+    const currentAnswers = [ ...answers ];
+
+    currentAnswers[currentQuestion] = currentAnswer;
+
+    setAnswers(currentAnswers);
+  };
 
   const handleBackQuestion = () => {
     if (currentQuestion - 1 < 0) {
       return;
     }
 
+    persistCurrentAnswer();
+    setCurrentAnswer(answers[currentQuestion-1]);
     setCurrentQuestion(currentQuestion-1);
   }
 
@@ -45,8 +58,8 @@ const QuizHandler = ({data, onUpdateData}: IHandler) => {
       </Heading>
       <QuestionInput 
         type={questions[currentQuestion].answer.type}
-        value={input}
-        onChange={setInput}
+        value={currentAnswer}
+        onChange={setCurrentAnswer}
         options={questions[currentQuestion].answer.options}
       />
       <HStack space={3} divider={<Divider />} w="100%" paddingY="10" justifyContent='space-between'>
@@ -124,3 +137,13 @@ const QuestionInput = ({ type, value, onChange, options }: any) => {
     multiline={false}
   />
 }
+function buildEmptyAnswers(questions: string[]): string[] {
+  const emptyAnswers: string[] = [];
+
+  for (let i = 0; i < questions.length; i++) {
+    emptyAnswers.push('');
+  }
+
+  return emptyAnswers;
+}
+
