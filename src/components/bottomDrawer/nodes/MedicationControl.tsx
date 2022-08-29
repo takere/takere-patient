@@ -1,9 +1,10 @@
 import React from 'react';
-import {Button, Heading, Text, Input, useToast, Divider, HStack, VStack, Tooltip } from 'native-base';
+import {Button, Heading, Text, Input, useToast, Divider, HStack, VStack } from 'native-base';
 import IHandler from '../../../models/IHandler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Requests} from '../../../services/axios/remoteRequests';
 import HandleSubmit from '../HandleSubmit';
+import Tooltip from '../../Tooltip';
 
 const MedicationControlHandler = ({data, onUpdateData}: IHandler) => {
   const toast = useToast();
@@ -32,7 +33,11 @@ const MedicationControlHandler = ({data, onUpdateData}: IHandler) => {
       </Heading>
       <VStack space={3} divider={<Divider />} w="100%" p='10'>
         <HStack justifyContent="space-between">
-          <Text>{data.node.results.description ?? 'Desc'}</Text>
+          <Tooltip label='Description'>
+            <Text>
+              {data.node.results.description ?? 'Desc'}
+            </Text>
+          </Tooltip>
           <Icon name="notes" size={30} />
         </HStack>
         <HStack justifyContent="space-between">

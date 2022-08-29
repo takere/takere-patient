@@ -6911,6 +6911,11 @@
   "resolved" "https://registry.npmjs.org/rimraf/-/rimraf-2.2.8.tgz"
   "version" "2.2.8"
 
+"rn-tooltip@^3.0.2":
+  "integrity" "sha512-KaFGPSM4tDlgSpD4ucAsMACY5G+a/O88nBMXejCly9bCk2jMwozK4+K8whSAuMfhnGvAv9iKT5FeX8xdJsEplQ=="
+  "resolved" "https://registry.npmjs.org/rn-tooltip/-/rn-tooltip-3.0.2.tgz"
+  "version" "3.0.2"
+
 "rsvp@^4.8.4":
   "integrity" "sha512-nfMOlASu9OnRJo1mbEk2cz0D56a1MBNrJ7orjRZQG10XDyuvwksKbuXNp6qa+kbn839HwjwhBzhFmdsaEAfauA=="
   "resolved" "https://registry.npmjs.org/rsvp/-/rsvp-4.8.5.tgz"
