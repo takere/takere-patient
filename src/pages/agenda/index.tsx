@@ -38,13 +38,6 @@ export function AgendaScreen({navigation}: {navigation: any}) {
     };
     
     getData();
-
-    // setAgenda([{
-    //   id: 1,
-    //   type: 'MEDICATION CONTROL',
-    //   icon: 'healing',
-    //   bgColor: 'red'
-    // }]);
   }, []);
 
   return (
