@@ -39,9 +39,6 @@ export function AgendaScreen({navigation}: {navigation: any}) {
   return (
     <>
       <SafeAreaView style={{flex: 1}}>
-        <Heading size="lg" ml={3} mb={5} mt={5}>
-          Agenda
-        </Heading>
         <ScrollView marginX={3}>
           <Heading size="md" ml={3} mt={5}>
             Today

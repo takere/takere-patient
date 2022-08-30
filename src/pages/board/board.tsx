@@ -61,9 +61,6 @@ export function BoardScreen({navigation}: {navigation: any}) {
   return (
     <>
       <SafeAreaView style={{flex: 1}}>
-        <Heading size="lg" ml={3} mb={5} mt={5}>
-          Board
-        </Heading>
         <ScrollView>
           {!loading && boards.length === 0 ? (
             <Center mt={16}>

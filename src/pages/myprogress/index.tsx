@@ -24,9 +24,6 @@ export function MyProgressScreen({navigation}: {navigation: any}) {
   return (
     <>
       <SafeAreaView style={{flex: 1}}>
-        <Heading size="lg" ml={3} mb={5} mt={5}>
-          My progress
-        </Heading>
         <ScrollView marginX={3}>
           
         </ScrollView>

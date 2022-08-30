@@ -22,17 +22,7 @@ export function ProfileScreen({navigation}: {navigation: any}) {
 
   return (
     <SafeAreaView>
-      <Pressable
-        onPress={() => {
-          navigation.navigate('Home');
-        }}>
-        <HStack space={1} mt={2} alignItems="center">
-          <ChevronLeftIcon size="8" color="muted.800" />
-          <Heading size="md" color="muted.800">
-            Voltar
-          </Heading>
-        </HStack>
-      </Pressable>
+      
       <Button
         ml={3}
         mr={3}

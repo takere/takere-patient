@@ -27,17 +27,17 @@ const App = () => {
             <Stack.Screen
               name="Board"
               component={BoardScreen}
-              options={{headerShown: false}}
+              options={{headerShown: true}}
             />
             <Stack.Screen
               name="MyProgress"
               component={MyProgressScreen}
-              options={{headerShown: false}}
+              options={{headerShown: true, headerTitle: 'My Progress'}}
             />
             <Stack.Screen
               name="Agenda"
               component={AgendaScreen}
-              options={{headerShown: false}}
+              options={{headerShown: true}}
             />
             <Stack.Screen
               name="Splash"
@@ -52,7 +52,7 @@ const App = () => {
             <Stack.Screen
               name="Profile"
               component={ProfileScreen}
-              options={{headerShown: false}}
+              options={{headerShown: true}}
             />
           </Stack.Navigator>
         </UserProvider>
