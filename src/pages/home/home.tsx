@@ -60,7 +60,7 @@ export function HomeScreen({navigation}: {navigation: any}) {
                 bgColor='#34a853'
                 icon="domain-verification"
                 width={width}
-                onPress={() => {}}
+                onPress={() => navigation.navigate('MyProgress')}
               />
             </HStack>
             <HStack space={2} mt={4} justifyContent="space-between" alignItems='center'>
@@ -72,11 +72,11 @@ export function HomeScreen({navigation}: {navigation: any}) {
                 onPress={() => navigation.navigate('Profile')}
               />
               <MenuButton 
-                title='Calendar'
+                title='Agenda'
                 bgColor='#f974bc'
                 icon="calendar-today"
                 width={width}
-                onPress={() => {}}
+                onPress={() => navigation.navigate('Agenda')}
               />
             </HStack>
           </VStack>

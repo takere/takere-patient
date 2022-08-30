@@ -8,6 +8,8 @@ import { SplashScreen } from './pages/splash/splash';
 import { LoginScreen } from './pages/login/login';
 import { HomeScreen } from './pages/home/home';
 import { ProfileScreen } from "./pages/profile/profile";
+import { MyProgressScreen } from './pages/myprogress';
+import { AgendaScreen } from './pages/agenda';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -25,6 +27,16 @@ const App = () => {
             <Stack.Screen
               name="Board"
               component={BoardScreen}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="MyProgress"
+              component={MyProgressScreen}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Agenda"
+              component={AgendaScreen}
               options={{headerShown: false}}
             />
             <Stack.Screen
