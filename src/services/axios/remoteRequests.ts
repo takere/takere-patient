@@ -2,14 +2,7 @@ import BoardDTO from '../../dto/board.dto';
 import axiosInstance from './axios';
 
 export class Requests {
-  // async getMe() {
-  //   try {
-  //     const response = await axiosInstance.get('users/me');
-  //     return response.data;
-  //   } catch (e) {
-  //   }
-  // }
-
+  
   async getBoards(email: string): Promise<BoardDTO[]> {
     //const response = await axiosInstance.get('board/me', {params: {email}});
     const response = await axiosInstance.get('board/me?email=' + email);
@@ -72,5 +65,26 @@ export class Requests {
   async makeLogin(email: string, password: string) {
     const response = await axiosInstance.post('users/login', {email, password});
     return response.data;
+  }
+
+  async getAgenda(userId: string) {
+    return {
+      today: [
+        { 
+          flow: { id: 1, name: 'Diabetes', description: 'Patient with diabetes' }, 
+          node: { id: 2, type: 'QUIZ', icon: 'help' }
+        }
+      ],
+      tomorrow: [
+        { 
+          flow: { id: 1, name: 'Diabetes', description: 'Patient with diabetes' }, 
+          node: { id: 2, type: 'MEDICATION_CONTROL', icon: 'healing' }
+        },
+        { 
+          flow: { id: 1, name: 'Diabetes', description: 'Patient with diabetes' }, 
+          node: { id: 2, type: 'EXPLANATION', icon: 'school' }
+        }
+      ]
+    }
   }
 }

@@ -40,7 +40,7 @@ export const Card = ({
             {description}
           </Text>
         </Box>
-        <Box justifyContent='center' alignItems='center' marginRight={5}>
+        <Box justifyContent='center' alignItems='center'>
           <Icon name={node.icon === 'question' ? 'help' : node.icon} size={30} color="#fff" />
         </Box>
       </Flex>

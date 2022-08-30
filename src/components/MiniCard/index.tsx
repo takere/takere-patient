@@ -3,7 +3,6 @@ import {Pressable, Text, Box, HStack, Spacer, Flex} from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export const MiniCard = ({
-  id,
   name,
   icon,
   bgColor,
@@ -21,7 +20,7 @@ export const MiniCard = ({
             {name}
           </Text>
         </Box>
-        <Box justifyContent='center' alignItems='center' marginRight={5}>
+        <Box justifyContent='center' alignItems='center'>
           <Icon name={icon} size={30} color="#fff" />
         </Box>
       </Flex>
