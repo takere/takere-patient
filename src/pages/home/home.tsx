@@ -27,7 +27,7 @@ export function HomeScreen({navigation}: {navigation: any}) {
     <>
       <SafeAreaView style={{flex: 1}}>
         <Heading size="lg" ml={3} mb={5} mt={5}>
-          Takere APP
+          Takere
         </Heading>
         <ScrollView marginX={3}>
           <Pressable
@@ -40,10 +40,9 @@ export function HomeScreen({navigation}: {navigation: any}) {
                 source={{
                   uri: 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png',
                 }}>
-                {user.user?.data?.firstName.substring(0, 2).toUpperCase()}
               </Avatar>
               <Heading size="lg">
-                {user.user?.data?.firstName}
+                Welcome back {user.user?.firstName}!
               </Heading>
             </HStack>
           </Pressable>
@@ -101,9 +100,9 @@ const MenuButton = ({ width, title, bgColor, icon, onPress }: any) => (
       alignItems='center'
     >
       <Box justifyContent='center' paddingTop={30} flex={1}>
-        <Icon name={icon} size={50} />
+        <Icon name={icon} size={50} color='#fff' />
       </Box>
-      <Text marginBottom={5}>
+      <Text marginBottom={5} color='#fff' fontWeight='bold' fontSize={16}>
         { title }
       </Text>
     </VStack>
