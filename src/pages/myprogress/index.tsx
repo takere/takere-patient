@@ -62,6 +62,7 @@ const FlowProgress = ({ flow }: any) => (
       {flow.progress.map((item: any, index: number) => (
         <ProgressCard
           key={index}
+          icon={item.node.icon}
           bgColor={item.node.bgColor}
           name={item.node.type}
           completed={item.completed}
@@ -72,23 +73,27 @@ const FlowProgress = ({ flow }: any) => (
   </Box>
 );
 
-const ProgressCard = ({ name, completed, remaining, bgColor }: any) => (
-  <HStack p="5" rounded="8" bgColor={bgColor} justifyContent='space-between'>
-    <HStack justifyContent='center'>
-      <Box justifyContent='center' alignItems='center'>
-        <Icon name='help' size={30} color="#fff" />
-      </Box>
-      <Text fontSize={18} color="cyan.50" fontWeight="medium" ml={5}>
-        { name }
-      </Text>
-      <Text fontSize={18} color="cyan.50" fontWeight="medium" ml={5}>
-        ({completed}/{remaining})
-      </Text>
-    </HStack>
-    <Center w="60%">
-      <Box w="90%" maxW="140">
-        <Progress size="md" bg='coolGray.300' _filledTrack={{ bg: colors.success }} value={(completed/remaining) * 100} />
-      </Box>
-    </Center>
+const ProgressCard = ({ name, icon, completed, remaining, bgColor }: any) => (
+  <HStack p="5" rounded="8" bgColor={bgColor}>
+    <Box justifyContent='center' alignItems='center' mr={5}>
+      <Icon name={icon} size={35} color="#fff" />
+    </Box>
+    <VStack>
+      <HStack justifyContent='flex-start'>
+        <Text fontSize={18} color="cyan.50" fontWeight="medium">
+          { name }
+        </Text>
+      </HStack>
+      <HStack justifyContent='space-between'>
+        <Center w="70%">
+          <Box w="100%" maxW="240">
+            <Progress size="md" bg='coolGray.300' _filledTrack={{ bg: colors.success }} value={(completed/remaining) * 100} />
+          </Box>
+        </Center>
+        <Text fontSize={14} color="cyan.50" fontWeight="medium">
+          ({completed}/{remaining})
+        </Text>
+      </HStack>
+    </VStack>
   </HStack>
 );
