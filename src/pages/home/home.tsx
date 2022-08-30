@@ -15,6 +15,7 @@ import {SafeAreaView} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useUser} from '../../context/user';
 import {Dimensions} from 'react-native';
+import colors from '../../resources/colors';
 
 export function HomeScreen({navigation}: {navigation: any}) {
   const toast = useToast();
@@ -50,14 +51,14 @@ export function HomeScreen({navigation}: {navigation: any}) {
             <HStack space={2} mt={4} justifyContent="space-between" alignItems='center'>
               <MenuButton 
                 title='Board'
-                bgColor='#49a9ff'
+                bgColor={colors.cold}
                 icon="dynamic-feed"
                 width={width}
                 onPress={() => navigation.navigate('Board')}
               />
               <MenuButton 
                 title='My progress'
-                bgColor='#34a853'
+                bgColor={colors.success}
                 icon="domain-verification"
                 width={width}
                 onPress={() => navigation.navigate('MyProgress')}
@@ -66,14 +67,14 @@ export function HomeScreen({navigation}: {navigation: any}) {
             <HStack space={2} mt={4} justifyContent="space-between" alignItems='center'>
               <MenuButton 
                 title='Profile'
-                bgColor='#db594f'
+                bgColor={colors.danger}
                 icon="account-circle"
                 width={width}
                 onPress={() => navigation.navigate('Profile')}
               />
               <MenuButton 
                 title='Agenda'
-                bgColor='#f974bc'
+                bgColor={colors.yogurt}
                 icon="calendar-today"
                 width={width}
                 onPress={() => navigation.navigate('Agenda')}

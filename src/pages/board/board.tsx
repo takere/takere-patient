@@ -13,10 +13,11 @@ import {
 import {useEffect, useRef, useState} from 'react';
 import {Requests} from '../../services/axios/remoteRequests';
 import {SafeAreaView} from 'react-native';
-import {Card, ICard} from '../../components/card/Card';
+import {Card} from '../../components/card/Card';
 import {Modalize} from 'react-native-modalize';
 import {BottomDrawer} from '../../components/bottomDrawer/BottomDrawer';
 import {useUser} from '../../context/user';
+import ICard from '../../models/ICard';
 
 export function BoardScreen({navigation}: {navigation: any}) {
   const toast = useToast();

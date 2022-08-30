@@ -17,9 +17,18 @@ export class Requests {
 
     boards.forEach(board => {
       board.node.type = this.formatNodeType(board.node.type)
+      board.node.icon = this.formatNodeIcon(board.node.icon)
     });
 
     return boards;
+  }
+
+  private formatNodeIcon(icon: string): string {
+    let formattedIcon = icon;
+
+    formattedIcon = formattedIcon.replace('question', 'help');
+
+    return formattedIcon;
   }
 
   private formatNodeType(type: string): string {
