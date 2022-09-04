@@ -1,5 +1,5 @@
 const colors: any = {
-  primary: '#007f66',
+  primary: '#0fab7a',
   dark: '#444',
   light: '#eee',
   success: '#34a853',

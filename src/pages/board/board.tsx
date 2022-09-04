@@ -18,6 +18,7 @@ import {Modalize} from 'react-native-modalize';
 import {BottomDrawer} from '../../components/bottomDrawer/BottomDrawer';
 import {useUser} from '../../context/user';
 import ICard from '../../models/ICard';
+import colors from '../../resources/colors';
 
 export function BoardScreen({navigation}: {navigation: any}) {
   const toast = useToast();
@@ -78,7 +79,7 @@ export function BoardScreen({navigation}: {navigation: any}) {
             </Center>
           ) : null}
           {loading ? (
-            <Spinner size="lg" color="warning.500" />
+            <Spinner size="lg" color={colors.primary} mt={20} />
           ) : (
             <VStack space={2} mt={4} alignItems="center">
               {boards.map((board, i) => {

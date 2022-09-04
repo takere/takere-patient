@@ -44,7 +44,7 @@ export function AgendaScreen({navigation}: {navigation: any}) {
     <>
       <SafeAreaView style={{flex: 1}}>
         {loading &&
-          <Spinner size="lg" color={colors.yogurt} mt={20} />
+          <Spinner size="lg" color={colors.primary} mt={20} />
         }
         {!loading &&
           <ScrollView marginX={3}>

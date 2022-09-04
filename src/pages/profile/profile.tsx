@@ -31,7 +31,7 @@ export function ProfileScreen({navigation}: {navigation: any}) {
         size="lg"
         colorScheme="error"
         onPress={() => handleSubmit()}>
-        Sair
+        Logout
       </Button>
     </SafeAreaView>
   );
