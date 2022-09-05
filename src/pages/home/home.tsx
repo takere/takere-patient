@@ -32,28 +32,17 @@ export function HomeScreen({navigation}: {navigation: any}) {
           source={require('../../assets/images/peace.jpg')}
           alt='green field with sun and with one person helping another'
         />
-        <Heading size="lg" ml={3} mb={5} mt={5}>
-          Takere
-        </Heading>
         <ScrollView marginX={3}>
-          <Pressable
-            onPress={() => {
-              navigation.navigate('Profile');
-            }}>
-            <HStack space={2} alignItems="center">
-              <Avatar
-                bg="cyan.500"
-                source={{
-                  uri: 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png',
-                }}>
-              </Avatar>
-              <Heading size="lg">
-                Welcome back {user.user?.firstName}!
-              </Heading>
-            </HStack>
-          </Pressable>
+          <Box h={60} w='100%' mb={5} mt={5}>
+          <Image 
+            style={{ display: 'flex', height: 50, resizeMode: 'contain'}}
+            source={require('../../assets/images/logo.png')}
+            alt='takere logo'
+          />
+
+        </Box>
           <VStack>
-            <HStack space={2} mt={4} justifyContent="space-between" alignItems='center'>
+            <HStack space={2} justifyContent="space-between" alignItems='center'>
               <MenuButton 
                 title='Board'
                 bgColor={colors.primary}
@@ -69,7 +58,7 @@ export function HomeScreen({navigation}: {navigation: any}) {
                 onPress={() => navigation.navigate('MyProgress')}
               />
             </HStack>
-            <HStack space={2} mt={4} justifyContent="space-between" alignItems='center'>
+            <HStack space={2} mt={2} justifyContent="space-between" alignItems='center'>
               <MenuButton 
                 title='Profile'
                 bgColor={colors.primary}
