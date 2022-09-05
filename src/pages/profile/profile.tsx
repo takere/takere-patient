@@ -5,6 +5,7 @@ import {
   ChevronLeftIcon,
   Heading,
   HStack,
+  Image,
   Pressable,
   ScrollView,
   Spinner,
@@ -21,8 +22,12 @@ export function ProfileScreen({navigation}: {navigation: any}) {
   };
 
   return (
-    <SafeAreaView>
-      
+    <SafeAreaView style={{flex: 1}}>
+      <Image 
+          style={{ height: '100%', width: '100%', position: 'absolute', top:0, left:0 }}
+          source={require('../../assets/images/form.jpg')}
+          alt='green field with sun and with one person helping another'
+        />
       <Button
         ml={3}
         mr={3}

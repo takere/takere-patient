@@ -4,6 +4,7 @@ import {
   Center,
   Heading,
   HStack,
+  Image,
   Pressable,
   ScrollView,
   Text,
@@ -21,11 +22,16 @@ export function HomeScreen({navigation}: {navigation: any}) {
   const toast = useToast();
   const user = useUser();
   const {width} = Dimensions.get('window');
-
+  
 
   return (
     <>
       <SafeAreaView style={{flex: 1}}>
+        <Image 
+          style={{ height: '100%', width: '100%', position: 'absolute', top:0, left:0 }}
+          source={require('../../assets/images/peace.jpg')}
+          alt='green field with sun and with one person helping another'
+        />
         <Heading size="lg" ml={3} mb={5} mt={5}>
           Takere
         </Heading>
