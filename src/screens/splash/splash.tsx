@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Center, Spinner} from 'native-base';
 import {useEffect} from 'react';
-import {useUser} from '../../context/user';
+import {useUser} from '../../providers/user';
 
 export function SplashScreen({navigation}: {navigation: any}) {
   const user = useUser();

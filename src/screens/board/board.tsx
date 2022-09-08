@@ -16,7 +16,7 @@ import {SafeAreaView} from 'react-native';
 import {Card} from '../../components/card/Card';
 import {Modalize} from 'react-native-modalize';
 import {BottomDrawer} from '../../components/bottomDrawer/BottomDrawer';
-import {useUser} from '../../context/user';
+import {useUser} from '../../providers/user';
 import ICard from '../../models/ICard';
 import colors from '../../resources/colors';
 

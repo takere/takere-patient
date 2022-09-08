@@ -5,7 +5,7 @@ import {
   Input,
 } from 'native-base';
 import {useState} from 'react';
-import {useUser} from '../../context/user';
+import {useUser} from '../../providers/user';
 import {SafeAreaView} from 'react-native';
 
 export function LoginScreen({navigation}: {navigation: any}) {

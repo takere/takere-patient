@@ -10,7 +10,7 @@ import {
   ScrollView,
   Spinner,
 } from 'native-base';
-import {useUser} from '../../context/user';
+import {useUser} from '../../providers/user';
 import {SafeAreaView} from 'react-native';
 
 export function ProfileScreen({navigation}: {navigation: any}) {

@@ -1,15 +1,15 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { BoardScreen } from './pages/board/board';
+import { BoardScreen } from './screens/board/board';
 import { NativeBaseProvider } from 'native-base';
-import { UserProvider } from './context/user';
-import { SplashScreen } from './pages/splash/splash';
-import { LoginScreen } from './pages/login/login';
-import { HomeScreen } from './pages/home/home';
-import { ProfileScreen } from "./pages/profile/profile";
-import { MyProgressScreen } from './pages/myprogress';
-import { AgendaScreen } from './pages/agenda';
+import { UserProvider } from './providers/user';
+import { SplashScreen } from './screens/splash/splash';
+import { LoginScreen } from './screens/login/login';
+import { HomeScreen } from './screens/home/home';
+import { ProfileScreen } from "./screens/profile/profile";
+import { MyProgressScreen } from './screens/myprogress';
+import { AgendaScreen } from './screens/agenda';
 
 const App = () => {
   const Stack = createNativeStackNavigator();

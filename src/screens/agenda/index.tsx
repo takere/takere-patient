@@ -13,7 +13,7 @@ import {
   Image
 } from "native-base";
 import {SafeAreaView} from 'react-native';
-import {useUser} from '../../context/user';
+import {useUser} from '../../providers/user';
 import {Dimensions} from 'react-native';
 import ICard from '../../models/ICard';
 import { MiniCard } from '../../components/MiniCard';

@@ -14,7 +14,7 @@ import {
 } from "native-base";
 import {useEffect, useRef, useState} from 'react';
 import {SafeAreaView} from 'react-native';
-import {useUser} from '../../context/user';
+import {useUser} from '../../providers/user';
 import {Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Requests} from '../../services/axios/remoteRequests';
