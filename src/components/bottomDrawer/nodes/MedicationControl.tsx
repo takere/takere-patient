@@ -8,6 +8,7 @@ import {
   Divider,
   HStack,
   VStack,
+  Box,
 } from 'native-base';
 import IHandler from '../../../models/IHandler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -36,7 +37,7 @@ const MedicationControlHandler = ({ data, onUpdateData }: IHandler) => {
 
   return (
     <>
-      <Heading size="xl" color="muted.800">
+      <Heading fontSize={30} color="muted.800">
         {data.node.results.name ?? 'Name'}
       </Heading>
       <VStack space={3} divider={<Divider />} w="100%" p="10">
@@ -49,20 +50,26 @@ const MedicationControlHandler = ({ data, onUpdateData }: IHandler) => {
           <Icon name="notes" size={30} />
         </HStack>
         <HStack justifyContent="space-between">
-          <Tooltip label='Why'>
-            <Text>
-              {data.node.results.why}
-            </Text>
-          </Tooltip>
+          <Box w='85%'>
+            <Tooltip label='Why'>
+              <Text w='90%'>
+                {data.node.results.why}
+              </Text>
+            </Tooltip>
+          </Box>
           <Icon name="help" size={30} />
         </HStack>
         <HStack justifyContent="space-between">
-          <Tooltip label='Notes'>
-            <Text>
-              {data.node.results.notes}
-            </Text>
-          </Tooltip>
-          <Icon name="comment" size={30} />
+          <Box w='85%'>
+            <Tooltip label='Notes'>
+              <Text w='90%'>
+                {data.node.results.notes}
+              </Text>
+            </Tooltip>
+          </Box>
+          <Box>
+            <Icon name="comment" size={30} />
+          </Box>
         </HStack>
         <HStack justifyContent="space-between">
           <Tooltip label='Dosage'>

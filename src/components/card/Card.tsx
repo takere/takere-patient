@@ -33,15 +33,15 @@ export const Card = ({
                 })}
             </Text>
           </HStack>
-          <Text color="cyan.50" mt="3" fontWeight="medium" fontSize={20}>
-            Care plan: {name}
+          <Text color="cyan.50" mt="3" fontWeight="medium" fontSize={18}>
+            {node.results.name}
           </Text>
-          <Text mt="2" fontSize={14} color="cyan.100">
-            {description}
+          <Text mt="2" fontSize={14} color="cyan.100" overflow='scroll'>
+            {node.results.description}
           </Text>
         </Box>
         <Box justifyContent='center' alignItems='center'>
-          <Icon name={node.icon === 'question' ? 'help' : node.icon} size={30} color="#fff" />
+          <Icon name={node.icon} size={30} color="#fff" />
         </Box>
       </Flex>
     </Pressable>

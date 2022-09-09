@@ -89,7 +89,7 @@ export function BoardScreen({navigation}: {navigation: any}) {
           )}
         </ScrollView>
       </SafeAreaView>
-      <Modalize ref={modalizeRef} >
+      <Modalize ref={modalizeRef} modalTopOffset={90} >
         {selectedBoard && (
           <BottomDrawer onUpdateData={onUpdateData} board={selectedBoard} />
         )}

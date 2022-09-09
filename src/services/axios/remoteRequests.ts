@@ -78,7 +78,7 @@ export class Requests {
       tomorrow: [
         { 
           flow: { id: 1, name: 'Diabetes', description: 'Patient with diabetes' }, 
-          node: { id: 2, type: 'MEDICATION_CONTROL', icon: 'healing' }
+          node: { id: 2, type: 'MEDICATION CONTROL', icon: 'healing' }
         },
         { 
           flow: { id: 1, name: 'Diabetes', description: 'Patient with diabetes' }, 
