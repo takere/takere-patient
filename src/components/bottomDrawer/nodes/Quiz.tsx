@@ -63,10 +63,10 @@ const QuizHandler = ({data, onUpdateData}: IHandler) => {
         options={questions[currentQuestion].answer.options}
       />
       <HStack space={3} divider={<Divider />} w="100%" paddingY="10" justifyContent='space-between'>
-        <Button onPress={handleBackQuestion} display={currentQuestion - 1 >= 0 ? 'flex' : 'none'}>
+        <Button onPress={handleBackQuestion} display={currentQuestion - 1 >= 0 ? 'flex' : 'none'} bgColor='#0fab7a'>
           Back
         </Button>
-        <Button onPress={handleNextQuestion} display={currentQuestion + 1 < questions.length ? 'flex' : 'none'}>
+        <Button onPress={handleNextQuestion} display={currentQuestion + 1 < questions.length ? 'flex' : 'none'} bgColor='#0fab7a'>
           Next
         </Button>
       </HStack>
@@ -132,7 +132,7 @@ const QuestionInput = ({ type, value, onChange, options }: any) => {
     keyboardType="numeric"
     value={value}
     onChangeText={onChange}
-    size='2xs'
+    size='2xl'
     placeholder='Type your answer'
     multiline={false}
   />
