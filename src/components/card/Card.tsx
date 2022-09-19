@@ -10,7 +10,7 @@ export const Card = ({
   name,
   description,
   node,
-  executed,
+  finished: finished,
   onOpen,
 }: ICard) => {
   return (
@@ -18,7 +18,7 @@ export const Card = ({
       w="100%"
       pl={2}
       pr={2}
-      onPress={() => onOpen({name, description, executed, id, node})}>
+      onPress={() => onOpen({name, description, finished: finished, id, node})}>
       <Flex p="5" rounded="8" bg={node.bgColor} direction='row' justifyContent='space-between'>
         <Box>
           <HStack alignItems="flex-start">
@@ -27,8 +27,8 @@ export const Card = ({
             </Text>
             <Spacer />
             <Text fontSize={10} color="cyan.100">
-              {executed.executedAt &&
-                formatDistanceToNow(new Date(executed.executedAt), {
+              {finished.at &&
+                formatDistanceToNow(new Date(finished.at), {
                   locale: ptBR,
                 })}
             </Text>

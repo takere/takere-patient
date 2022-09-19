@@ -3,9 +3,9 @@ interface ICard {
   id: string;
   name: string;
   description: string;
-  executed: {
+  finished: {
     id: string;
-    executedAt: string;
+    at: string;
     result: any;
   };
   node: {

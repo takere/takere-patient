@@ -18,7 +18,7 @@ const HandleSubmit = ({onClick}: IHandleSubmit) => {
         size="lg"
         colorScheme="success"
         onPress={() => handleSubmit()}>
-        Concluir
+        Finish
       </Button>
     </>
   );
