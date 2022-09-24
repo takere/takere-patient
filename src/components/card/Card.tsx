@@ -12,14 +12,14 @@ export const Card = ({
   node,
   finished: finished,
   onOpen,
-}: ICard) => {
+}: any) => {
   return (
     <Pressable
       w="100%"
       pl={2}
       pr={2}
       onPress={() => onOpen({name, description, finished: finished, id, node})}>
-      <Flex p="5" rounded="8" bg={node.bgColor} direction='row' justifyContent='space-between'>
+      <Flex p="5" rounded="8" bg={node.data.color} direction='row' justifyContent='space-between'>
         <Box>
           <HStack alignItems="flex-start">
             <Text fontSize={12} color="cyan.50" fontWeight="medium">
@@ -34,10 +34,10 @@ export const Card = ({
             </Text>
           </HStack>
           <Text color="cyan.50" mt="3" fontWeight="medium" fontSize={18}>
-            {node.results.name}
+            {node.data.name}
           </Text>
           <Text mt="2" fontSize={14} color="cyan.100" overflow='scroll'>
-            {node.results.description}
+            {node.data.description}
           </Text>
         </Box>
         <Box justifyContent='center' alignItems='center'>

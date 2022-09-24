@@ -8,10 +8,11 @@ export class Requests {
     const response = await axiosInstance.get('board/me?email=' + email);
     const boards: BoardDTO[] = response.data;
 
-    boards.forEach(board => {
-      board.node.type = this.formatNodeType(board.node.type)
-      board.node.icon = this.formatNodeIcon(board.node.icon)
-    });
+    // boards.forEach(board => {
+    //   board.node.type = this.formatNodeType(board.node.type)
+    //   board.node.icon = this.formatNodeIcon(board.node.icon)
+    // });
+    console.log('----------------', boards)
 
     return boards;
   }
