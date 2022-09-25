@@ -10,6 +10,7 @@ const { height } = Dimensions.get('window');
 
 
 export const BottomDrawer = ({board, onUpdateData}: any) => {
+  
   return (
     <>
       <Heading size="lg" ml={3} mt={5}>

@@ -6,9 +6,9 @@ import HandleSubmit from '../../HandleSubmit';
 
 const FormContent = ({data, onUpdateData}: any) => {
   
-  const nameIdx = data.node.parameters.filter((parameter: any) => parameter.slug === 'name')
-  const descriptionIdx = data.node.parameters.filter((parameter: any) => parameter.slug === 'description')
-  const questionsIdx = data.node.parameters.filter((parameter: any) => parameter.slug === 'questions')
+  const nameIdx = data.node.parameters.findIndex((parameter: any) => parameter.slug === 'name')
+  const descriptionIdx = data.node.parameters.findIndex((parameter: any) => parameter.slug === 'description')
+  const questionsIdx = data.node.parameters.findIndex((parameter: any) => parameter.slug === 'questions')
   const name = data.node.arguments[nameIdx];
   const description = data.node.arguments[descriptionIdx];
   const questions = data.node.arguments[questionsIdx];

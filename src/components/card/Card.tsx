@@ -19,11 +19,11 @@ export const Card = ({
       pl={2}
       pr={2}
       onPress={() => onOpen({name, description, finished: finished, id, node})}>
-      <Flex p="5" rounded="8" bg={node.color} direction='row' justifyContent='space-between'>
+      <Flex p="5" rounded="8" bg={node?.color} direction='row' justifyContent='space-between'>
         <Box>
           <HStack alignItems="flex-start">
             <Text fontSize={12} color="cyan.50" fontWeight="medium">
-              {node.name.toUpperCase()}
+              {node?.name.toUpperCase()}
             </Text>
             <Spacer />
             <Text fontSize={10} color="cyan.100">
@@ -34,14 +34,14 @@ export const Card = ({
             </Text>
           </HStack>
           <Text color="cyan.50" mt="3" fontWeight="medium" fontSize={18}>
-            {node.arguments[0]}
+            {node?.arguments[0]}
           </Text>
           <Text mt="2" fontSize={14} color="cyan.100" overflow='scroll'>
-            {node.arguments[1]}
+            {node?.arguments[1]}
           </Text>
         </Box>
         <Box justifyContent='center' alignItems='center'>
-          <Icon name={node.icon} size={30} color="#fff" />
+          <Icon name={node?.icon} size={30} color="#fff" />
         </Box>
       </Flex>
     </Pressable>

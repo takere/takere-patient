@@ -8,9 +8,9 @@ import { useWindowDimensions } from 'react-native';
 
 const BookContent = ({data, onUpdateData}: any) => {
 
-  const nameIdx = data.node.parameters.filter((parameter: any) => parameter.slug === 'name')
-  const descriptionIdx = data.node.parameters.filter((parameter: any) => parameter.slug === 'description')
-  const pagesIdx = data.node.parameters.filter((parameter: any) => parameter.slug === 'pages')
+  const nameIdx = data.node.parameters.findIndex((parameter: any) => parameter.slug === 'name')
+  const descriptionIdx = data.node.parameters.findIndex((parameter: any) => parameter.slug === 'description')
+  const pagesIdx = data.node.parameters.findIndex((parameter: any) => parameter.slug === 'pages')
   const name = data.node.arguments[nameIdx];
   const description = data.node.arguments[descriptionIdx];
   const pages = data.node.arguments[pagesIdx];
@@ -54,7 +54,7 @@ const BookContent = ({data, onUpdateData}: any) => {
       <Box height='75%'>
         <RenderHtml 
           contentWidth={width}
-          source={{html: pages[currentPage]}}
+          source={{html: pages[currentPage].structure}}
         />
       </Box>
       <Box height='15%' justifyContent='space-between'>
