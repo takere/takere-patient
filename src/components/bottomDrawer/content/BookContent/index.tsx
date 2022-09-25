@@ -1,24 +1,75 @@
-import React from 'react';
-import {Button, Heading, Text, Input, useToast} from 'native-base';
+import React, { useState } from 'react';
+import {Button, Heading, Text, Input, useToast, Divider, HStack, Box} from 'native-base';
+import IHandler from '../../../../models/IHandler';
+import {Requests} from '../../../../services/axios/remoteRequests';
+import HandleSubmit from '../../HandleSubmit';
+import RenderHtml from 'react-native-render-html';
+import { useWindowDimensions } from 'react-native';
 
 const BookContent = ({data, onUpdateData}: any) => {
+
+  const nameIdx = data.node.parameters.filter((parameter: any) => parameter.slug === 'name')
+  const descriptionIdx = data.node.parameters.filter((parameter: any) => parameter.slug === 'description')
+  const pagesIdx = data.node.parameters.filter((parameter: any) => parameter.slug === 'pages')
+  const name = data.node.arguments[nameIdx];
+  const description = data.node.arguments[descriptionIdx];
+  const pages = data.node.arguments[pagesIdx];
+  
+  const [currentPage, setCurrentPage] = useState(0);
+  const { width } = useWindowDimensions();
   const toast = useToast();
 
-  const name = data.node.arguments[0];
-  const description = data.node.arguments[1];
-  const content = data.node.arguments[2];
+  const handleSub = async () => {
+    toast.show({
+      description: 'Salvando atualização!',
+    });
+    await new Requests().postBoardResponse(data.id);
+    onUpdateData();
+  };
+
+  const handleNext = () => {
+    if (currentPage + 1 >= pages.length) {
+      return;
+    }
+
+    setCurrentPage(currentPage+1);
+  }
+
+  const handleBack = () => {
+    if (currentPage - 1 < 0) {
+      return;
+    }
+    
+    setCurrentPage(currentPage-1);
+  }
 
   return (
     <>
       <Heading size="xl"mt={1} color="muted.800">
-        {name}
+        {name} ({currentPage+1}/{pages.length})
       </Heading>
       <Heading size="sm"  mt={1}>
         {description}
       </Heading>
-      <Text mt={1}>
-        {content}
-      </Text>
+      <Box height='75%'>
+        <RenderHtml 
+          contentWidth={width}
+          source={{html: pages[currentPage]}}
+        />
+      </Box>
+      <Box height='15%' justifyContent='space-between'>
+        <HStack w="100%" justifyContent='space-between'>
+          <Button onPress={handleBack} display={currentPage - 1 >= 0 ? 'flex' : 'none'}>
+            Back
+          </Button>
+          <Button onPress={handleNext} display={currentPage + 1 < pages.length ? 'flex' : 'none'}>
+            Next
+          </Button>
+        </HStack>
+        {currentPage+1 === pages.length &&
+          <HandleSubmit onClick={handleSub} />
+        }
+      </Box>
     </>
   );
 };
