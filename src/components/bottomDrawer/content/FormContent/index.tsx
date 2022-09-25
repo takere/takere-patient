@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Button, Heading, Text, Input, useToast, HStack, Divider, VStack, Radio, Checkbox} from 'native-base';
+import {Button, Heading, Text, Input, useToast, HStack, Divider, VStack, Radio, Checkbox, Select} from 'native-base';
 import IHandler from '../../../../models/IHandler';
 import {Requests} from '../../../../services/axios/remoteRequests';
 import HandleSubmit from '../../HandleSubmit';
@@ -133,6 +133,15 @@ const QuestionInput = ({ type, value, onChange, options }: any) => {
           </Checkbox>
         ))}
       </Checkbox.Group>
+    );
+  }
+  else if (type === 'select') {
+    return (
+      <Select onValueChange={onChange} selectedValue={value}>
+        {options.map((option: any, index: any) => (
+          <Select.Item label={option} value={index} my="1" key={index} />
+        ))}
+      </Select>
     );
   }
   
