@@ -10,10 +10,10 @@ export class Requests {
     return boards;
   }
 
-  async postBoardResponse(boardId: string, result?: any) {
+  async postBoardResponse(boardId: string, answers?: any) {
     const response = await axiosInstance.post('board/resolve', {
       boardId,
-      result,
+      answers,
     });
     return response.data;
   }
