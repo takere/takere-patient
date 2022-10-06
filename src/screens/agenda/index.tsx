@@ -33,7 +33,7 @@ export function AgendaScreen({navigation}: {navigation: any}) {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await new Requests().getAgenda(user.user.id);
+      const response = await new Requests().getAgenda(user.user.email);
       setAgenda(response);
       setLoading(false);
     };
@@ -63,7 +63,7 @@ export function AgendaScreen({navigation}: {navigation: any}) {
                   <MiniCard 
                     key={index}
                     onPress={() => handleOpenCard(item.flow.id, item.node.id)}
-                    name={item.node.type}
+                    name={item.node.name.toUpperCase()}
                     icon={item.node.icon}
                     bgColor={colors.danger}
                   />
@@ -80,7 +80,7 @@ export function AgendaScreen({navigation}: {navigation: any}) {
                   <MiniCard 
                     key={index}
                     onPress={() => handleOpenCard(item.flow.id, item.node.id)}
-                    name={item.node.type}
+                    name={item.node.name.toUpperCase()}
                     icon={item.node.icon}
                     bgColor={colors.warning}
                   />

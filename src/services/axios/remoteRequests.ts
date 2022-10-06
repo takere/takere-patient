@@ -23,24 +23,15 @@ export class Requests {
     return response.data;
   }
 
-  async getAgenda(userId: string) {
+  async getAgenda(email: string) {
+    const todayResponse = await axiosInstance.get('agenda/today?email=' + email);
+    const tomorrowResponse = await axiosInstance.get('agenda/tomorrow?email=' + email);
+    const todayData = todayResponse.data;
+    const tomorrowData = tomorrowResponse.data;
+
     return {
-      today: [
-        { 
-          flow: { id: 1, name: 'Diabetes', description: 'Patient with diabetes' }, 
-          node: { id: 2, type: 'QUIZ', icon: 'help' }
-        }
-      ],
-      tomorrow: [
-        { 
-          flow: { id: 1, name: 'Diabetes', description: 'Patient with diabetes' }, 
-          node: { id: 2, type: 'MEDICATION CONTROL', icon: 'healing' }
-        },
-        { 
-          flow: { id: 1, name: 'Diabetes', description: 'Patient with diabetes' }, 
-          node: { id: 2, type: 'EXPLANATION', icon: 'school' }
-        }
-      ]
+      today: todayData,
+      tomorrow: tomorrowData
     }
   }
 
