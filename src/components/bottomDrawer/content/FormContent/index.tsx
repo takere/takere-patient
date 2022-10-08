@@ -22,7 +22,8 @@ const FormContent = ({data, onUpdateData}: any) => {
     toast.show({
       description: 'Salvando atualização!',
     });
-    await new Requests().postBoardResponse(data.id, [ ...answers, currentAnswer ]);
+    const formattedAnswers = [ ...answers, currentAnswer ].shift();
+    await new Requests().postBoardResponse(data.id, formattedAnswers);
     onUpdateData();
   };
 

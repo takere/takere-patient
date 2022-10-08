@@ -28,7 +28,7 @@ export function MyProgressScreen({navigation}: {navigation: any}) {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await new Requests().getMyProgress(user.user.id);
+      const response = await new Requests().getMyProgress(user.user.email);
       setProgress(response);
       setLoading(false);
     };
@@ -65,12 +65,12 @@ const FlowProgress = ({ flow }: any) => (
       { flow.name }
     </Heading>
     <VStack space={2} mt={3}>
-      {flow.progress.map((item: any, index: number) => (
+      {flow.nodes.map((item: any, index: number) => (
         <ProgressCard
           key={index}
           icon={item.node.icon}
-          bgColor={item.node.bgColor}
-          name={item.node.type}
+          bgColor={item.node.color}
+          name={item.node.name.toUpperCase()}
           completed={item.completed}
           remaining={item.total}
         />

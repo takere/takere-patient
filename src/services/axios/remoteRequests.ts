@@ -35,14 +35,21 @@ export class Requests {
     }
   }
 
-  async getMyProgress(userId: string) {
+  async getMyProgress(email: string) {
+    const response = await axiosInstance.get('progress?email=' + email);
+    const progressItems = response.data;
+
+    // console.log('progress: ', progressItems);
+    // console.log('progress2: ', progressItems[0].flow.nodes);
+    return progressItems
+/*
     return [
       { 
         flow: { 
           id: 1, 
           name: 'Diabetes', 
           description: 'Patient with diabetes',
-          progress: [
+          nodes: [
             { 
               node: {
                 icon: 'help', 
@@ -83,5 +90,6 @@ export class Requests {
         } 
       }
     ]
+    */
   }
 }
