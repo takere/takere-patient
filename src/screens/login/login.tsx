@@ -7,6 +7,9 @@ import {
 import {useState} from 'react';
 import {useUser} from '../../providers/user';
 import {SafeAreaView} from 'react-native';
+import LocaleService from '../../services/locale.service';
+
+const localeService = new LocaleService();
 
 export function LoginScreen({navigation}: {navigation: any}) {
   const user = useUser();
@@ -32,10 +35,10 @@ export function LoginScreen({navigation}: {navigation: any}) {
   return (
     <SafeAreaView>
       <Heading size="xl" ml={3} mt={5} color="muted.800">
-        Email
+      {localeService.translate("EMAIL")}
       </Heading>
       <Heading size="sm" ml={3} mt={1} color="muted.400">
-        Digite aqui seu email
+      {localeService.translate("TYPE_EMAIL")}
       </Heading>
       <Input
         value={email}
@@ -44,13 +47,13 @@ export function LoginScreen({navigation}: {navigation: any}) {
         mr={3}
         mt={5}
         size="2xl"
-        placeholder="joao@joao.com"
+        placeholder="abc@xyz.com"
       />
       <Heading size="xl" ml={3} mt={10} color="muted.800">
-        Palavra chave
+      {localeService.translate("PASSWORD")}
       </Heading>
       <Heading size="sm" ml={3} mt={1} color="muted.400">
-        Digite aqui sua senha
+      {localeService.translate("TYPE_PASSWORD")}
       </Heading>
       <Input
         value={password}
@@ -71,7 +74,7 @@ export function LoginScreen({navigation}: {navigation: any}) {
         size="lg"
         colorScheme="success"
         onPress={() => handleSubmit()}>
-        Entrar
+        {localeService.translate("SIGN_IN")}
       </Button>
     </SafeAreaView>
   );

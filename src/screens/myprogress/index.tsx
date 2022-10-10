@@ -19,6 +19,9 @@ import {Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Requests} from '../../services/axios/remoteRequests';
 import colors from '../../resources/colors';
+import LocaleService from '../../services/locale.service';
+
+const localeService = new LocaleService();
 
 export function MyProgressScreen({navigation}: {navigation: any}) {
   const [progress, setProgress] = useState([]);
@@ -42,7 +45,7 @@ export function MyProgressScreen({navigation}: {navigation: any}) {
         <Image 
           style={{ height: '100%', width: '100%', position: 'absolute', top:0, left:0 }}
           source={require('../../assets/images/progress.jpg')}
-          alt='green field with sun and with one person helping another'
+          alt={localeService.translate("PROGRESS_IMAGE")}
         />
         {loading &&
           <Spinner size="lg" color={colors.primary} mt={20} />

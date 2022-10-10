@@ -19,6 +19,9 @@ import {BottomDrawer} from '../../components/bottomDrawer/BottomDrawer';
 import {useUser} from '../../providers/user';
 import ICard from '../../models/ICard';
 import colors from '../../resources/colors';
+import LocaleService from '../../services/locale.service';
+
+const localeService = new LocaleService();
 
 export function BoardScreen({navigation}: {navigation: any}) {
   const toast = useToast();
@@ -38,7 +41,7 @@ export function BoardScreen({navigation}: {navigation: any}) {
 
   const onUpdateData = async () => {
     toast.show({
-      description: 'Atualizando cards',
+      description: localeService.translate("UPDATING_CARDS"),
     });
     modalizeRef.current?.close();
     setLoading(true);
@@ -66,7 +69,7 @@ export function BoardScreen({navigation}: {navigation: any}) {
           {!loading && boards.length === 0 ? (
             <Center mt={16}>
               <Heading textAlign="center" size="md">
-                não encontrei nada :(
+              {localeService.translate("NO_BOARDS")}
               </Heading>
               <Button
                 mt={3}
@@ -74,7 +77,7 @@ export function BoardScreen({navigation}: {navigation: any}) {
                 size="sm"
                 colorScheme="error"
                 onPress={() => onUpdateData()}>
-                Tentar novamente
+                {localeService.translate("REFRESH")}
               </Button>
             </Center>
           ) : null}

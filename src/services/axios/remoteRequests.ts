@@ -39,57 +39,6 @@ export class Requests {
     const response = await axiosInstance.get('progress?email=' + email);
     const progressItems = response.data;
 
-    // console.log('progress: ', progressItems);
-    // console.log('progress2: ', progressItems[0].flow.nodes);
     return progressItems
-/*
-    return [
-      { 
-        flow: { 
-          id: 1, 
-          name: 'Diabetes', 
-          description: 'Patient with diabetes',
-          nodes: [
-            { 
-              node: {
-                icon: 'help', 
-                type: 'QUIZ',
-                bgColor: '#be96fb'
-              },
-              completed: 3,
-              total: 5
-            },
-            { 
-              node: {
-                icon: 'healing', 
-                type: 'MEDICATION_CONTROL',
-                bgColor: '#db594f'
-              },
-              completed: 2,
-              total: 35
-            }
-          ]
-        } 
-      },
-      { 
-        flow: { 
-          id: 2, 
-          name: 'Cancer', 
-          description: 'Patient with cancer',
-          progress: [
-            { 
-              node: {
-                icon: 'healing', 
-                type: 'MEDICATION_CONTROL',
-                bgColor: '#db594f'
-              }, 
-              completed: 5,
-              total: 12
-            }
-          ]
-        } 
-      }
-    ]
-    */
   }
 }

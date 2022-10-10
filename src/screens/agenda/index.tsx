@@ -19,6 +19,9 @@ import ICard from '../../models/ICard';
 import { MiniCard } from '../../components/MiniCard';
 import {Requests} from '../../services/axios/remoteRequests';
 import colors from '../../resources/colors';
+import LocaleService from '../../services/locale.service';
+
+const localeService = new LocaleService();
 
 export function AgendaScreen({navigation}: {navigation: any}) {
   const [agenda, setAgenda] = useState({today: [], tomorrow: []});
@@ -47,7 +50,7 @@ export function AgendaScreen({navigation}: {navigation: any}) {
         <Image 
           style={{ height: '100%', width: '100%', position: 'absolute', top:0, left:0 }}
           source={require('../../assets/images/agenda.jpg')}
-          alt='green field with sun and with one person helping another'
+          alt={localeService.translate("AGENDA_IMAGE")}
         />
         {loading &&
           <Spinner size="lg" color={colors.primary} mt={20} />
@@ -56,7 +59,7 @@ export function AgendaScreen({navigation}: {navigation: any}) {
           <ScrollView marginX={3}>
             <Box mt={5} borderRadius={10} p={5} backgroundColor='rgba(0,0,0,0.3)'>
               <Heading size="md" ml={3} color={colors.light}>
-                Today
+              {localeService.translate("TODAY")}
               </Heading>
               <VStack space={2} mt={4} alignItems="center">
                 {agenda.today.map((item: any, index: number) => (
@@ -73,7 +76,7 @@ export function AgendaScreen({navigation}: {navigation: any}) {
 
             <Box mt={5} borderRadius={10} p={5} backgroundColor='rgba(0,0,0,0.3)'>
               <Heading size="md" ml={3} color={colors.light}>
-                Tomorrow
+              {localeService.translate("TOMORROW")}
               </Heading>
               <VStack space={2} mt={4} alignItems="center">
                 {agenda.tomorrow.map((item: any, index: number) => (

@@ -17,6 +17,9 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useUser} from '../../providers/user';
 import {Dimensions} from 'react-native';
 import colors from '../../resources/colors';
+import LocaleService from '../../services/locale.service';
+
+const localeService = new LocaleService();
 
 export function HomeScreen({navigation}: {navigation: any}) {
   const toast = useToast();
@@ -30,7 +33,7 @@ export function HomeScreen({navigation}: {navigation: any}) {
         <Image 
           style={{ height: '100%', width: '100%', position: 'absolute', top:0, left:0 }}
           source={require('../../assets/images/peace.jpg')}
-          alt='green field with sun and with one person helping another'
+          alt={localeService.translate("PEACE_IMAGE")}
         />
         <ScrollView marginX={3}>
           <Box h={60} w='100%' mb={5} mt={5}>
@@ -44,14 +47,14 @@ export function HomeScreen({navigation}: {navigation: any}) {
           <VStack>
             <HStack space={2} justifyContent="space-between" alignItems='center'>
               <MenuButton 
-                title='Board'
+                title={localeService.translate("BOARD")}
                 bgColor={colors.primary}
                 icon="dynamic-feed"
                 width={width}
                 onPress={() => navigation.navigate('Board')}
               />
               <MenuButton 
-                title='My progress'
+                title={localeService.translate("MY_PROGRESS")}
                 bgColor={colors.primary}
                 icon="domain-verification"
                 width={width}
@@ -60,14 +63,14 @@ export function HomeScreen({navigation}: {navigation: any}) {
             </HStack>
             <HStack space={2} mt={2} justifyContent="space-between" alignItems='center'>
               <MenuButton 
-                title='Profile'
+                title={localeService.translate("PROFILE")}
                 bgColor={colors.primary}
                 icon="account-circle"
                 width={width}
                 onPress={() => navigation.navigate('Profile')}
               />
               <MenuButton 
-                title='Agenda'
+                title={localeService.translate("AGENDA")}
                 bgColor={colors.primary}
                 icon="calendar-today"
                 width={width}
