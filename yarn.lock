@@ -2162,6 +2162,11 @@
   "resolved" "https://registry.npmjs.org/@types/hammerjs/-/hammerjs-2.0.40.tgz"
   "version" "2.0.40"
 
+"@types/i18n-js@*":
+  "integrity" "sha512-Y20B7kgoNrchIYCfty20zQYeFFJMHdegwy9VopCEKdByp7Tlv0jtWrfoRb+3r2mIvgrwp/eMwXhhXOBYKEFkTA=="
+  "resolved" "https://registry.npmjs.org/@types/i18n-js/-/i18n-js-3.8.3.tgz"
+  "version" "3.8.3"
+
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
   "integrity" "sha512-sz7iLqvVUg1gIedBOvlkxPlc8/uVzyS5OwGz1cKjXzkl3FpL3al0crU8YGU1WoHkxn0Wxbw5tyi6hvzJKNzFsw=="
   "resolved" "https://registry.npmjs.org/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.3.tgz"
@@ -2232,6 +2237,13 @@
   "version" "0.27.66"
   dependencies:
     "ts-toolbelt" "^6.15.1"
+
+"@types/react-native-i18n@^2.0.0":
+  "integrity" "sha512-JwSsjGw99Kk7kMg2R1YPAby7v7dw4rHGDTc3WsLtQuw0DeyMRLLPNdmjg85RP3BVX94F/SU+eef65DUsUzc9fQ=="
+  "resolved" "https://registry.npmjs.org/@types/react-native-i18n/-/react-native-i18n-2.0.0.tgz"
+  "version" "2.0.0"
+  dependencies:
+    "@types/i18n-js" "*"
 
 "@types/react-native@^0.65.0":
   "integrity" "sha512-pyRmTnvjYORIXuL8+ZhoI8gqamTE/8Lo9bU/1Ife3VOTgeFzY9rHnx3Tna7OOixBW5Exh2PcHSkJXma4FENC0g=="
@@ -4445,6 +4457,11 @@
   "integrity" "sha512-SEQu7vl8KjNL2eoGBLF3+wAjpsNfA9XMlXAYj/3EdaNfAlxKthD1xjEQfGOUhllCGGJVNY34bRr6lPINhNjyZw=="
   "resolved" "https://registry.npmjs.org/human-signals/-/human-signals-1.1.1.tgz"
   "version" "1.1.1"
+
+"i18n-js@3.0.11":
+  "integrity" "sha512-v7dG3kYJTQTyox3NqDabPDE/ZotWntyMI9kh4cYi+XlCSnsIR+KBTS2opPyObL8WndnklcLzbNU92FP/mLge3Q=="
+  "resolved" "https://registry.npmjs.org/i18n-js/-/i18n-js-3.0.11.tgz"
+  "version" "3.0.11"
 
 "iconv-lite@0.4.24":
   "integrity" "sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA=="
@@ -6685,6 +6702,13 @@
     "hoist-non-react-statics" "^3.3.0"
     "invariant" "^2.2.4"
     "prop-types" "^15.7.2"
+
+"react-native-i18n@^2.0.15":
+  "integrity" "sha512-V8VwUP0TLda3oJvgt5tdnFaOV7WXPhTjCTLO7sXI3C2SHggSbD4bCUryMzNJhesimJidH21V2Owvj4zAylHoQQ=="
+  "resolved" "https://registry.npmjs.org/react-native-i18n/-/react-native-i18n-2.0.15.tgz"
+  "version" "2.0.15"
+  dependencies:
+    "i18n-js" "3.0.11"
 
 "react-native-modalize@^2.0.8":
   "integrity" "sha512-OKdpFVExEe4YM2uFHL/aStS9p0JaC6gBupjaW1QVHkGq22T2ASYwkhDvTnMS8BLOLWPx2fC3xEBzOcn2rh7EYw=="

@@ -19,6 +19,9 @@ import {Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Requests} from '../../services/axios/remoteRequests';
 import colors from '../../resources/colors';
+import LocaleService from '../../services/locale.service';
+
+const localeService = new LocaleService();
 
 export function MyProgressScreen({navigation}: {navigation: any}) {
   const [progress, setProgress] = useState([]);
@@ -28,7 +31,7 @@ export function MyProgressScreen({navigation}: {navigation: any}) {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await new Requests().getMyProgress(user.user.id);
+      const response = await new Requests().getMyProgress(user.user.email);
       setProgress(response);
       setLoading(false);
     };
@@ -42,7 +45,7 @@ export function MyProgressScreen({navigation}: {navigation: any}) {
         <Image 
           style={{ height: '100%', width: '100%', position: 'absolute', top:0, left:0 }}
           source={require('../../assets/images/progress.jpg')}
-          alt='green field with sun and with one person helping another'
+          alt={localeService.translate("PROGRESS_IMAGE")}
         />
         {loading &&
           <Spinner size="lg" color={colors.primary} mt={20} />
@@ -65,12 +68,12 @@ const FlowProgress = ({ flow }: any) => (
       { flow.name }
     </Heading>
     <VStack space={2} mt={3}>
-      {flow.progress.map((item: any, index: number) => (
+      {flow.nodes.map((item: any, index: number) => (
         <ProgressCard
           key={index}
           icon={item.node.icon}
-          bgColor={item.node.bgColor}
-          name={item.node.type}
+          bgColor={item.node.color}
+          name={item.node.name.toUpperCase()}
           completed={item.completed}
           remaining={item.total}
         />

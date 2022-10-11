@@ -5,6 +5,10 @@ import {Requests} from '../../../../services/axios/remoteRequests';
 import HandleSubmit from '../../HandleSubmit';
 import RenderHtml from 'react-native-render-html';
 import { useWindowDimensions } from 'react-native';
+import LocaleService from '../../../../services/locale.service';
+
+const localeService = new LocaleService();
+
 
 const BookContent = ({data, onUpdateData}: any) => {
 
@@ -21,7 +25,7 @@ const BookContent = ({data, onUpdateData}: any) => {
 
   const handleSub = async () => {
     toast.show({
-      description: 'Salvando atualização!',
+      description: localeService.translate("SAVING_CHANGES"),
     });
     await new Requests().postBoardResponse(data.id);
     onUpdateData();
@@ -60,10 +64,10 @@ const BookContent = ({data, onUpdateData}: any) => {
       <Box height='15%' justifyContent='space-between'>
         <HStack w="100%" justifyContent='space-between'>
           <Button onPress={handleBack} display={currentPage - 1 >= 0 ? 'flex' : 'none'}>
-            Back
+          {localeService.translate("BACK")}
           </Button>
           <Button onPress={handleNext} display={currentPage + 1 < pages.length ? 'flex' : 'none'}>
-            Next
+          {localeService.translate("NEXT")}
           </Button>
         </HStack>
         {currentPage+1 === pages.length &&

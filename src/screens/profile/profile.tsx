@@ -1,17 +1,13 @@
 import * as React from 'react';
 import {
   Button,
-  Center,
-  ChevronLeftIcon,
-  Heading,
-  HStack,
   Image,
-  Pressable,
-  ScrollView,
-  Spinner,
 } from 'native-base';
 import {useUser} from '../../providers/user';
 import {SafeAreaView} from 'react-native';
+import LocaleService from '../../services/locale.service';
+
+const localeService = new LocaleService();
 
 export function ProfileScreen({navigation}: {navigation: any}) {
   const user = useUser();
@@ -26,7 +22,7 @@ export function ProfileScreen({navigation}: {navigation: any}) {
       <Image 
           style={{ height: '100%', width: '100%', position: 'absolute', top:0, left:0 }}
           source={require('../../assets/images/form.jpg')}
-          alt='green field with sun and with one person helping another'
+          alt={localeService.translate("FORM_IMAGE")}
         />
       <Button
         ml={3}
@@ -36,7 +32,7 @@ export function ProfileScreen({navigation}: {navigation: any}) {
         size="lg"
         colorScheme="error"
         onPress={() => handleSubmit()}>
-        Logout
+        {localeService.translate("LOGOUT")}
       </Button>
     </SafeAreaView>
   );

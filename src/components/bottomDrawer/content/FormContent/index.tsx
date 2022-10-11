@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import {Button, Heading, Text, Input, useToast, HStack, Divider, VStack, Radio, Checkbox} from 'native-base';
+import {Button, Heading, Text, Input, useToast, HStack, Divider, VStack, Radio, Checkbox, Select} from 'native-base';
 import IHandler from '../../../../models/IHandler';
 import {Requests} from '../../../../services/axios/remoteRequests';
 import HandleSubmit from '../../HandleSubmit';
+import LocaleService from '../../../../services/locale.service';
+
+const localeService = new LocaleService();
 
 const FormContent = ({data, onUpdateData}: any) => {
   
@@ -20,9 +23,10 @@ const FormContent = ({data, onUpdateData}: any) => {
   const toast = useToast();
   const handleSub = async () => {
     toast.show({
-      description: 'Salvando atualização!',
+      description: localeService.translate("SAVING_CHANGES"),
     });
-    await new Requests().postBoardResponse(data.id, { payload: answers });
+    const formattedAnswers = [ ...answers, currentAnswer ].shift();
+    await new Requests().postBoardResponse(data.id, formattedAnswers);
     onUpdateData();
   };
 
@@ -73,10 +77,10 @@ const FormContent = ({data, onUpdateData}: any) => {
       />
       <HStack space={3} divider={<Divider />} w="100%" paddingY="10" justifyContent='space-between'>
         <Button onPress={handleBackQuestion} display={currentQuestion - 1 >= 0 ? 'flex' : 'none'} bgColor='#0fab7a'>
-          Back
+        {localeService.translate("BACK")}
         </Button>
         <Button onPress={handleNextQuestion} display={currentQuestion + 1 < questions.length ? 'flex' : 'none'} bgColor='#0fab7a'>
-          Next
+        {localeService.translate("NEXT")}
         </Button>
       </HStack>
       {currentQuestion+1 === questions.length &&
@@ -133,6 +137,15 @@ const QuestionInput = ({ type, value, onChange, options }: any) => {
           </Checkbox>
         ))}
       </Checkbox.Group>
+    );
+  }
+  else if (type === 'select') {
+    return (
+      <Select onValueChange={onChange} selectedValue={value}>
+        {options.map((option: any, index: any) => (
+          <Select.Item label={option} value={index} my="1" key={index} />
+        ))}
+      </Select>
     );
   }
   

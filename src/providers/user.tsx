@@ -2,6 +2,9 @@ import React, {createContext, useContext, useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Requests} from '../services/axios/remoteRequests';
 import {useToast} from 'native-base';
+import LocaleService from '../services/locale.service';
+
+const localeService = new LocaleService();
 
 const UserContext = createContext(null);
 
@@ -10,7 +13,7 @@ export const UserProvider = ({children}) => {
   const [user, setUser] = useState(null);
   const [initialized, setInitialized] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
-
+  
   const login = async (email: string, password: string) => {
     setIsLoading(true);
     try {
@@ -21,20 +24,20 @@ export const UserProvider = ({children}) => {
         setUser(response?.userData)
         setInitialized(true)
         toast.show({
-          description: 'Login com sucesso!',
+          description: localeService.translate("LOGIN_SUCCESS"),
         });
         setIsLoading(false);
         return true;
       } else {
         toast.show({
-          description: 'Oops! Verifique seus dados!',
+          description: localeService.translate("LOGIN_FAIL"),
         });
         return false;
       }
     } catch (e) {
       console.log(e);
       toast.show({
-        description: 'Oops! Verifique seus dados!',
+        description: localeService.translate("LOGIN_FAIL"),
       });
       return false;
     }

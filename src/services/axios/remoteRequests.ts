@@ -10,10 +10,10 @@ export class Requests {
     return boards;
   }
 
-  async postBoardResponse(boardId: string, result?: any) {
+  async postBoardResponse(boardId: string, answers?: any) {
     const response = await axiosInstance.post('board/resolve', {
       boardId,
-      result,
+      answers,
     });
     return response.data;
   }
@@ -23,74 +23,22 @@ export class Requests {
     return response.data;
   }
 
-  async getAgenda(userId: string) {
+  async getAgenda(email: string) {
+    const todayResponse = await axiosInstance.get('agenda/today?email=' + email);
+    const tomorrowResponse = await axiosInstance.get('agenda/tomorrow?email=' + email);
+    const todayData = todayResponse.data;
+    const tomorrowData = tomorrowResponse.data;
+
     return {
-      today: [
-        { 
-          flow: { id: 1, name: 'Diabetes', description: 'Patient with diabetes' }, 
-          node: { id: 2, type: 'QUIZ', icon: 'help' }
-        }
-      ],
-      tomorrow: [
-        { 
-          flow: { id: 1, name: 'Diabetes', description: 'Patient with diabetes' }, 
-          node: { id: 2, type: 'MEDICATION CONTROL', icon: 'healing' }
-        },
-        { 
-          flow: { id: 1, name: 'Diabetes', description: 'Patient with diabetes' }, 
-          node: { id: 2, type: 'EXPLANATION', icon: 'school' }
-        }
-      ]
+      today: todayData,
+      tomorrow: tomorrowData
     }
   }
 
-  async getMyProgress(userId: string) {
-    return [
-      { 
-        flow: { 
-          id: 1, 
-          name: 'Diabetes', 
-          description: 'Patient with diabetes',
-          progress: [
-            { 
-              node: {
-                icon: 'help', 
-                type: 'QUIZ',
-                bgColor: '#be96fb'
-              },
-              completed: 3,
-              total: 5
-            },
-            { 
-              node: {
-                icon: 'healing', 
-                type: 'MEDICATION_CONTROL',
-                bgColor: '#db594f'
-              },
-              completed: 2,
-              total: 35
-            }
-          ]
-        } 
-      },
-      { 
-        flow: { 
-          id: 2, 
-          name: 'Cancer', 
-          description: 'Patient with cancer',
-          progress: [
-            { 
-              node: {
-                icon: 'healing', 
-                type: 'MEDICATION_CONTROL',
-                bgColor: '#db594f'
-              }, 
-              completed: 5,
-              total: 12
-            }
-          ]
-        } 
-      }
-    ]
+  async getMyProgress(email: string) {
+    const response = await axiosInstance.get('progress?email=' + email);
+    const progressItems = response.data;
+
+    return progressItems
   }
 }
