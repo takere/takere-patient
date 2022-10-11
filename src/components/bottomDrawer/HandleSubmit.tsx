@@ -21,7 +21,7 @@ const HandleSubmit = ({onClick}: IHandleSubmit) => {
         size="lg"
         colorScheme="success"
         onPress={() => handleSubmit()}>
-        Finish
+        {localeService.translate("FINISH")}
       </Button>
     </>
   );
