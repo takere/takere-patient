@@ -24,25 +24,33 @@ All care plan elements the patient should complete are grouped on the board. It 
 
 #### Figure 1
 
-![Generated cards based on some care plan flow](https://raw.githubusercontent.com/takere/takere-patient/master/docs/images/explanation/board.png)
+<div align="center">
+	<img alt="Generated cards based on some care plan flow" src="https://raw.githubusercontent.com/takere/takere-patient/master/docs/images/explanation/board.png" height="500" />
+</div>
 
 #### Figure 2
 
-![Card content of some care plan element from board](https://raw.githubusercontent.com/takere/takere-patient/master/docs/images/explanation/board-detail.png)
+<div align="center">
+	<img alt="Card content of some care plan element from board" src="https://raw.githubusercontent.com/takere/takere-patient/master/docs/images/explanation/board-detail.png" height="500" />
+</div>
 
 ### Agenda
 The agenda aims to highlight care plan elements that should be finished as soon as possible. For that, we use two strategies: grouping these elements by deadline day and using colors (Figure 3). The first approach uses two groups: "today" and "tomorrow", and each of them contains care plan elements with the deadline for today or tomorrow, respectively. We have chosen to not include other groups because the agenda goal is to display urgent care plan elements that should be finished, and showing more than necessary can reduce its impact and cause unnecessary anxiety to patients. The second approach use colors to highlight elements closest to the deadline: red for today and yellow for tomorrow. This approach is based on studies showing that colors can engage people to do tasks.
 
 #### Figure 3
 
-![Agenda screen](https://raw.githubusercontent.com/takere/takere-patient/master/docs/images/explanation/agenda.png)
+<div align="center">
+	<img alt="Agenda screen" src="https://raw.githubusercontent.com/takere/takere-patient/master/docs/images/explanation/agenda.png" height="500" />
+</div>
 
 ### Progress
 Progress screen shows patient progress in his/her care plans. For each care plan, it is shown a set of items containing progress information about each care plan element. This information includes the total of care plan elements of each type along with how many of them were completed, as shown in Figure 4. 
 
 #### Figure 4
 
-![Progress screen](https://raw.githubusercontent.com/takere/takere-patient/master/docs/images/explanation/progress.png)
+<div align="center">
+	<img alt="Progress screen" src="https://raw.githubusercontent.com/takere/takere-patient/master/docs/images/explanation/progress.png" height="500" />
+</div>
 
 ## 👥 Acknowledgements
 Special thanks to [Rodolfo Viola](https://github.com/rodolfoviolac) for starting development of the platform.
