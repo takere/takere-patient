@@ -17,7 +17,7 @@
 <hr />
 
 ## ❇ Introduction
-Takere for patients is a system that allows patients to have access to their care plans. They can see its progress along with elements that they have to complete. It is developed using React Native, which is a mobile development framework for generating mobile applications using component-oriented programming (Section~\ref{background/cop}). It generates native applications for [Android](www.android.com) and [iOS](www.apple.com/ios) operating systems.
+Takere for patients is a system that allows patients to have access to their care plans. They can see its progress along with elements that they have to complete. It is developed using React Native, which is a mobile development framework for generating mobile applications using component-oriented programming. It generates native applications for [Android](www.android.com) and [iOS](www.apple.com/ios) operating systems.
 
 ### Board
 All care plan elements the patient should complete are grouped on the board. It is composed of a set of cards, where each card represents a care plan element, and it has two parts: the front and the back. The first is composed of four elements: the care plan element name, a title, its description, and an icon. Also, card color is defined by the care plan element color. The back contains care plan information (name and description), title of care plan element (Figure 1), the content of the care plan element (Figure 2), and a finish button.
