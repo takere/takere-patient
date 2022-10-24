@@ -1,10 +1,11 @@
 import React, {createContext, useContext, useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import {Requests} from '../services/axios/remoteRequests';
 import {useToast} from 'native-base';
 import LocaleService from '../services/locale.service';
+import AuthService from '../services/auth.service';
 
 const localeService = new LocaleService();
+const authService = new AuthService();
 
 const UserContext = createContext(null);
 
@@ -17,7 +18,7 @@ export const UserProvider = ({children}) => {
   const login = async (email: string, password: string) => {
     setIsLoading(true);
     try {
-      const response = await new Requests().makeLogin(email, password);
+      const response = await authService.signIn(email, password);
 
       if (response.token) {
         await AsyncStorage.setItem('cookie', response?.token);
@@ -44,7 +45,8 @@ export const UserProvider = ({children}) => {
   }
 
   async function logout() {
-    await AsyncStorage.removeItem('cookie');
+    await authService.signOut();
+    
     setUser(null);
   }
 

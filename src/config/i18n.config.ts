@@ -1,16 +1,27 @@
 import I18n from 'react-native-i18n';
 import enTranslation from '../assets/locales/en.json';
 
+
+// ----------------------------------------------------------------------------
+//         Constants
+// ----------------------------------------------------------------------------
+const resources = {
+  en: enTranslation,
+};
+
+
+// ----------------------------------------------------------------------------
+//         Setup
+// ----------------------------------------------------------------------------
 I18n.fallbacks = true; 
 I18n.defaultLocale = 'en'; 
 I18n.locale = 'en';
-I18n.translations = {
-  en: enTranslation
-};
+I18n.translations = resources;
 
 const t = I18n.translate.bind(I18n);
 
-export default class i18nConfig {
+
+class I18nConfig {
   getLocale() {
     return I18n.locale;
   }
@@ -27,3 +38,5 @@ export default class i18nConfig {
     return t(text, args)
   }
 }
+
+export default I18nConfig;

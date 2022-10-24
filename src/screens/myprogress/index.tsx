@@ -17,11 +17,12 @@ import {SafeAreaView} from 'react-native';
 import {useUser} from '../../providers/user';
 import {Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {Requests} from '../../services/axios/remoteRequests';
 import colors from '../../resources/colors';
 import LocaleService from '../../services/locale.service';
+import ProgressService from '../../services/progress.service';
 
 const localeService = new LocaleService();
+const progressService = new ProgressService();
 
 export function MyProgressScreen({navigation}: {navigation: any}) {
   const [progress, setProgress] = useState([]);
@@ -31,7 +32,7 @@ export function MyProgressScreen({navigation}: {navigation: any}) {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await new Requests().getMyProgress(user.user.email);
+      const response = await progressService.getMyProgress(user.user.email);
       setProgress(response);
       setLoading(false);
     };

@@ -5,17 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-interface BoardDTO {
-  id: string,
+interface ReducedNodeDTO {
+  slug: string,
   name: string,
-  description: string,
-  node: { 
-    id: string, 
-    results: any,
-    type: string,
-    bgColor: string,
-    icon: string,
-  }
+  color: string,
+  icon: string
 }
 
-export default BoardDTO;
+export default ReducedNodeDTO;

@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import {Button, Heading, Text, Input, useToast, Divider, HStack, Box} from 'native-base';
 import IHandler from '../../../../models/IHandler';
-import {Requests} from '../../../../services/axios/remoteRequests';
 import HandleSubmit from '../../HandleSubmit';
 import RenderHtml from 'react-native-render-html';
 import { useWindowDimensions } from 'react-native';
 import LocaleService from '../../../../services/locale.service';
+import BoardService from '../../../../services/board.service';
 
 const localeService = new LocaleService();
 
 
 const BookContent = ({data, onUpdateData}: any) => {
 
+  const boardService = new BoardService();
   const nameIdx = data.node.parameters.findIndex((parameter: any) => parameter.slug === 'name')
   const descriptionIdx = data.node.parameters.findIndex((parameter: any) => parameter.slug === 'description')
   const pagesIdx = data.node.parameters.findIndex((parameter: any) => parameter.slug === 'pages')
@@ -27,7 +28,7 @@ const BookContent = ({data, onUpdateData}: any) => {
     toast.show({
       description: localeService.translate("SAVING_CHANGES"),
     });
-    await new Requests().postBoardResponse(data.id);
+    await boardService.postBoardResponse(data.id);
     onUpdateData();
   };
 

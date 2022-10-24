@@ -1,59 +1,99 @@
-import i18nConfig from "../config/i18n.config";
+/*
+ * Copyright (c) William Niemiec.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
-class LocaleService {
-  i18nProvider: any;
+import I18nConfig from "../config/i18n.config";
+import Service from "./service";
 
-  /**
-   *
-   * @param i18nProvider The i18n provider
-   */
 
-  constructor() {
-    this.i18nProvider = new i18nConfig();
+/**
+ * Responsible for providing translations according to some language.
+ */
+class LocaleService extends Service {
+  
+  // --------------------------------------------------------------------------
+  //         Attributes
+  // --------------------------------------------------------------------------
+  private i18nProvider: any;
+
+
+  // --------------------------------------------------------------------------
+  //         Constructor
+  // --------------------------------------------------------------------------
+  public constructor() {
+    super();
+    this.i18nProvider = new I18nConfig();
   }
 
-  /**
-   *
-   * @returns {string} The current locale code
-   */
 
-  getCurrentLocale() {
+  // --------------------------------------------------------------------------
+  //         Methods
+  // --------------------------------------------------------------------------
+  /**
+   * Translates a text according to the language set.
+   * 
+   * @param      text Text to translate
+   * @param      args Extra parameters (text must contain '%s' indicating
+   * a parameter placeholder)
+   * 
+   * @returns    {string} Translated text
+   */
+  public translate(text: any, args = undefined): string {
+    if (!args) {
+      return this.i18nProvider.translate(text, args);
+    }
+
+    const translatedText = this.i18nProvider.translate(text, args);
+    const parsedArgs = Array.isArray(args) ? args : [args];
+
+    return this.fillParametersPlaceholder(translatedText, parsedArgs);
+  }
+
+  private fillParametersPlaceholder(text: string, parameters: string[]): string {
+    return text
+      .split("%s")
+      .map((term: string, index: number) => parameters[index] 
+        ? term + parameters[index] 
+        : term
+      )
+      .join('');
+  }
+
+
+  // --------------------------------------------------------------------------
+  //         Getters & Setters
+  // --------------------------------------------------------------------------
+  /**
+   * Get current locale.
+   * 
+   * @returns    {string} The current locale code
+   */
+  public getCurrentLocale(): string {
     return this.i18nProvider.getLocale();
   }
 
   /**
-   *
-   * @returns string[] The list of available locale codes
+   * Get all available locales.
+   * 
+   * @returns    {string[]} The list of available locale codes
    */
-
-  getLocales() {
+  public getLocales(): string[] {
     return this.i18nProvider.getLocales();
   }
 
   /**
-   *
-   * @param locale The locale to set. Must be from the list of available locales.
+   * Changes current locale.
+   * 
+   * @param      locale The locale to set. Must be from the list of available 
+   * locales.
    */
-
-  setLocale(locale: any) {
-
+  public setLocale(locale: any): void {
     if (this.getLocales().indexOf(locale) !== -1) {
       this.i18nProvider.setLocale(locale)
     }
-
-  }
-
-  /**
-   *
-   * @param string String to translate
-   * @param args Extra parameters
-   * @returns {string} Translated string
- 
-   */
-
-  translate(string: any, args = undefined) {
-    return this.i18nProvider.translate(string, args)
-
   }
 }
 

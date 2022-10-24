@@ -1,14 +1,15 @@
 import React from 'react';
 import {Button, Heading, Text, Input, useToast} from 'native-base';
-import { Requests } from '../../../../services/axios/remoteRequests';
 import Tooltip from '../../../Tooltip';
 import HandleSubmit from '../../HandleSubmit';
 import LocaleService from '../../../../services/locale.service';
+import BoardService from '../../../../services/board.service';
 
 const localeService = new LocaleService();
 
 const TextContent = ({data, onUpdateData}: any) => {
   const toast = useToast();
+  const boardService = new BoardService();
 
   const name = data.node.arguments[0];
   const description = data.node.arguments[1];
@@ -18,7 +19,7 @@ const TextContent = ({data, onUpdateData}: any) => {
     toast.show({
       description: localeService.translate("SAVING_CHANGES"),
     });
-    await new Requests().postBoardResponse(data.id);
+    await boardService.postBoardResponse(data.id);
     onUpdateData();
   };
 

@@ -17,11 +17,12 @@ import {useUser} from '../../providers/user';
 import {Dimensions} from 'react-native';
 import ICard from '../../models/ICard';
 import { MiniCard } from '../../components/MiniCard';
-import {Requests} from '../../services/axios/remoteRequests';
 import colors from '../../resources/colors';
 import LocaleService from '../../services/locale.service';
+import AgendaService from '../../services/agenda.service';
 
 const localeService = new LocaleService();
+const agendaService = new AgendaService();
 
 export function AgendaScreen({navigation}: {navigation: any}) {
   const [agenda, setAgenda] = useState({today: [], tomorrow: []});
@@ -36,7 +37,7 @@ export function AgendaScreen({navigation}: {navigation: any}) {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await new Requests().getAgenda(user.user.email);
+      const response = await agendaService.getAgenda(user.user.email);
       setAgenda(response);
       setLoading(false);
     };

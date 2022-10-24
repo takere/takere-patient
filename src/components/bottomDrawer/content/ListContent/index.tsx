@@ -11,16 +11,17 @@ import {
   Box,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { Requests } from '../../../../services/axios/remoteRequests';
 import Tooltip from '../../../Tooltip';
 import HandleSubmit from '../../HandleSubmit';
 import LocaleService from '../../../../services/locale.service';
+import BoardService from '../../../../services/board.service';
 
 const localeService = new LocaleService();
 
 
 const ListContent = ({data, onUpdateData}: any) => {
   const toast = useToast();
+  const boardService = new BoardService();
   const ignoredParameters = ['severity', 'frequency'];
   const parameters = data.node.parameters.filter((parameter: any) => !ignoredParameters.includes(parameter.slug));
 
@@ -28,7 +29,7 @@ const ListContent = ({data, onUpdateData}: any) => {
     toast.show({
       description: localeService.translate("SAVING_CHANGES"),
     });
-    await new Requests().postBoardResponse(data.id);
+    await boardService.postBoardResponse(data.id);
     onUpdateData();
   };
 

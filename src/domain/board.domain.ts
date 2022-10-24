@@ -5,17 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-interface BoardDTO {
+interface Board {
   id: string,
   name: string,
   description: string,
-  node: { 
-    id: string, 
-    results: any,
-    type: string,
-    bgColor: string,
-    icon: string,
-  }
+  patientEmail: string,
+  flow: any,
+  node: any,
+  finished: any
 }
 
-export default BoardDTO;
+export default Board;

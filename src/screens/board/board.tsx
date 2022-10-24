@@ -11,7 +11,6 @@ import {
   VStack
 } from "native-base";
 import {useEffect, useRef, useState} from 'react';
-import {Requests} from '../../services/axios/remoteRequests';
 import {SafeAreaView} from 'react-native';
 import {Card} from '../../components/card/Card';
 import {Modalize} from 'react-native-modalize';
@@ -20,19 +19,23 @@ import {useUser} from '../../providers/user';
 import ICard from '../../models/ICard';
 import colors from '../../resources/colors';
 import LocaleService from '../../services/locale.service';
+import BoardService from '../../services/board.service';
 
 const localeService = new LocaleService();
 
 export function BoardScreen({navigation}: {navigation: any}) {
-  const toast = useToast();
-  const user = useUser();
-  const modalizeRef = useRef<Modalize>(null);
+
   const [boards, setBoards] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedBoard, setSelectedBoard] = useState<Omit<
     ICard,
     'onOpen'
   > | null>(null);
+
+  const toast = useToast();
+  const user = useUser();
+  const modalizeRef = useRef<Modalize>(null);
+  const boardService = new BoardService();
 
   const onOpen = (data: Omit<ICard, 'onOpen'>) => {
     setSelectedBoard(data);
@@ -45,14 +48,14 @@ export function BoardScreen({navigation}: {navigation: any}) {
     });
     modalizeRef.current?.close();
     setLoading(true);
-    const response = await new Requests().getBoards(user.user.email);
+    const response = await boardService.getBoards(user.user.email);
     setBoards(response);
     setLoading(false);
   };
 
   useEffect(() => {
     const getData = async () => {
-      const response = await new Requests().getBoards(user.user.email);
+      const response = await boardService.getBoards(user.user.email);
       setBoards(response);
       setLoading(false);
     };

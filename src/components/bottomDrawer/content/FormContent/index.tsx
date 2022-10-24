@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import {Button, Heading, Text, Input, useToast, HStack, Divider, VStack, Radio, Checkbox, Select} from 'native-base';
 import IHandler from '../../../../models/IHandler';
-import {Requests} from '../../../../services/axios/remoteRequests';
 import HandleSubmit from '../../HandleSubmit';
 import LocaleService from '../../../../services/locale.service';
+import BoardService from '../../../../services/board.service';
 
 const localeService = new LocaleService();
 
 const FormContent = ({data, onUpdateData}: any) => {
   
+  const boardService = new BoardService();
   const nameIdx = data.node.parameters.findIndex((parameter: any) => parameter.slug === 'name')
   const descriptionIdx = data.node.parameters.findIndex((parameter: any) => parameter.slug === 'description')
   const questionsIdx = data.node.parameters.findIndex((parameter: any) => parameter.slug === 'questions')
@@ -26,7 +27,7 @@ const FormContent = ({data, onUpdateData}: any) => {
       description: localeService.translate("SAVING_CHANGES"),
     });
     const formattedAnswers = [ ...answers, currentAnswer ].shift();
-    await new Requests().postBoardResponse(data.id, formattedAnswers);
+    await boardService.postBoardResponse(data.id, formattedAnswers);
     onUpdateData();
   };
 
