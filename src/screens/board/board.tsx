@@ -17,7 +17,7 @@ import {Modalize} from 'react-native-modalize';
 import {BottomDrawer} from '../../components/bottomDrawer/BottomDrawer';
 import {useUser} from '../../providers/user';
 import ICard from '../../models/ICard';
-import colors from '../../resources/colors';
+import theme from '../../assets/themes';
 import LocaleService from '../../services/locale.service';
 import BoardService from '../../services/board.service';
 
@@ -85,7 +85,7 @@ export function BoardScreen({navigation}: {navigation: any}) {
             </Center>
           ) : null}
           {loading ? (
-            <Spinner size="lg" color={colors.primary} mt={20} />
+            <Spinner size="lg" color={theme.primary} mt={20} />
           ) : (
             <VStack space={2} mt={4} alignItems="center">
               {boards.map((board, i) => {

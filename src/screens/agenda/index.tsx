@@ -17,7 +17,7 @@ import {useUser} from '../../providers/user';
 import {Dimensions} from 'react-native';
 import ICard from '../../models/ICard';
 import { MiniCard } from '../../components/MiniCard';
-import colors from '../../resources/colors';
+import theme from '../../assets/themes';
 import LocaleService from '../../services/locale.service';
 import AgendaService from '../../services/agenda.service';
 
@@ -54,12 +54,12 @@ export function AgendaScreen({navigation}: {navigation: any}) {
           alt={localeService.translate("AGENDA_IMAGE")}
         />
         {loading &&
-          <Spinner size="lg" color={colors.primary} mt={20} />
+          <Spinner size="lg" color={theme.primary} mt={20} />
         }
         {!loading &&
           <ScrollView marginX={3}>
             <Box mt={5} borderRadius={10} p={5} backgroundColor='rgba(0,0,0,0.3)'>
-              <Heading size="md" ml={3} color={colors.light}>
+              <Heading size="md" ml={3} color={theme.light}>
               {localeService.translate("TODAY")}
               </Heading>
               <VStack space={2} mt={4} alignItems="center">
@@ -69,14 +69,14 @@ export function AgendaScreen({navigation}: {navigation: any}) {
                     onPress={() => handleOpenCard(item.flow.id, item.node.id)}
                     name={item.node.name.toUpperCase()}
                     icon={item.node.icon}
-                    bgColor={colors.danger}
+                    bgColor={theme.danger}
                   />
                 ))}
               </VStack>
             </Box>
 
             <Box mt={5} borderRadius={10} p={5} backgroundColor='rgba(0,0,0,0.3)'>
-              <Heading size="md" ml={3} color={colors.light}>
+              <Heading size="md" ml={3} color={theme.light}>
               {localeService.translate("TOMORROW")}
               </Heading>
               <VStack space={2} mt={4} alignItems="center">
@@ -86,7 +86,7 @@ export function AgendaScreen({navigation}: {navigation: any}) {
                     onPress={() => handleOpenCard(item.flow.id, item.node.id)}
                     name={item.node.name.toUpperCase()}
                     icon={item.node.icon}
-                    bgColor={colors.warning}
+                    bgColor={theme.warning}
                   />
                 ))}
               </VStack>

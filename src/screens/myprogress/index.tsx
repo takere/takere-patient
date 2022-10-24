@@ -17,7 +17,7 @@ import {SafeAreaView} from 'react-native';
 import {useUser} from '../../providers/user';
 import {Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import colors from '../../resources/colors';
+import theme from '../../assets/themes';
 import LocaleService from '../../services/locale.service';
 import ProgressService from '../../services/progress.service';
 
@@ -49,7 +49,7 @@ export function MyProgressScreen({navigation}: {navigation: any}) {
           alt={localeService.translate("PROGRESS_IMAGE")}
         />
         {loading &&
-          <Spinner size="lg" color={colors.primary} mt={20} />
+          <Spinner size="lg" color={theme.primary} mt={20} />
         }
         {!loading &&
           <ScrollView marginX={3}>
@@ -65,7 +65,7 @@ export function MyProgressScreen({navigation}: {navigation: any}) {
 
 const FlowProgress = ({ flow }: any) => (
   <Box mt={5} borderRadius={10} p={5} backgroundColor='rgba(0,0,0,0.3)'>
-    <Heading size="md" ml={3} color={colors.light}>
+    <Heading size="md" ml={3} color={theme.light}>
       { flow.name }
     </Heading>
     <VStack space={2} mt={3}>
@@ -97,7 +97,7 @@ const ProgressCard = ({ name, icon, completed, remaining, bgColor }: any) => (
       <HStack justifyContent='space-between'>
         <Center w="70%">
           <Box w="100%" maxW="240">
-            <Progress size="md" bg='coolGray.300' _filledTrack={{ bg: colors.success }} value={(completed/remaining) * 100} />
+            <Progress size="md" bg='coolGray.300' _filledTrack={{ bg: theme.success }} value={(completed/remaining) * 100} />
           </Box>
         </Center>
         <Text fontSize={14} color="cyan.50" fontWeight="medium">

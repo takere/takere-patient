@@ -16,7 +16,7 @@ import {SafeAreaView, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useUser} from '../../providers/user';
 import {Dimensions} from 'react-native';
-import colors from '../../resources/colors';
+import theme from '../../assets/themes';
 import LocaleService from '../../services/locale.service';
 
 const localeService = new LocaleService();
@@ -48,14 +48,14 @@ export function HomeScreen({navigation}: {navigation: any}) {
             <HStack space={2} justifyContent="space-between" alignItems='center'>
               <MenuButton 
                 title={localeService.translate("BOARD")}
-                bgColor={colors.primary}
+                bgColor={theme.primary}
                 icon="dynamic-feed"
                 width={width}
                 onPress={() => navigation.navigate('Board')}
               />
               <MenuButton 
                 title={localeService.translate("MY_PROGRESS")}
-                bgColor={colors.primary}
+                bgColor={theme.primary}
                 icon="domain-verification"
                 width={width}
                 onPress={() => navigation.navigate('MyProgress')}
@@ -64,14 +64,14 @@ export function HomeScreen({navigation}: {navigation: any}) {
             <HStack space={2} mt={2} justifyContent="space-between" alignItems='center'>
               <MenuButton 
                 title={localeService.translate("PROFILE")}
-                bgColor={colors.primary}
+                bgColor={theme.primary}
                 icon="account-circle"
                 width={width}
                 onPress={() => navigation.navigate('Profile')}
               />
               <MenuButton 
                 title={localeService.translate("AGENDA")}
-                bgColor={colors.primary}
+                bgColor={theme.primary}
                 icon="calendar-today"
                 width={width}
                 onPress={() => navigation.navigate('Agenda')}

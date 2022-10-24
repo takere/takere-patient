@@ -1,11 +1,11 @@
-import colors from "../../resources/colors";
+import theme from "../../assets/themes";
 
 export const container: any = {
-  backgroundColor: colors.dark
+  backgroundColor: theme.dark
 };
 
 export const pointerColor: string = container.backgroundColor;
 
 export const label: any = {
-  color: colors.light
+  color: theme.light
 };
