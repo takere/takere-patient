@@ -1,7 +1,18 @@
+/*
+ * Copyright (c) William Niemiec.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
-import {Pressable, Text, Box, HStack, Spacer, Flex} from 'native-base';
+import { Pressable, Text, Box, Flex } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+
+// ----------------------------------------------------------------------------
+//         Components
+// ----------------------------------------------------------------------------
 export const MiniCard = ({
   name,
   icon,

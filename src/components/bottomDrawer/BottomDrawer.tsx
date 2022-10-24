@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) William Niemiec.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { Heading, Box } from 'native-base';
 import { Dimensions } from 'react-native';
@@ -7,10 +14,18 @@ import ListContent from './content/ListContent';
 import TextContent from './content/TextContent';
 import LocaleService from '../../services/locale.service';
 
+
+// ----------------------------------------------------------------------------
+//         Constants
+// ----------------------------------------------------------------------------
 const localeService = new LocaleService();
 
 const { height } = Dimensions.get('window');
 
+
+// ----------------------------------------------------------------------------
+//         Components
+// ----------------------------------------------------------------------------
 export const BottomDrawer = ({board, onUpdateData}: any) => {
   
   return (

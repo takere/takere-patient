@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) William Niemiec.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import {
   Button,
@@ -16,9 +23,16 @@ import HandleSubmit from '../../HandleSubmit';
 import LocaleService from '../../../../services/locale.service';
 import BoardService from '../../../../services/board.service';
 
+
+// ----------------------------------------------------------------------------
+//         Constants
+// ----------------------------------------------------------------------------
 const localeService = new LocaleService();
 
 
+// ----------------------------------------------------------------------------
+//         Components
+// ----------------------------------------------------------------------------
 const ListContent = ({data, onUpdateData}: any) => {
   const toast = useToast();
   const boardService = new BoardService();

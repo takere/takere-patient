@@ -5,11 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {Button} from 'native-base';
-import * as React from 'react';
-import {useRef, useState} from 'react';
-import IHandleSubmit from '../../models/IHandleSubmit';
 import LocaleService from '../../services/locale.service';
+import * as Styled from './styled';
 
 
 // ----------------------------------------------------------------------------
@@ -21,25 +18,19 @@ const localeService = new LocaleService();
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-const HandleSubmit = ({onClick}: IHandleSubmit) => {
-  const [value, setValue] = useState<boolean>(false);
-  const handleSubmit = () => {
-    setValue(true);
-    onClick();
-  };
+const Loading = ({ display }: any) => {
+  if (!display) {
+    return (
+      <></>
+    );
+  }
 
   return (
-    <>
-      <Button
-        isLoading={value}
-        isDisabled={value}
-        size="lg"
-        colorScheme="success"
-        onPress={() => handleSubmit()}>
-        {localeService.translate("FINISH")}
-      </Button>
-    </>
+    <Styled.Loading 
+      accessibilityLabel={localeService.translate('LOADING')}
+      size="lg"
+    />
   );
-};
+}
 
-export default HandleSubmit;
+export default Loading;

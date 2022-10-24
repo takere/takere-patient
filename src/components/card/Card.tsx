@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) William Niemiec.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import {Pressable, Text, Box, HStack, Spacer, Flex} from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -5,6 +12,10 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import {ptBR} from 'date-fns/locale';
 import ICard from '../../models/ICard';
 
+
+// ----------------------------------------------------------------------------
+//         Components
+// ----------------------------------------------------------------------------
 export const Card = ({
   id,
   name,

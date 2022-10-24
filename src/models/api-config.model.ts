@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-
 interface ApiConfig {
   BASE_URL: string,
   REQUEST_TIMEOUT: number

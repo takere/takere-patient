@@ -5,18 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import theme from "../../assets/themes";
+import styled from 'styled-components/native';
+import { Spinner } from "native-base"
+import theme from '../../assets/themes';
 
 
 // ----------------------------------------------------------------------------
-//         Constants
+//         Components
 // ----------------------------------------------------------------------------
-export const container: any = {
-  backgroundColor: theme.dark
-};
-
-export const pointerColor: string = container.backgroundColor;
-
-export const label: any = {
-  color: theme.light
-};
+export const Loading = styled(Spinner)`
+  color: ${theme.primary}
+`;
