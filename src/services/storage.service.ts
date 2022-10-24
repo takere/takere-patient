@@ -5,21 +5,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import AsyncStorage from "@react-native-community/async-storage";
-import UserDTO from "../dto/user.dto";
 import Service from "./service";
-import StorageService from "./storage.service";
-
+import { useUser } from '../providers/user';
 
 /**
- * Responsible for managing authentication.
+ * Responsible for managing local storage. 
  */
-class AuthService extends Service {
+class StorageService extends Service {
 
   // --------------------------------------------------------------------------
   //         Attributes
   // --------------------------------------------------------------------------
-  private readonly storageService: StorageService;
+  private readonly userProvider: any;
 
   
   // --------------------------------------------------------------------------
@@ -27,24 +24,20 @@ class AuthService extends Service {
   // --------------------------------------------------------------------------
   constructor() {
     super();
-    this.storageService = new StorageService();
+    this.userProvider = useUser();
   }
 
 
   // --------------------------------------------------------------------------
   //         Methods
   // --------------------------------------------------------------------------
-  public async signIn(email: string, password: string): Promise<UserDTO> {
-    const response = await this.remoteRequest.post('users/login', {email, password});
-
-    return response.data;
+  public reset(): any {
+    this.userProvider.reset();
   }
 
-  public async signOut() {
-    await AsyncStorage.removeItem('cookie');
-
-    this.storageService.reset();
+  public getEmail(): string {
+    return this.userProvider.user.email;
   }
 }
 
-export default AuthService;
+export default StorageService;

@@ -9,12 +9,13 @@ import React, { useEffect } from 'react';
 import * as Styled from './styled';
 import { useUser } from '../../providers/user';
 import Loading from '../../components/loading';
+import Screen from '../../models/screen.model';
 
 
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-const SplashScreen = ({ navigation }: any) => {
+const SplashScreen = ({ navigation }: Screen) => {
 
   const user: any = useUser();
 

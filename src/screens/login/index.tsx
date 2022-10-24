@@ -5,7 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import * as React from 'react';
+import React from 'react';
+import * as Styled from './styled';
 import {
   Button,
   Heading,
@@ -15,6 +16,7 @@ import {useState} from 'react';
 import {useUser} from '../../providers/user';
 import {SafeAreaView} from 'react-native';
 import LocaleService from '../../services/locale.service';
+import Screen from '../../models/screen.model';
 
 
 // ----------------------------------------------------------------------------
@@ -26,7 +28,7 @@ const localeService = new LocaleService();
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-export function LoginScreen({navigation}: {navigation: any}) {
+const LoginScreen = ({ navigation }: Screen) => {
   const user = useUser();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState<string>('');
@@ -94,3 +96,5 @@ export function LoginScreen({navigation}: {navigation: any}) {
     </SafeAreaView>
   );
 }
+
+export default LoginScreen;

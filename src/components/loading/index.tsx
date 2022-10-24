@@ -26,7 +26,7 @@ const Loading = ({ display }: any) => {
   }
 
   return (
-    <Styled.Loading 
+    <Styled.AnimatedSpinner 
       accessibilityLabel={localeService.translate('LOADING')}
       size="lg"
     />

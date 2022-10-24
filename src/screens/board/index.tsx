@@ -5,7 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import * as React from 'react';
+import React from 'react';
+import * as Styled from './styled';
 import {
   Avatar, Button,
   Center,
@@ -27,6 +28,7 @@ import ICard from '../../models/ICard';
 import theme from '../../assets/themes';
 import LocaleService from '../../services/locale.service';
 import BoardService from '../../services/board.service';
+import Screen from '../../models/screen.model';
 
 
 // ----------------------------------------------------------------------------
@@ -38,7 +40,7 @@ const localeService = new LocaleService();
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-export function BoardScreen({navigation}: {navigation: any}) {
+const BoardScreen = ({ navigation }: Screen) => {
 
   const [boards, setBoards] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -118,3 +120,5 @@ export function BoardScreen({navigation}: {navigation: any}) {
     </>
   );
 }
+
+export default BoardScreen;

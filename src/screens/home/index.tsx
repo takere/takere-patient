@@ -5,7 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import * as React from 'react';
+import React from 'react';
+import * as Styled from './styled';
 import {
   Avatar, Box, Button,
   Center,
@@ -25,6 +26,7 @@ import {useUser} from '../../providers/user';
 import {Dimensions} from 'react-native';
 import theme from '../../assets/themes';
 import LocaleService from '../../services/locale.service';
+import Screen from '../../models/screen.model';
 
 
 // ----------------------------------------------------------------------------
@@ -36,7 +38,7 @@ const localeService = new LocaleService();
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-export function HomeScreen({navigation}: {navigation: any}) {
+const HomeScreen = ({ navigation }: Screen) => {
   const toast = useToast();
   const user = useUser();
   const {width} = Dimensions.get('window');
@@ -98,6 +100,8 @@ export function HomeScreen({navigation}: {navigation: any}) {
     </>
   );
 }
+
+export default HomeScreen;
 
 const MenuButton = ({ width, title, bgColor, icon, onPress }: any) => (
   <Button 

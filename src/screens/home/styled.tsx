@@ -5,14 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Center } from 'native-base';
+import { SafeAreaView } from 'react-native';
 import styled from 'styled-components/native';
 
 
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-export const Container = styled(Center)`
+export const Container = styled(SafeAreaView)`
   flex: 1;
-  padding: 0 3px;
 `;
+

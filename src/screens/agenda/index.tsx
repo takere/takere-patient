@@ -6,6 +6,7 @@
  */
 
 import React, {useEffect, useState} from 'react';
+import * as Styled from './styled';
 import {
   Avatar,
   Box,
@@ -29,6 +30,7 @@ import {MiniCard} from '../../components/MiniCard';
 import theme from '../../assets/themes';
 import LocaleService from '../../services/locale.service';
 import AgendaService from '../../services/agenda.service';
+import Screen from '../../models/screen.model';
 
 
 // ----------------------------------------------------------------------------
@@ -41,7 +43,7 @@ const agendaService = new AgendaService();
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-export function AgendaScreen({navigation}: {navigation: any}) {
+const AgendaScreen = ({ navigation }: Screen) => {
   const [agenda, setAgenda] = useState({today: [], tomorrow: []});
   const [loading, setLoading] = useState(true);
   const toast = useToast();
@@ -124,3 +126,5 @@ export function AgendaScreen({navigation}: {navigation: any}) {
     </>
   );
 }
+
+export default AgendaScreen;

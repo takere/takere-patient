@@ -59,9 +59,7 @@ export const UserProvider = ({children}) => {
     }
   }
 
-  async function logout() {
-    await authService.signOut();
-    
+  async function reset() {
     setUser(null);
   }
 

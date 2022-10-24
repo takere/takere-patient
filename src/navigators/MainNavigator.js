@@ -12,7 +12,7 @@ import { SplashScreen } from '../screens/splash';
 import { LoginScreen } from '../screens/login';
 import { HomeScreen } from '../screens/home';
 import { ProfileScreen } from '../screens/profile';
-import { MyProgressScreen } from '../screens/myprogress';
+import { ProgressScreen } from '../screens/progress';
 import { AgendaScreen } from '../screens/agenda';
 import LocaleService from '../services/locale.service';
 
@@ -37,7 +37,7 @@ const MainNavigator = () => {
       />
       <Stack.Screen
         name="MyProgress"
-        component={MyProgressScreen}
+        component={ProgressScreen}
         options={{
           headerShown: true,
           headerTitle: localeService.translate('MY_PROGRESS'),

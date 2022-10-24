@@ -5,14 +5,25 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Center } from 'native-base';
-import styled from 'styled-components/native';
+import React from 'react';
+import Loading from '../../components/loading';
 
 
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-export const Container = styled(Center)`
-  flex: 1;
-  padding: 0 3px;
-`;
+const ScreenContent = ({ loading, children }: any) => {
+  if (loading) {
+    return (
+      <Loading />
+    );
+  }
+
+  return (
+    <>
+      { children }
+    </>
+  )
+}
+
+export default ScreenContent;

@@ -5,50 +5,48 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import * as React from 'react';
-import {
-  Button,
-  Image,
-} from 'native-base';
-import {useUser} from '../../providers/user';
-import {SafeAreaView} from 'react-native';
+import React from 'react';
+import * as Styled from './styled';
 import LocaleService from '../../services/locale.service';
+import AuthService from '../../services/auth.service';
+import DangerButton from '../../components/buttons/DangerButton';
+import { NavigationProp } from '@react-navigation/native';
+import Screen from '../../models/screen.model';
 
 
 // ----------------------------------------------------------------------------
 //         Constants
 // ----------------------------------------------------------------------------
 const localeService = new LocaleService();
+const authService = new AuthService();
 
 
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-export function ProfileScreen({navigation}: {navigation: any}) {
-  const user = useUser();
-
-  const handleSubmit = async () => {
-    await user.logout();
-    navigation.navigate('Splash');
-  };
+const ProfileScreen = ({ navigation }: Screen) => {
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <Image 
-          style={{ height: '100%', width: '100%', position: 'absolute', top:0, left:0 }}
-          source={require('../../assets/images/form.jpg')}
-          alt={localeService.translate("FORM_IMAGE")}
-        />
-      <Button
-        ml={3}
-        mr={3}
-        mt={10}
-        mb={3}
-        size="lg"
-        colorScheme="error"
-        onPress={() => handleSubmit()}>
-        {localeService.translate("LOGOUT")}
-      </Button>
-    </SafeAreaView>
+    <Styled.Container>
+      <Styled.Background 
+        source={require('../../assets/images/form.jpg')}
+        alt={localeService.translate("FORM_IMAGE")}
+      />
+      <DangerButton 
+        title={localeService.translate("LOGOUT")}
+        onPress={() => handleSubmit(navigation)}
+      />
+    </Styled.Container>
   );
+}
+
+export default ProfileScreen;
+
+
+// ----------------------------------------------------------------------------
+//         Functions
+// ----------------------------------------------------------------------------
+async function handleSubmit(navigation: NavigationProp<any, any>) {
+  await authService.signOut();
+  navigation.navigate('Splash');
 }

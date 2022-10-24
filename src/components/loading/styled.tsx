@@ -13,6 +13,6 @@ import theme from '../../assets/themes';
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-export const Loading = styled(Spinner)`
+export const AnimatedSpinner = styled(Spinner)`
   color: ${theme.primary}
 `;

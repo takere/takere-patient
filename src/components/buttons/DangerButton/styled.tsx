@@ -5,14 +5,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Center } from 'native-base';
 import styled from 'styled-components/native';
+import { Button } from 'native-base';
 
 
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-export const Container = styled(Center)`
+export const Container = styled(Button)`
   flex: 1;
-  padding: 0 3px;
+  margin: 5px;
+  margin-top: 10px;
 `;
+
