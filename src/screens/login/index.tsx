@@ -5,23 +5,20 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
+import { useToast } from 'native-base';
 import * as Styled from './styled';
-import {
-  Button,
-  Heading,
-  Input,
-} from 'native-base';
-import {useState} from 'react';
-import {useUser} from '../../providers/user';
-import {SafeAreaView} from 'react-native';
-import LocaleService from '../../services/locale.service';
 import Screen from '../../models/screen.model';
+import SignInForm from '../../components/forms/SignIn';
+import AuthService from '../../services/auth.service';
+import LocaleService from '../../services/locale.service';
+import { NavigationProp } from '@react-navigation/core';
 
 
 // ----------------------------------------------------------------------------
 //         Constants
 // ----------------------------------------------------------------------------
+const authService = new AuthService();
 const localeService = new LocaleService();
 
 
@@ -29,72 +26,55 @@ const localeService = new LocaleService();
 //         Components
 // ----------------------------------------------------------------------------
 const LoginScreen = ({ navigation }: Screen) => {
-  const user = useUser();
-  const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const handleEmailChange = (inputValue: any) => {
-    setEmail(inputValue);
-  };
-  const handlePasswordChange = (inputValue: any) => {
-    setPassword(inputValue);
-  };
 
-  const handleSubmit = async () => {
-    setLoading(true);
-    const status = await user.login(email, password);
-    if (status) {
-      navigation.navigate('Home');
-    }
-    setLoading(false);
-  };
+  const [loading, setLoading] = useState(false);
+
+  const toast = useToast();
 
   return (
-    <SafeAreaView>
-      <Heading size="xl" ml={3} mt={5} color="muted.800">
-      {localeService.translate("EMAIL")}
-      </Heading>
-      <Heading size="sm" ml={3} mt={1} color="muted.400">
-      {localeService.translate("TYPE_EMAIL")}
-      </Heading>
-      <Input
-        value={email}
-        onChangeText={handleEmailChange}
-        ml={3}
-        mr={3}
-        mt={5}
-        size="2xl"
-        placeholder="abc@xyz.com"
-      />
-      <Heading size="xl" ml={3} mt={10} color="muted.800">
-      {localeService.translate("PASSWORD")}
-      </Heading>
-      <Heading size="sm" ml={3} mt={1} color="muted.400">
-      {localeService.translate("TYPE_PASSWORD")}
-      </Heading>
-      <Input
-        value={password}
-        onChangeText={handlePasswordChange}
-        ml={3}
-        mr={3}
-        mt={5}
-        size="2xl"
-        type="password"
-      />
-      <Button
+    <Styled.Container>
+      <SignInForm 
+        onSubmit={(email: string, password: string) => handleSubmit(
+          email, 
+          password, 
+          setLoading, 
+          navigation,
+          toast
+        )}
         isLoading={loading}
-        isDisabled={loading}
-        ml={3}
-        mr={3}
-        mt={10}
-        mb={3}
-        size="lg"
-        colorScheme="success"
-        onPress={() => handleSubmit()}>
-        {localeService.translate("SIGN_IN")}
-      </Button>
-    </SafeAreaView>
+      />
+    </Styled.Container>
   );
 }
 
 export default LoginScreen;
+
+
+// ----------------------------------------------------------------------------
+//         Functions
+// ----------------------------------------------------------------------------
+async function handleSubmit(
+  email: string, 
+  password: string, 
+  setLoading: (value: boolean) => void, 
+  navigation: NavigationProp<any, any>,
+  toast: any
+) {
+  setLoading(true);
+
+  const status = await authService.signIn(email, password);
+
+  if (status) {
+    toast.show({
+      description: localeService.translate("LOGIN_SUCCESS"),
+    });
+    navigation.navigate('Home');
+  }
+  else {
+    toast.show({
+      description: localeService.translate("LOGIN_FAIL"),
+    });
+  }
+
+  setLoading(false);
+}

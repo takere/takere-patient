@@ -5,11 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-interface Button {
-  title: string, 
-  onPress: () => void,
-  isLoading?: boolean,
-  isDisabled?: boolean
+interface SignInFormComponent {
+  onSubmit: (email: string, password: string) => void,
+  isLoading: boolean
 }
 
-export default Button;
+export default SignInFormComponent;

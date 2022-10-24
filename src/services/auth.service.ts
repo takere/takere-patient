@@ -6,7 +6,6 @@
  */
 
 import AsyncStorage from "@react-native-community/async-storage";
-import UserDTO from "../dto/user.dto";
 import Service from "./service";
 import StorageService from "./storage.service";
 
@@ -34,10 +33,31 @@ class AuthService extends Service {
   // --------------------------------------------------------------------------
   //         Methods
   // --------------------------------------------------------------------------
-  public async signIn(email: string, password: string): Promise<UserDTO> {
-    const response = await this.remoteRequest.post('users/login', {email, password});
+  public async signIn(email: string, password: string): Promise<boolean> {
+    this.storageService.setLoading(true);
 
-    return response.data;
+    const response: any = await this.remoteRequest.post('users/login', {
+      email, 
+      password
+    });
+
+    try {
+      if (response.token) {
+        await this.storageService.storeUser(response);
+
+        return true;
+      } 
+      else {
+        this.storageService.setLoading(false);
+        return false;
+      }
+    } 
+    catch (e) {
+      console.log(e);
+      this.storageService.setLoading(false); 
+
+      return false;
+    }
   }
 
   public async signOut() {

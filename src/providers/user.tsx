@@ -24,42 +24,27 @@ const UserContext = createContext(null);
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-export const UserProvider = ({children}) => {
-  const toast = useToast();
+export const UserProvider = ({children}: any) => {
+  
   const [user, setUser] = useState(null);
   const [initialized, setInitialized] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
   
-  const login = async (email: string, password: string) => {
-    setIsLoading(true);
-    try {
-      const response = await authService.signIn(email, password);
+  const toast = useToast();
+  
 
-      if (response.token) {
-        await AsyncStorage.setItem('cookie', response?.token);
-        setUser(response?.userData)
-        setInitialized(true)
-        toast.show({
-          description: localeService.translate("LOGIN_SUCCESS"),
-        });
-        setIsLoading(false);
-        return true;
-      } else {
-        toast.show({
-          description: localeService.translate("LOGIN_FAIL"),
-        });
-        return false;
-      }
-    } catch (e) {
-      console.log(e);
-      toast.show({
-        description: localeService.translate("LOGIN_FAIL"),
-      });
-      return false;
-    }
+  const store = async (response: any) => {
+    await AsyncStorage.setItem('cookie', response?.token);
+    setUser(response?.userData);
+    setInitialized(true);
+    setIsLoading(false);
+  }  
+
+  const setLoading = (value: boolean) => {
+    setIsLoading(value);
   }
 
-  async function reset() {
+  const reset = async () => {
     setUser(null);
   }
 

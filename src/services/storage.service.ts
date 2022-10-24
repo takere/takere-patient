@@ -38,6 +38,14 @@ class StorageService extends Service {
   public getEmail(): string {
     return this.userProvider.user.email;
   }
+
+  public async storeUser(data: any) {
+    await this.userProvider.store(data);
+  }
+
+  public setLoading(value: boolean) {
+    this.userProvider.setLoading(value);
+  }
 }
 
 export default StorageService;

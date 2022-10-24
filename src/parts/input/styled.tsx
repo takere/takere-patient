@@ -5,22 +5,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
-import * as Styled from './styled';
-import Button from '../../../models/button.model';
+import styled from 'styled-components/native';
+import { Input } from 'native-base';
 
 
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-const DangerButton = ({ title, onPress }: Button) => (
-  <Styled.Container
-    size="lg"
-    colorScheme="error"
-    onPress={onPress}
-  >
-    { title }
-  </Styled.Container>
-);
+export const Container = styled(Input)`
+  flex: 1;
+  margin: 5px;
+  margin-top: 10px;
+`;
 
-export default DangerButton;

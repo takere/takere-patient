@@ -13,14 +13,16 @@ import Button from '../../../models/button.model';
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-const DangerButton = ({ title, onPress }: Button) => (
+const SuccessButton = ({ title, onPress, isDisabled, isLoading }: Button) => (
   <Styled.Container
     size="lg"
-    colorScheme="error"
+    colorScheme="success"
     onPress={onPress}
+    isDisabled={isDisabled}
+    isLoading={isLoading}
   >
     { title }
   </Styled.Container>
 );
 
-export default DangerButton;
+export default SuccessButton;
