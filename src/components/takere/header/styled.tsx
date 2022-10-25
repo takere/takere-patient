@@ -5,32 +5,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { SafeAreaView } from 'react-native';
 import styled from 'styled-components/native';
-import { Image, HStack, ScrollView } from "native-base";
+import { Box, Image } from "native-base";
 
 
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-export const Container = styled(SafeAreaView)`
-  flex: 1;
-`;
-
-export const Background = styled(Image)`
+export const Container = styled(Box)`
   width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-`;
-
-export const Row = styled(HStack)`
+  height: 60px;
+  margin-bottom: 5px;
   margin-top: 5px;
-  justify-content: space-between;
-  align-items: center;
 `;
 
-export const List = styled(ScrollView)`
-  margin: 0 5px;
+export const Logo = styled(Image)`
+  display: flex;
+  height: 50px;
+  resize-mode: contain;
 `;
