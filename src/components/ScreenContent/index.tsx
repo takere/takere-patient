@@ -7,12 +7,13 @@
 
 import React from 'react';
 import Loading from '../../components/loading';
+import ScreenContentProps from '../../models/screen-content-props.model';
 
 
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-const ScreenContent = ({ loading, children }: any) => {
+const ScreenContent = ({ loading, children }: ScreenContentProps) => {
   if (loading) {
     return (
       <Loading />

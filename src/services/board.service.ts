@@ -26,7 +26,7 @@ class BoardService extends Service {
   // --------------------------------------------------------------------------
   //         Methods
   // --------------------------------------------------------------------------
-  public async getBoards(email: string): Promise<BoardDTO> {
+  public async getCards(email: string): Promise<BoardDTO> {
     const response = await this.remoteRequest.get('board/me?email=' + email);
     
     return response.data;

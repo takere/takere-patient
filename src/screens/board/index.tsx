@@ -5,36 +5,24 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as Styled from './styled';
-import {
-  Avatar, Button,
-  Center,
-  Heading,
-  HStack,
-  Pressable,
-  ScrollView,
-  Spinner,
-  useToast,
-  VStack
-} from "native-base";
-import {useEffect, useRef, useState} from 'react';
-import {SafeAreaView} from 'react-native';
-import {Card} from '../../components/card/Card';
-import {Modalize} from 'react-native-modalize';
-import {BottomDrawer} from '../../components/bottomDrawer/BottomDrawer';
-import {useUser} from '../../providers/user';
+import { useToast } from "native-base";
+import { Modalize } from 'react-native-modalize';
+import { useUser } from '../../providers/user';
 import ICard from '../../models/ICard';
-import theme from '../../assets/themes';
+import Screen from '../../models/screen.model';
 import LocaleService from '../../services/locale.service';
 import BoardService from '../../services/board.service';
-import Screen from '../../models/screen.model';
+import CardContent from '../../components/card/content';
+import CardList from '../../components/card/list';
 
 
 // ----------------------------------------------------------------------------
 //         Constants
 // ----------------------------------------------------------------------------
 const localeService = new LocaleService();
+const boardService = new BoardService();
 
 
 // ----------------------------------------------------------------------------
@@ -42,83 +30,88 @@ const localeService = new LocaleService();
 // ----------------------------------------------------------------------------
 const BoardScreen = ({ navigation }: Screen) => {
 
-  const [boards, setBoards] = useState([]);
+  const [cards, setCards]: any = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedBoard, setSelectedBoard] = useState<Omit<
-    ICard,
-    'onOpen'
-  > | null>(null);
+  const [selectedCard, setSelectedCard] = useState<Omit<ICard, 'onOpen'> | null>(null);
 
   const toast = useToast();
-  const user = useUser();
+  const user: any = useUser();
   const modalizeRef = useRef<Modalize>(null);
-  const boardService = new BoardService();
-
-  const onOpen = (data: Omit<ICard, 'onOpen'>) => {
-    setSelectedBoard(data);
-    modalizeRef.current?.open();
-  };
-
-  const onUpdateData = async () => {
-    toast.show({
-      description: localeService.translate("UPDATING_CARDS"),
-    });
-    modalizeRef.current?.close();
-    setLoading(true);
-    const response = await boardService.getBoards(user.user.email);
-    setBoards(response);
-    setLoading(false);
-  };
 
   useEffect(() => {
-    const getData = async () => {
-      const response = await boardService.getBoards(user.user.email);
-      setBoards(response);
-      setLoading(false);
-    };
-
     if (user?.user?.email) {
-      getData();
+      fetchCards(user, setCards, setLoading);
     }
   }, [user.user]);
 
   return (
     <>
-      <SafeAreaView style={{flex: 1}}>
-        <ScrollView>
-          {!loading && boards.length === 0 ? (
-            <Center mt={16}>
-              <Heading textAlign="center" size="md">
-              {localeService.translate("NO_BOARDS")}
-              </Heading>
-              <Button
-                mt={3}
-                mb={3}
-                size="sm"
-                colorScheme="error"
-                onPress={() => onUpdateData()}>
-                {localeService.translate("REFRESH")}
-              </Button>
-            </Center>
-          ) : null}
-          {loading ? (
-            <Spinner size="lg" color={theme.primary} mt={20} />
-          ) : (
-            <VStack space={2} mt={4} alignItems="center">
-              {boards.map((board, i) => {
-                return <Card onOpen={onOpen} key={i} {...board} />;
-              })}
-            </VStack>
+      <Styled.Container>
+        <CardList 
+          loading={loading}
+          boards={cards}
+          onRefresh={() => onUpdateData(
+            user, 
+            toast, 
+            modalizeRef, 
+            setCards, 
+            setLoading
           )}
-        </ScrollView>
-      </SafeAreaView>
-      <Modalize ref={modalizeRef} modalTopOffset={90} >
-        {selectedBoard && (
-          <BottomDrawer onUpdateData={onUpdateData} board={selectedBoard} />
+          onCardOpen={(card: Omit<ICard, 'onOpen'>) => onOpen(
+            card, 
+            setSelectedCard, 
+            modalizeRef
+          )}
+        />
+      </Styled.Container>
+      <CardContent 
+        modalRef={modalizeRef}
+        selectedBoard={selectedCard}
+        onUpdateData={() => onUpdateData(
+          user, 
+          toast, 
+          modalizeRef, 
+          setCards, 
+          setLoading
         )}
-      </Modalize>
+      />
     </>
   );
 }
 
 export default BoardScreen;
+
+
+// ----------------------------------------------------------------------------
+//         Functions
+// ----------------------------------------------------------------------------
+async function fetchCards(user: any, setCards: any, setLoading: any) {
+  const response = await boardService.getCards(user.user.email);
+
+  setCards(response);
+  setLoading(false);
+}
+
+async function onUpdateData(
+  user: any, 
+  toast: any, 
+  modalizeRef: any, 
+  setCards: any, 
+  setLoading: any
+) {
+  toast.show({
+    description: localeService.translate("UPDATING_CARDS"),
+  });
+  modalizeRef.current?.close();
+  setLoading(true);
+  
+  const response = await boardService.getCards(user.user.email);
+  
+  setCards(response);
+  setLoading(false);
+}
+
+function onOpen(card: Omit<ICard, 'onOpen'>, setSelectedCard: any, modalizeRef: any) {
+  setSelectedCard(card);
+  modalizeRef.current?.open();
+}
