@@ -7,6 +7,7 @@
 
 import { SafeAreaView } from 'react-native';
 import styled from 'styled-components/native';
+import { Image } from "native-base";
 
 
 // ----------------------------------------------------------------------------
@@ -16,3 +17,10 @@ export const Container = styled(SafeAreaView)`
   flex: 1;
 `;
 
+export const Background = styled(Image)`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
