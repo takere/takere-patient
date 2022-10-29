@@ -21,6 +21,7 @@ interface CardProps {
     type: string;
     bgColor: string;
     results: any;
+    content_type: string;
   };
 }
 

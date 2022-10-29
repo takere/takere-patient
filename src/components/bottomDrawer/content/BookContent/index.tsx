@@ -8,7 +8,7 @@
 import React, { useState } from 'react';
 import {Button, Heading, Text, Input, useToast, Divider, HStack, Box} from 'native-base';
 import Handler from '../../../../models/handler.model';
-import HandleSubmit from '../../HandleSubmit';
+import HandleSubmitProps from '../../HandleSubmit';
 import RenderHtml from 'react-native-render-html';
 import { useWindowDimensions } from 'react-native';
 import LocaleService from '../../../../services/locale.service';
@@ -86,7 +86,7 @@ const BookContent = ({data, onUpdateData}: any) => {
           </Button>
         </HStack>
         {currentPage+1 === pages.length &&
-          <HandleSubmit onClick={handleSub} />
+          <HandleSubmitProps onClick={handleSub} />
         }
       </Box>
     </>

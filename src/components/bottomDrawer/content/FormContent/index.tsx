@@ -8,7 +8,7 @@
 import React, { useState } from 'react';
 import {Button, Heading, Text, Input, useToast, HStack, Divider, VStack, Radio, Checkbox, Select} from 'native-base';
 import Handler from '../../../../models/handler.model';
-import HandleSubmit from '../../HandleSubmit';
+import HandleSubmitProps from '../../HandleSubmit';
 import LocaleService from '../../../../services/locale.service';
 import BoardService from '../../../../services/board.service';
 
@@ -100,7 +100,7 @@ const FormContent = ({data, onUpdateData}: any) => {
         </Button>
       </HStack>
       {currentQuestion+1 === questions.length &&
-        <HandleSubmit onClick={handleSub} />
+        <HandleSubmitProps onClick={handleSub} />
       }
     </>
   );

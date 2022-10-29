@@ -8,7 +8,7 @@
 import React from 'react';
 import {Button, Heading, Text, Input, useToast} from 'native-base';
 import Tooltip from '../../../Tooltip';
-import HandleSubmit from '../../HandleSubmit';
+import HandleSubmitProps from '../../HandleSubmit';
 import LocaleService from '../../../../services/locale.service';
 import BoardService from '../../../../services/board.service';
 
@@ -49,7 +49,7 @@ const TextContent = ({data, onUpdateData}: any) => {
       <Text mt={1}>
         {content}
       </Text>
-      <HandleSubmit onClick={handleSub} />
+      <HandleSubmitProps onClick={handleSub} />
     </>
   );
 };

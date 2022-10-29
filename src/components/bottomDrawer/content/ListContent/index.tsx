@@ -19,7 +19,7 @@ import {
 } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Tooltip from '../../../Tooltip';
-import HandleSubmit from '../../HandleSubmit';
+import HandleSubmitProps from '../../HandleSubmit';
 import LocaleService from '../../../../services/locale.service';
 import BoardService from '../../../../services/board.service';
 
@@ -63,7 +63,7 @@ const ListContent = ({data, onUpdateData}: any) => {
           </HStack>
         ))}
       </VStack>
-      <HandleSubmit onClick={handleSub} />
+      <HandleSubmitProps onClick={handleSub} />
     </>
   );
 };

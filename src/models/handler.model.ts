@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import BottomDrawerProps from "./bottom-drawer.model";
+import BottomDrawerProps from "./bottom-drawer-props.model";
 import CardProps from "./card-props.model";
 
 

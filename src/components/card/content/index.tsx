@@ -8,7 +8,7 @@
 import React from 'react';
 import { Modalize } from 'react-native-modalize';
 import CardContentProps from '../../../models/card-content-props.model';
-import { BottomDrawer } from '../../bottomDrawer/BottomDrawer';
+import { BottomDrawer } from '../../bottomDrawer';
 
 
 // ----------------------------------------------------------------------------

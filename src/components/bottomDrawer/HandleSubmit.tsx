@@ -5,11 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {Button} from 'native-base';
 import * as React from 'react';
-import {useRef, useState} from 'react';
-import HandleSubmit from '../../models/handle-submit.model';
+import { useState} from 'react';
+import HandleSubmitProps from '../../models/handle-submit-props.model';
 import LocaleService from '../../services/locale.service';
+import SuccessButton from '../buttons/SuccessButton';
 
 
 // ----------------------------------------------------------------------------
@@ -21,25 +21,27 @@ const localeService = new LocaleService();
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-const HandleSubmit = ({onClick}: HandleSubmit) => {
+const HandleSubmit = ({ onClick }: HandleSubmitProps) => {
+
   const [value, setValue] = useState<boolean>(false);
-  const handleSubmit = () => {
-    setValue(true);
-    onClick();
-  };
 
   return (
-    <>
-      <Button
-        isLoading={value}
-        isDisabled={value}
-        size="lg"
-        colorScheme="success"
-        onPress={() => handleSubmit()}>
-        {localeService.translate("FINISH")}
-      </Button>
-    </>
+    <SuccessButton
+      isLoading={value}
+      isDisabled={value}
+      title={localeService.translate("FINISH")}
+      onPress={() => handleSubmit(setValue, onClick)}
+    />
   );
 };
 
 export default HandleSubmit;
+
+
+// ----------------------------------------------------------------------------
+//         Functions
+// ----------------------------------------------------------------------------
+function handleSubmit(setValue: any, onClick: any) {
+  setValue(true);
+  onClick();
+}
