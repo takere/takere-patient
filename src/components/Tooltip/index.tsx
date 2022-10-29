@@ -8,14 +8,14 @@
 import React from 'react';
 import { Text } from 'native-base';
 import RnTooltip from 'rn-tooltip';
-import ITooltip from '../../models/ITooltip';
+import TooltipProps from '../../models/ITooltip';
 import * as Style from './style';
 
 
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-const Tooltip = ({ label, children }: ITooltip) => (
+const Tooltip = ({ label, children }: TooltipProps) => (
   <RnTooltip 
     actionType='press'
     popover={<TooltipLabel label={label} />}

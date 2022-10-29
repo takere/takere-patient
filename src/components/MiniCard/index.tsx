@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import { Pressable, Text, Box, Flex } from 'native-base';
+import * as Styled from './styled';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
@@ -20,22 +20,18 @@ export const MiniCard = ({
   onPress,
 }: any) => {
   return (
-    <Pressable
-      w="100%"
-      pl={2}
-      pr={2}
-      onPress={onPress}>
-      <Flex p="5" rounded="8" bg={bgColor} direction='row' justifyContent='space-between' borderRadius={10}>
-        <Box justifyContent='center'>
-          <Text fontSize={18} color="cyan.50" fontWeight="medium">
+    <Styled.TouchableArea onPress={onPress}>
+      <Styled.Body bgColor={bgColor}>
+        <Styled.Header>
+          <Styled.Title>
             {name}
-          </Text>
-        </Box>
-        <Box justifyContent='center' alignItems='center'>
+          </Styled.Title>
+        </Styled.Header>
+        <Styled.IconContainer>
           <Icon name={icon} size={30} color="#fff" />
-        </Box>
-      </Flex>
-    </Pressable>
+        </Styled.IconContainer>
+      </Styled.Body>
+    </Styled.TouchableArea>
   );
 };
 

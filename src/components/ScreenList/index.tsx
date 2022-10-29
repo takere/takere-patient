@@ -9,7 +9,6 @@ import React from 'react';
 import * as Styled from './styled';
 import { VStack } from "native-base";
 import { Dimensions } from 'react-native';
-import theme from '../../assets/themes';
 import LocaleService from '../../services/locale.service';
 import TileButton from '../buttons/TitleButton';
 import Screen from '../../models/screen.model';
