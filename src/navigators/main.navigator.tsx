@@ -7,22 +7,29 @@
 
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { BoardScreen } from '../screens/board';
-import { SplashScreen } from '../screens/splash';
-import { LoginScreen } from '../screens/login';
-import { HomeScreen } from '../screens/home';
-import { ProfileScreen } from '../screens/profile';
-import { ProgressScreen } from '../screens/progress';
-import { AgendaScreen } from '../screens/agenda';
+import BoardScreen from '../screens/board';
+import SplashScreen from '../screens/splash';
+import LoginScreen from '../screens/login';
+import HomeScreen from '../screens/home';
+import ProfileScreen from '../screens/profile';
+import ProgressScreen from '../screens/progress';
+import AgendaScreen from '../screens/agenda';
 import LocaleService from '../services/locale.service';
+
+
+// ----------------------------------------------------------------------------
+//         Constants
+// ----------------------------------------------------------------------------
+const localeService = new LocaleService();
+
 
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
 const MainNavigator = () => {
-  const Stack = createNativeStackNavigator();
-  const localeService = new LocaleService();
 
+  const Stack = createNativeStackNavigator();
+  
   return (
     <Stack.Navigator initialRouteName="Splash">
       <Stack.Screen

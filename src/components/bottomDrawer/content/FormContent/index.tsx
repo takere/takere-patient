@@ -7,7 +7,7 @@
 
 import React, { useState } from 'react';
 import {Button, Heading, Text, Input, useToast, HStack, Divider, VStack, Radio, Checkbox, Select} from 'native-base';
-import IHandler from '../../../../models/IHandler';
+import Handler from '../../../../models/handler.model';
 import HandleSubmit from '../../HandleSubmit';
 import LocaleService from '../../../../services/locale.service';
 import BoardService from '../../../../services/board.service';

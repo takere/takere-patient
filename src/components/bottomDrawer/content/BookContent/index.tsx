@@ -7,7 +7,7 @@
 
 import React, { useState } from 'react';
 import {Button, Heading, Text, Input, useToast, Divider, HStack, Box} from 'native-base';
-import IHandler from '../../../../models/IHandler';
+import Handler from '../../../../models/handler.model';
 import HandleSubmit from '../../HandleSubmit';
 import RenderHtml from 'react-native-render-html';
 import { useWindowDimensions } from 'react-native';

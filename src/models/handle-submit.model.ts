@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-interface IHandleSubmit {
+interface HandleSubmit {
   onClick: () => void;
 }
 
-export default IHandleSubmit;
+export default HandleSubmit;

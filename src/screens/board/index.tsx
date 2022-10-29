@@ -10,7 +10,7 @@ import * as Styled from './styled';
 import { useToast } from "native-base";
 import { Modalize } from 'react-native-modalize';
 import { useUser } from '../../providers/user';
-import ICard from '../../models/ICard';
+import CardProps from '../../models/card-props.model';
 import Screen from '../../models/screen.model';
 import LocaleService from '../../services/locale.service';
 import BoardService from '../../services/board.service';
@@ -32,7 +32,7 @@ const BoardScreen = ({ navigation }: Screen) => {
 
   const [cards, setCards]: any = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedCard, setSelectedCard] = useState<Omit<ICard, 'onOpen'> | null>(null);
+  const [selectedCard, setSelectedCard] = useState<Omit<CardProps, 'onOpen'> | null>(null);
 
   const toast = useToast();
   const user: any = useUser();
@@ -57,7 +57,7 @@ const BoardScreen = ({ navigation }: Screen) => {
             setCards, 
             setLoading
           )}
-          onCardOpen={(card: Omit<ICard, 'onOpen'>) => onOpen(
+          onCardOpen={(card: Omit<CardProps, 'onOpen'>) => onOpen(
             card, 
             setSelectedCard, 
             modalizeRef
@@ -111,7 +111,7 @@ async function onUpdateData(
   setLoading(false);
 }
 
-function onOpen(card: Omit<ICard, 'onOpen'>, setSelectedCard: any, modalizeRef: any) {
+function onOpen(card: Omit<CardProps, 'onOpen'>, setSelectedCard: any, modalizeRef: any) {
   setSelectedCard(card);
   modalizeRef.current?.open();
 }

@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, {createContext, useContext, useState, useEffect} from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import {useToast} from 'native-base';
+import { useToast } from 'native-base';
 import LocaleService from '../services/locale.service';
 import AuthService from '../services/auth.service';
 
@@ -24,7 +24,7 @@ const UserContext = createContext(null);
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-export const UserProvider = ({children}: any) => {
+export const UserProvider = ({ children }: any) => {
   
   const [user, setUser] = useState(null);
   const [initialized, setInitialized] = useState<boolean>(false);

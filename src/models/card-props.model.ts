@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-interface ICard {
-  onOpen: (data: Omit<ICard, 'onOpen'>) => {};
+interface CardProps {
+  onOpen: (data: Omit<CardProps, 'onOpen'>) => {};
   id: string;
   name: string;
   description: string;
@@ -24,4 +24,4 @@ interface ICard {
   };
 }
 
-export default ICard;
+export default CardProps;

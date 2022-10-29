@@ -8,7 +8,7 @@
 import React from 'react';
 import * as Styled from './styled';
 import { ScrollView } from "native-base";
-import { Card } from '../Card';
+import Card from '..';
 import LocaleService from '../../../services/locale.service';
 import ScreenContent from '../../ScreenContent';
 import SuccessButton from '../../buttons/SuccessButton';

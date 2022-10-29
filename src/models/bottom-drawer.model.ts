@@ -5,12 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import ICard from "./ICard";
+import CardProps from "./card-props.model";
 
 
-interface IBottomDrawer {
-  board: Omit<ICard, 'onOpen'>;
+interface BottomDrawerProps {
+  board: Omit<CardProps, 'onOpen'>;
   onUpdateData: () => void;
 }
 
-export default IBottomDrawer;
+export default BottomDrawerProps;

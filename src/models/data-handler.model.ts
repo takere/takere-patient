@@ -5,14 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import BottomDrawerProps from "./bottom-drawer.model";
 import CardProps from "./card-props.model";
 
 
-interface CardListProps {
-  loading: boolean,
-  boards: any[],
-  onRefresh: () => void,
-  onCardOpen: (data: Omit<CardProps, 'onOpen'>) => void
+interface DataHandler extends Omit<BottomDrawerProps, 'board'> {
+  data: Omit<CardProps, 'onOpen'>;
 }
 
-export default CardListProps;
+export default DataHandler;

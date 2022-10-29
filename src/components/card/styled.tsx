@@ -10,7 +10,8 @@ import {
   Box,
   Text,
   Flex,
-  Pressable
+  Pressable,
+  HStack
 } from "native-base";
 
 
@@ -22,7 +23,7 @@ export const TouchableArea = styled(Pressable)`
   padding: 0 3px;
 `;
 
-export const Body = styled(Flex)<{ bgColor: string }>`
+export const Container = styled(Flex)<{ bgColor: string }>`
   padding: 5px;
   border-radius: 10px;
   background-color: ${(props: any) => props.bgColor}
@@ -30,14 +31,33 @@ export const Body = styled(Flex)<{ bgColor: string }>`
   justify-content: space-between;
 `;
 
-export const Header = styled(Box)`
-  justify-content: center;
+export const Header = styled(HStack)`
+  align-items: flex-start;
 `;
 
 export const Title = styled(Text)`
-  font-size: 18px;
-  color: cyan;
+  font-size: 12px;
+  color: #444;
   font-weight: medium;
+`;
+
+export const Subtitle = styled(Text)`
+  font-size: 10px;
+  color: #aaa;
+  font-weight: medium;
+`;
+
+export const Name = styled(Text)`
+  font-size: 18px;
+  color: #444;
+  font-weight: medium;
+`;
+
+export const Description = styled(Text)`
+  font-size: 14px;
+  color: #aaa;
+  margin-top: 5px;
+  overflow: scroll;
 `;
 
 export const IconContainer = styled(Box)`

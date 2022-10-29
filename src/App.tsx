@@ -9,7 +9,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { NativeBaseProvider } from 'native-base';
 import { UserProvider } from './providers/user';
-import MainNavigator from './navigators/MainNavigator';
+import MainNavigator from './navigators/main.navigator';
 
 
 // ----------------------------------------------------------------------------

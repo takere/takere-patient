@@ -8,7 +8,7 @@
 import {Button} from 'native-base';
 import * as React from 'react';
 import {useRef, useState} from 'react';
-import IHandleSubmit from '../../models/IHandleSubmit';
+import HandleSubmit from '../../models/handle-submit.model';
 import LocaleService from '../../services/locale.service';
 
 
@@ -21,7 +21,7 @@ const localeService = new LocaleService();
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-const HandleSubmit = ({onClick}: IHandleSubmit) => {
+const HandleSubmit = ({onClick}: HandleSubmit) => {
   const [value, setValue] = useState<boolean>(false);
   const handleSubmit = () => {
     setValue(true);

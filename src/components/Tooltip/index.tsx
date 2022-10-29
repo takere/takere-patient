@@ -8,7 +8,7 @@
 import React from 'react';
 import { Text } from 'native-base';
 import RnTooltip from 'rn-tooltip';
-import TooltipProps from '../../models/ITooltip';
+import TooltipProps from '../../models/tooltip-props';
 import * as Style from './style';
 
 

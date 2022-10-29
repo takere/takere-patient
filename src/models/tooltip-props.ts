@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-interface ITooltip {
+interface TooltipProps {
   label: string,
   children: any
 }
 
-export default ITooltip;
+export default TooltipProps;
