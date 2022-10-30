@@ -53,7 +53,6 @@ export const CardHeader = styled(Box)`
 export const CardTitle = styled(Text)`
   font-size: 18px;
   color: cyan;
-  font-weight: medium;
 `;
 
 export const CardBody = styled(Box)`
@@ -72,5 +71,4 @@ export const ProgressBarArea = styled(Box)`
 export const ProgressRatio = styled(Text)`
   font-size: 14px;
   color: cyan;
-  font-weight: medium;
 `;

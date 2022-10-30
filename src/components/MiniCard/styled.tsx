@@ -37,7 +37,6 @@ export const Header = styled(Box)`
 export const Title = styled(Text)`
   font-size: 18px;
   color: cyan;
-  font-weight: medium;
 `;
 
 export const IconContainer = styled(Box)`
