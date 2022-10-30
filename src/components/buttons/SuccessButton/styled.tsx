@@ -13,8 +13,8 @@ import { Button } from 'native-base';
 //         Components
 // ----------------------------------------------------------------------------
 export const Container = styled(Button)`
-  flex: 1;
   margin: 5px;
   margin-top: 10px;
+  min-height: 50px;
 `;
 

@@ -12,12 +12,13 @@ import * as Styled from './styled';
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-const TextInput = ({ value, onChange, placeholder }: any) => (
+const TextInput = ({ value, onChange, placeholder, type }: any) => (
   <Styled.Container
     value={value}
     onChangeText={onChange}
     size="2xl"
     placeholder={placeholder}
+    type={type}
   />
 );
 

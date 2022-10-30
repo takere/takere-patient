@@ -7,7 +7,6 @@
 
 import React, { createContext, useContext, useState } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import { useToast } from 'native-base';
 import UserContextType from '../models/user-context-type.model';
 
 
@@ -25,9 +24,6 @@ export const UserProvider = ({ children }: any) => {
   const [user, setUser] = useState(null);
   const [initialized, setInitialized] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
-  
-  const toast = useToast();
-  
 
   const store = async (response: any) => {
     await AsyncStorage.setItem('cookie', response?.token);
@@ -51,6 +47,9 @@ export const UserProvider = ({ children }: any) => {
         user,
         isLoading,
         initialized,
+        store,
+        setLoading,
+        reset
       }}>
       {children}
     </UserContext.Provider>

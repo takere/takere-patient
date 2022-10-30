@@ -13,8 +13,8 @@ import { Input } from 'native-base';
 //         Components
 // ----------------------------------------------------------------------------
 export const Container = styled(Input)`
-  flex: 1;
   margin: 5px;
   margin-top: 10px;
+  min-height: 50px;
 `;
 

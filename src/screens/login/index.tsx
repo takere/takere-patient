@@ -35,6 +35,10 @@ const LoginScreen = ({ navigation }: Screen) => {
 
   return (
     <Styled.Container>
+      <Styled.Background 
+        source={require('../../assets/images/peace.jpg')}
+        alt={localeService.translate("PEACE_IMAGE")}
+      />
       <SignInForm 
         onSubmit={(email: string, password: string) => handleSubmit(
           email, 

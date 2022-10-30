@@ -16,5 +16,6 @@ import theme from '../../../assets/themes';
 export const Container = styled(Button)`
   display: flex;
   color: ${theme.primary}
+  min-height: 50px;
 `;
 

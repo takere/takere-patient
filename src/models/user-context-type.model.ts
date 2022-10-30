@@ -10,6 +10,9 @@ interface UserContextType {
   user: any,
   isLoading: boolean,
   initialized: boolean,
+  store: (response: any) => void,
+  setLoading: (value: boolean) => void,
+  reset: () => void
 }
 
 export default UserContextType;
