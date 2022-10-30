@@ -13,13 +13,14 @@ import SignInForm from '../../components/forms/SignIn';
 import AuthService from '../../services/auth.service';
 import LocaleService from '../../services/locale.service';
 import { NavigationProp } from '@react-navigation/core';
+import { useUser } from '../../providers/user';
 
 
 // ----------------------------------------------------------------------------
 //         Constants
 // ----------------------------------------------------------------------------
-const authService = new AuthService();
 const localeService = new LocaleService();
+let authService: AuthService;
 
 
 // ----------------------------------------------------------------------------
@@ -29,6 +30,7 @@ const LoginScreen = ({ navigation }: Screen) => {
 
   const [loading, setLoading] = useState(false);
 
+  authService = new AuthService(useUser());
   const toast = useToast();
 
   return (

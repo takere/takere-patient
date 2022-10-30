@@ -10,7 +10,7 @@ import { SafeAreaView } from 'react-native';
 import * as Styled from './styled';
 import LocaleService from '../../../services/locale.service';
 import SuccessButton from '../../buttons/SuccessButton';
-import TextInput from '../../../parts/TextInput';
+import TextInput from '../../../parts/input/TextInput';
 import SignInFormComponent from '../../../models/sign-in-form-component.model';
 
 

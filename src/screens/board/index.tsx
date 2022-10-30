@@ -9,13 +9,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as Styled from './styled';
 import { useToast } from "native-base";
 import { Modalize } from 'react-native-modalize';
-import { useUser } from '../../providers/user';
 import CardProps from '../../models/card-props.model';
 import Screen from '../../models/screen.model';
 import LocaleService from '../../services/locale.service';
 import BoardService from '../../services/board.service';
 import CardContent from '../../components/card/content';
 import CardList from '../../components/card/list';
+import StorageService from '../../services/storage.service';
+import { useUser } from '../../providers/user';
 
 
 // ----------------------------------------------------------------------------
@@ -23,6 +24,7 @@ import CardList from '../../components/card/list';
 // ----------------------------------------------------------------------------
 const localeService = new LocaleService();
 const boardService = new BoardService();
+let storageService: StorageService;
 
 
 // ----------------------------------------------------------------------------
@@ -34,15 +36,16 @@ const BoardScreen = ({ navigation }: Screen) => {
   const [loading, setLoading] = useState(true);
   const [selectedCard, setSelectedCard] = useState<Omit<CardProps, 'onOpen'> | null>(null);
 
+  storageService = new StorageService(useUser());
   const toast = useToast();
-  const user: any = useUser();
+  const user: any = storageService.getUser();
   const modalizeRef = useRef<Modalize>(null);
 
   useEffect(() => {
-    if (user?.user?.email) {
+    if (user?.email) {
       fetchCards(user, setCards, setLoading);
     }
-  }, [user.user]);
+  }, [user]);
 
   return (
     <>
@@ -86,7 +89,7 @@ export default BoardScreen;
 //         Functions
 // ----------------------------------------------------------------------------
 async function fetchCards(user: any, setCards: any, setLoading: any) {
-  const response = await boardService.getCards(user.user.email);
+  const response = await boardService.getCards(user.email);
 
   setCards(response);
   setLoading(false);

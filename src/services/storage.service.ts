@@ -22,9 +22,9 @@ class StorageService extends Service {
   // --------------------------------------------------------------------------
   //         Constructor
   // --------------------------------------------------------------------------
-  constructor() {
+  constructor(userHook: any) {
     super();
-    this.userProvider = useUser();
+    this.userProvider = userHook;
   }
 
 
@@ -45,6 +45,18 @@ class StorageService extends Service {
 
   public setLoading(value: boolean) {
     this.userProvider.setLoading(value);
+  }
+
+  public getUser() {
+    return this.userProvider?.user;
+  }
+
+  public wasInitialized() {
+    return this.userProvider?.initialized;
+  }
+
+  public isSigned() {
+    return this.userProvider?.signed;
   }
 }
 

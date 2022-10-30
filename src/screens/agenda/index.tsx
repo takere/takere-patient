@@ -7,12 +7,13 @@
 
 import React, { useEffect, useState } from 'react';
 import * as Styled from './styled';
-import { useUser } from '../../providers/user';
 import LocaleService from '../../services/locale.service';
 import AgendaService from '../../services/agenda.service';
 import Screen from '../../models/screen.model';
 import ScreenContent from '../../components/ScreenContent';
 import PriorityActivities from '../../components/PriorityActivities';
+import StorageService from '../../services/storage.service';
+import { useUser } from '../../providers/user';
 
 
 // ----------------------------------------------------------------------------
@@ -20,6 +21,7 @@ import PriorityActivities from '../../components/PriorityActivities';
 // ----------------------------------------------------------------------------
 const localeService = new LocaleService();
 const agendaService = new AgendaService();
+let storageService: StorageService;
 
 
 // ----------------------------------------------------------------------------
@@ -30,10 +32,10 @@ const AgendaScreen = ({ navigation }: Screen) => {
   const [agenda, setAgenda] = useState({today: [], tomorrow: []});
   const [loading, setLoading] = useState(true);
 
-  const user = useUser();
+  storageService = new StorageService(useUser());
 
   useEffect(() => {
-    fetchData(user, setAgenda, setLoading);
+    fetchData(setAgenda, setLoading);
   }, []);
 
   return (
@@ -55,8 +57,8 @@ export default AgendaScreen;
 // ----------------------------------------------------------------------------
 //         Functions
 // ----------------------------------------------------------------------------
-async function fetchData(user: any, setAgenda: any, setLoading: any) {
-  const response = await agendaService.getAgenda(user.user.email);
+async function fetchData(setAgenda: any, setLoading: any) {
+  const response = await agendaService.getAgenda(storageService.getEmail());
 
   setAgenda(response);
   setLoading(false);

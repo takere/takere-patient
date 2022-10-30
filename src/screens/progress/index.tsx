@@ -13,6 +13,7 @@ import ProgressService from '../../services/progress.service';
 import StorageService from '../../services/storage.service';
 import ScreenContent from '../../components/ScreenContent';
 import ProgressList from '../../components/ProgressList';
+import { useUser } from '../../providers/user';
 
 
 // ----------------------------------------------------------------------------
@@ -20,7 +21,7 @@ import ProgressList from '../../components/ProgressList';
 // ----------------------------------------------------------------------------
 const localeService = new LocaleService();
 const progressService = new ProgressService();
-const storageService = new StorageService();
+let storageService: StorageService;
 
 
 // ----------------------------------------------------------------------------
@@ -30,6 +31,8 @@ const ProgressScreen = ({ navigation }: Screen) => {
 
   const [progress, setProgress]: any = useState([]);
   const [loading, setLoading] = useState(true);
+
+  storageService = new StorageService(useUser());
 
   useEffect(() => {
     getData(setProgress, setLoading);

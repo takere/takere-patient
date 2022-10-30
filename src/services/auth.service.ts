@@ -24,9 +24,9 @@ class AuthService extends Service {
   // --------------------------------------------------------------------------
   //         Constructor
   // --------------------------------------------------------------------------
-  constructor() {
+  constructor(userHook: any) {
     super();
-    this.storageService = new StorageService();
+    this.storageService = new StorageService(userHook);
   }
 
 

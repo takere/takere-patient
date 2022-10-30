@@ -64,12 +64,12 @@ Special thanks to [Rodolfo Viola](https://github.com/rodolfoviolac) for starting
 
 Type in your terminal:
 
-1. npm install
+1. npm install --legacy-peer-deps
 
-#### Local - Windows
+#### Windows
 2. npx react-native run-android OR npx react-native run-ios
 
-#### Local - Linux
+#### Linux
 2. npx react-native start
 3. npx react-native run-android OR npx react-native run-ios
 

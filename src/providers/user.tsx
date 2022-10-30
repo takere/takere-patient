@@ -8,17 +8,13 @@
 import React, { createContext, useContext, useState } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import { useToast } from 'native-base';
-import LocaleService from '../services/locale.service';
-import AuthService from '../services/auth.service';
+import UserContextType from '../models/user-context-type.model';
 
 
 // ----------------------------------------------------------------------------
 //         Constants
 // ----------------------------------------------------------------------------
-const localeService = new LocaleService();
-const authService = new AuthService();
-
-const UserContext = createContext(null);
+const UserContext = createContext<UserContextType | null>(null);
 
 
 // ----------------------------------------------------------------------------
@@ -52,8 +48,6 @@ export const UserProvider = ({ children }: any) => {
     <UserContext.Provider
       value={{
         signed: !!user,
-        logout,
-        login,
         user,
         isLoading,
         initialized,

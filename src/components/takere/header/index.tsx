@@ -15,7 +15,7 @@ import * as Styled from './styled';
 const TakereHeader = () => (
   <Styled.Container>
     <Styled.Logo 
-      source={require('../../assets/images/logo.png')}
+      source={require('../../../assets/images/logo.png')}
       alt='takere logo'
     />
   </Styled.Container>

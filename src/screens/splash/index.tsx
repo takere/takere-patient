@@ -7,9 +7,16 @@
 
 import React, { useEffect } from 'react';
 import * as Styled from './styled';
-import { useUser } from '../../providers/user';
 import Loading from '../../components/loading';
 import Screen from '../../models/screen.model';
+import StorageService from '../../services/storage.service';
+import { useUser } from '../../providers/user';
+
+
+// ----------------------------------------------------------------------------
+//         Constants
+// ----------------------------------------------------------------------------
+let storageService: StorageService;
 
 
 // ----------------------------------------------------------------------------
@@ -17,16 +24,19 @@ import Screen from '../../models/screen.model';
 // ----------------------------------------------------------------------------
 const SplashScreen = ({ navigation }: Screen) => {
 
-  const user: any = useUser();
+  storageService = new StorageService(useUser());
+  const user: any = storageService.getUser();
+  const initialized = storageService.wasInitialized();
+  const signed = storageService.isSigned();
 
   useEffect(() => {
-    if (!user?.signed && !user?.initialized) {
+    if (!signed && !initialized) {
       navigation.navigate('Login');
     } 
     else {
       navigation.navigate('Home');
     }
-  }, [user?.initialized, user?.user]);
+  }, [initialized, user]);
 
   return (
     <Styled.Container>
