@@ -14,6 +14,7 @@ import AuthService from '../../services/auth.service';
 import LocaleService from '../../services/locale.service';
 import { NavigationProp } from '@react-navigation/core';
 import { useUser } from '../../providers/user';
+import TakereHeader from '../../components/takere/header';
 
 
 // ----------------------------------------------------------------------------
@@ -39,6 +40,7 @@ const LoginScreen = ({ navigation }: Screen) => {
         source={require('../../assets/images/peace.jpg')}
         alt={localeService.translate("PEACE_IMAGE")}
       />
+      <TakereHeader />
       <SignInForm 
         onSubmit={(email: string, password: string) => handleSubmit(
           email, 

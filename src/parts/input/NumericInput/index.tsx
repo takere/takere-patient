@@ -15,7 +15,7 @@ import * as Styled from './styled';
 const NumericInput = ({ value, onChange, placeholder }: any) => (
   <Styled.Container
     value={value}
-    onChangeText={(text: string) => onChange(parseFloat(text))}
+    onChangeText={onChange}
     keyboardType="numeric"
     size="2xl"
     placeholder={placeholder}
