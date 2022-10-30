@@ -9,18 +9,26 @@ import styled from 'styled-components/native';
 import {
     Box,
     Center,
+    Heading,
     HStack,
     ScrollView,
     Text,
     VStack
   } from "native-base";
+import theme from '../../assets/themes';
 
 
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
+export const CarePlanName = styled(Heading)`
+  margin: 0 20px;
+  margin-top: 10px;
+  color: ${theme.light}
+`;
+
 export const List = styled(ScrollView)`
-  margin: 0 5px;
+  margin: 10px;
 `;
 
 export const CardsArea = styled(Box)`
@@ -36,14 +44,15 @@ export const CardList = styled(VStack)`
 
 export const Card = styled(HStack)`
   margin-bottom: 10px;
-  padding: 10px;
+  padding: 15px;
   border-radius: 10px;
+  margin: 10px;
 `;
 
 export const IconArea = styled(Box)`
   justify-content: center;
   align-items: center;
-  margin-right: 5px;
+  margin-right: 15px;
 `;
 
 export const CardHeader = styled(Box)`
@@ -52,10 +61,14 @@ export const CardHeader = styled(Box)`
 
 export const CardTitle = styled(Text)`
   font-size: 18px;
-  color: cyan;
+  color: white;
+  font-weight: bold;
+  margin: 5px 0;
 `;
 
 export const CardBody = styled(Box)`
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
 `;
 
@@ -70,5 +83,5 @@ export const ProgressBarArea = styled(Box)`
 
 export const ProgressRatio = styled(Text)`
   font-size: 14px;
-  color: cyan;
+  color: white;
 `;

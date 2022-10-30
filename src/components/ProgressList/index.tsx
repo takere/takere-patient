@@ -27,9 +27,9 @@ export default ProgressList;
 
 const ProgressItem = ({ flow }: any) => (
   <Styled.CardsArea>
-    <Heading size="md" ml={3} color={theme.light}>
+    <Styled.CarePlanName size="md">
       { flow.name }
-    </Heading>
+    </Styled.CarePlanName>
     <Styled.CardList>
       {flow.nodes.map((item: any, index: number) => (
         <ProgressCard
