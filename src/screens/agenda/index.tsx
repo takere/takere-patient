@@ -63,5 +63,5 @@ async function fetchData(user: any, setAgenda: any, setLoading: any) {
 }
 
 function handleOpenCard(flowId: any, nodeId: any) {
-    
+  // TODO: Redirect to card on the board
 }

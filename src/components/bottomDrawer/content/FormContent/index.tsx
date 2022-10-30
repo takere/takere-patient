@@ -7,12 +7,12 @@
 
 import React, { useState } from 'react';
 import * as Styled from './styled';
-import { useToast, Divider } from 'native-base';
-import HandleSubmitProps from '../../HandleSubmit';
+import { useToast } from 'native-base';
 import LocaleService from '../../../../services/locale.service';
 import BoardService from '../../../../services/board.service';
 import { inputFactory } from '../../../../parts/input';
-import ThemeButton from '../../../buttons/ThemeButton';
+import NavigationButtons from '../../../NavigationButtons';
+import SubmitButton from '../../../buttons/SubmitButton';
 
 
 // ----------------------------------------------------------------------------
@@ -51,8 +51,8 @@ const FormContent = ({ data, onUpdateData }: any) => {
         options={questions[currentQuestion].options}
       />
       <NavigationButtons
-        questions={questions}
-        currentQuestion={currentQuestion}
+        displayBack={currentQuestion - 1 >= 0}
+        displayNext={currentQuestion + 1 < questions.length}
         onBack={() => handleBack(
           currentQuestion, 
           currentAnswer, 
@@ -99,31 +99,6 @@ const QuestionInput = ({ type, value, onChange, options }: any) => {
   const parsedType = type.toUpperCase().replace('-', '_');
 
   return inputFactory(parsedType, { value, onChange, options });
-}
-
-const NavigationButtons = ({ currentQuestion, questions, onBack, onNext }: any) => (
-  <Styled.HorizontalList space={3} divider={<Divider />}>
-    <ThemeButton
-      onPress={onBack}
-      display={currentQuestion - 1 >= 0}
-      title={localeService.translate("BACK")} />
-    <ThemeButton
-      onPress={onNext}
-      display={currentQuestion + 1 < questions.length}
-      title={localeService.translate("NEXT")} />
-  </Styled.HorizontalList>
-);
-
-const SubmitButton = ({ display, onClick }: any) => {
-  if (!display) {
-    return (
-      <></>
-    );
-  }
-
-  return (
-    <HandleSubmitProps onClick={onClick} />
-  );
 }
 
 

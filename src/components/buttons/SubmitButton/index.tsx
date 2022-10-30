@@ -6,20 +6,14 @@
  */
 
 import React from 'react';
-import * as Styled from './styled';
-import NavigationButton from '../../../models/navigation-button.model';
+import SubmitButtonProps from '../../../models/submit-button-props.model';
+import HandleSubmit from '../../bottomDrawer/HandleSubmit';
 
 
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-const ThemeButton = ({ 
-  title, 
-  onPress, 
-  isDisabled, 
-  isLoading, 
-  display 
-}: NavigationButton) => {
+const SubmitButton = ({ display, onClick }: SubmitButtonProps) => {
   if (!display) {
     return (
       <></>
@@ -27,14 +21,8 @@ const ThemeButton = ({
   }
 
   return (
-    <Styled.Container
-      onPress={onPress}
-      isDisabled={isDisabled}
-      isLoading={isLoading}
-    >
-      { title }
-    </Styled.Container>
+    <HandleSubmit onClick={onClick} />
   );
 }
 
-export default ThemeButton;
+export default SubmitButton;

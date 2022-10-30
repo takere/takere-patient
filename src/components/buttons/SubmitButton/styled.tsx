@@ -6,7 +6,7 @@
  */
 
 import styled from 'styled-components/native';
-import { Box, Heading } from 'native-base';
+import { Heading, HStack } from 'native-base';
 
 
 // ----------------------------------------------------------------------------
@@ -22,11 +22,12 @@ export const Subtitle = styled(Heading)`
   color: #aaa;
 `;
 
-export const Body = styled(Box)`
-  height: 75%;
+export const NavigationStatus = styled(Heading)`
+  margin-top: 3px;
 `;
 
-export const Footer = styled(Box)`
-  height: 15%;
+export const HorizontalList = styled(HStack)`
+  width: 100%;
+  padding: 10px 0;
   justify-content: space-between;
 `;
