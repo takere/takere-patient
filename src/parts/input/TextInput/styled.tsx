@@ -16,5 +16,6 @@ export const Container = styled(Input)`
   margin: 5px;
   margin-top: 10px;
   min-height: 50px;
+  border: 1px solid #aaa;
 `;
 
