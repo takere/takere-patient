@@ -6,15 +6,25 @@
  */
 
 import styled from 'styled-components/native';
-import { Button } from 'native-base';
+import { Box, Button, HStack, VStack } from 'native-base';
 
 
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-export const Container = styled(Button)`
-  flex: 1;
-  margin: 5px;
-  margin-top: 10px;
+export const VerticalList = styled(VStack)`
+  width: 100%;
+  padding: 10px;
 `;
 
+export const HorizontalList = styled(HStack)`
+  justify-content: space-between;
+`;
+
+export const ParameterContent = styled(Box)`
+  width: 85%;
+`;
+
+export const ParameterValue = styled(Text)`
+  width: 90%;
+`;
