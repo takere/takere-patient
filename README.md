@@ -57,21 +57,37 @@ Special thanks to [Rodolfo Viola](https://github.com/rodolfoviolac) for starting
 
 ## ✔ Requirements
 
-```
-Coming soon
-```
+- [NodeJS](https://nodejs.org/en/download/);
+- [React Native CLI](https://reactnative.dev/docs/environment-setup).
 
 ## ℹ How to run
 
-```
-Coming soon
-```
+Type in your terminal:
+
+1. npm install
+
+#### Local - Windows
+2. npx react-native run-android OR npx react-native run-ios
+
+#### Local - Linux
+2. npx react-native start
+3. npx react-native run-android OR npx react-native run-ios
+
 
 ## 🖼 Gallery
 
-```
-Coming soon
-```
+<div style="display: flex; flex-direction: row; justify-content: center; align-items: center; flex-wrap: wrap">
+
+<img height=400 src="https://raw.githubusercontent.com/takere/takere-patient/main/docs/images/screens/home.png" alt="home screen" />
+
+<img height=400 src="https://raw.githubusercontent.com/takere/takere-patient/main/docs/images/screens/agenda.png" alt="agenda screen" />
+
+<img height=400 src="https://raw.githubusercontent.com/takere/takere-patient/main/docs/images/screens/progress.png" alt="progress screen" />
+
+<img height=400 src="https://raw.githubusercontent.com/takere/takere-patient/main/docs/images/screens/board.png" alt="board screen" />
+
+<img height=400 src="https://raw.githubusercontent.com/takere/takere-patient/main/docs/images/screens/board-detail.png" alt="board detail screen" />
+</div>
 
 
 ## 🚩 Changelog
