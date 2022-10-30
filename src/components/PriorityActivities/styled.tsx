@@ -18,19 +18,20 @@ export const ActivityList = styled(ScrollView)`
 `;
 
 export const CardList = styled(VStack)`
+  margin: 0 5px;
   margin-top: 10px;
   align-items: center;
 `;
 
 export const ActivityContainer = styled(Box)`
-  margin-top: 10px;
+  margin: 20px;
   border-radius: 10px;
   padding: 5px;
   background-color: rgba(0,0,0,0.3);
 `;
 
 export const ActivityTitle = styled(Heading)`
-  font-size: 16px;
-  margin-left: 5px;
+  margin: 0 20px;
+  margin-top: 10px;
   color: ${theme.light}
 `;

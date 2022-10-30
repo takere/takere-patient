@@ -22,8 +22,9 @@ export const TouchableArea = styled(Pressable)`
   padding: 0 3px;
 `;
 
-export const Body = styled(Flex)<{ bgColor: string }>`
-  padding: 5px;
+export const Container = styled(Flex)<{ bgColor: string }>`
+  padding: 15px 20px;
+  margin-bottom: 15px;
   border-radius: 10px;
   background-color: ${(props: any) => props.bgColor}
   flex-direction: row;
@@ -36,7 +37,9 @@ export const Header = styled(Box)`
 
 export const Title = styled(Text)`
   font-size: 18px;
-  color: cyan;
+  margin: 5px 0;
+  font-weight: bold;
+  color: white;
 `;
 
 export const IconContainer = styled(Box)`

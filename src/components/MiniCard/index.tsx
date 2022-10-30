@@ -21,7 +21,7 @@ export const MiniCard = ({
 }: any) => {
   return (
     <Styled.TouchableArea onPress={onPress}>
-      <Styled.Body bgColor={bgColor}>
+      <Styled.Container bgColor={bgColor}>
         <Styled.Header>
           <Styled.Title>
             {name}
@@ -30,7 +30,7 @@ export const MiniCard = ({
         <Styled.IconContainer>
           <Icon name={icon} size={30} color="#fff" />
         </Styled.IconContainer>
-      </Styled.Body>
+      </Styled.Container>
     </Styled.TouchableArea>
   );
 };

@@ -43,7 +43,7 @@ export default PriorityActivities;
 
 const Activities = ({ cards, title, onClick, bgColor }: any) => (
   <Styled.ActivityContainer>
-    <Styled.ActivityTitle>
+    <Styled.ActivityTitle size="md">
       { title }
     </Styled.ActivityTitle>
     <Styled.CardList space={2}>
