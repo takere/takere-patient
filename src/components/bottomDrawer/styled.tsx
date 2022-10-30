@@ -35,4 +35,3 @@ export const Body = styled(Box)`
   padding: 0 5px;
   height: ${height - 138}
 `;
-

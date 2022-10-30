@@ -6,25 +6,13 @@
  */
 
 import styled from 'styled-components/native';
-import { Box, Text, HStack, VStack } from 'native-base';
+import { Checkbox } from 'native-base';
 
 
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-export const VerticalList = styled(VStack)`
-  width: 100%;
-  padding: 10px;
+export const CheckboxBody = styled(Checkbox)`
+  margin: 3px 0;
 `;
 
-export const HorizontalList = styled(HStack)`
-  justify-content: space-between;
-`;
-
-export const ParameterContent = styled(Box)`
-  width: 85%;
-`;
-
-export const ParameterValue = styled(Text)`
-  width: 90%;
-`;

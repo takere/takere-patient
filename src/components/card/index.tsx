@@ -71,4 +71,3 @@ const CardIcon = ({ node }: any) => (
     <Icon name={node?.icon} size={30} color="#fff" />
   </Styled.IconContainer>
 );
-

@@ -6,15 +6,28 @@
  */
 
 import styled from 'styled-components/native';
-import { Button } from 'native-base';
+import { Heading, HStack } from 'native-base';
 
 
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-export const Container = styled(Button)`
-  flex: 1;
-  margin: 5px;
-  margin-top: 10px;
+export const Title = styled(Heading)`
+  margin-top: 3px;
+  color: #333;
 `;
 
+export const Subtitle = styled(Heading)`
+  margin-top: 3px;
+  color: #aaa;
+`;
+
+export const NavigationStatus = styled(Heading)`
+  margin-top: 3px;
+`;
+
+export const HorizontalList = styled(HStack)`
+  width: 100%;
+  padding: 10px 0;
+  justify-content: space-between;
+`;

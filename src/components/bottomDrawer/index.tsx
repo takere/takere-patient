@@ -8,8 +8,7 @@
 import React from 'react';
 import * as Styled from './styled';
 import LocaleService from '../../services/locale.service';
-import content from './content';
-import ContentFactoryException from './exception/content-factory.exception';
+import { contentFactory } from './content';
 import BottomDrawerProps from '../../models/bottom-drawer-props.model';
 
 
@@ -42,19 +41,4 @@ const Content = ({ board, onUpdateData }: BottomDrawerProps) => {
   const type = board.node.content_type.toUpperCase();
 
   return contentFactory(type, { onUpdateData, data: board });
-}
-
-
-// ----------------------------------------------------------------------------
-//         Functions
-// ----------------------------------------------------------------------------
-function contentFactory(type: string, props: any) {
-  if (content[type.toUpperCase() as keyof typeof content] === undefined) {
-    throw new ContentFactoryException(`There is no support for ${type}`);
-  }
-
-  return React.createElement(
-    content[type.toUpperCase() as keyof typeof content], 
-    { ...props }
-  );
 }

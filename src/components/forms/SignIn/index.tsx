@@ -10,7 +10,7 @@ import { SafeAreaView } from 'react-native';
 import * as Styled from './styled';
 import LocaleService from '../../../services/locale.service';
 import SuccessButton from '../../buttons/SuccessButton';
-import Input from '../../../parts/input';
+import TextInput from '../../../parts/TextInput';
 import SignInFormComponent from '../../../models/sign-in-form-component.model';
 
 
@@ -52,7 +52,7 @@ const EmailInput = ({ value, onChange }: any) => (
     <Styled.Subtitle>
       { localeService.translate("TYPE_EMAIL") }
     </Styled.Subtitle>
-    <Input
+    <TextInput
       value={value}
       onChangeText={onChange}
       placeholder="abc@xyz.com"
@@ -68,7 +68,7 @@ const PasswordInput = ({ value, onChange }: any) => (
     <Styled.Subtitle>
       { localeService.translate("TYPE_PASSWORD") }
     </Styled.Subtitle>
-    <Input
+    <TextInput
       value={value}
       onChangeText={onChange}
       type="password"

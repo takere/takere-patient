@@ -5,20 +5,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
-import * as Styled from './styled';
+import styled from 'styled-components/native';
+import { Input } from 'native-base';
 
 
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-const Input = ({ value, onChange, placeholder }: any) => (
-  <Styled.Container
-    value={value}
-    onChangeText={onChange}
-    size="2xl"
-    placeholder={placeholder}
-  />
-);
+export const Container = styled(Input)`
+  flex: 1;
+  margin: 5px;
+  margin-top: 10px;
+`;
 
-export default Input;

@@ -6,184 +6,224 @@
  */
 
 import React, { useState } from 'react';
-import {Button, Heading, Text, Input, useToast, HStack, Divider, VStack, Radio, Checkbox, Select} from 'native-base';
-import Handler from '../../../../models/handler.model';
+import * as Styled from './styled';
+import { useToast, Divider } from 'native-base';
 import HandleSubmitProps from '../../HandleSubmit';
 import LocaleService from '../../../../services/locale.service';
 import BoardService from '../../../../services/board.service';
+import { inputFactory } from '../../../../parts/input';
+import ThemeButton from '../../../buttons/ThemeButton';
 
 
 // ----------------------------------------------------------------------------
 //         Constants
 // ----------------------------------------------------------------------------
 const localeService = new LocaleService();
+const boardService = new BoardService();
 
 
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-const FormContent = ({data, onUpdateData}: any) => {
+const FormContent = ({ data, onUpdateData }: any) => {
   
-  const boardService = new BoardService();
-  const nameIdx = data.node.parameters.findIndex((parameter: any) => parameter.slug === 'name')
-  const descriptionIdx = data.node.parameters.findIndex((parameter: any) => parameter.slug === 'description')
-  const questionsIdx = data.node.parameters.findIndex((parameter: any) => parameter.slug === 'questions')
-  const name = data.node.arguments[nameIdx];
-  const description = data.node.arguments[descriptionIdx];
-  const questions = data.node.arguments[questionsIdx];
-
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState(buildEmptyAnswers(questions));
+  const [answers, setAnswers] = useState(buildEmptyAnswers(data));
   const [currentAnswer, setCurrentAnswer] = useState('');
 
   const toast = useToast();
-  const handleSub = async () => {
-    toast.show({
-      description: localeService.translate("SAVING_CHANGES"),
-    });
-    const formattedAnswers = [ ...answers, currentAnswer ].shift();
-    await boardService.postBoardResponse(data.id, formattedAnswers);
-    onUpdateData();
-  };
-
-  const handleNextQuestion = () => {
-    if (currentQuestion + 1 >= questions.length) {
-      return;
-    }
-
-    persistCurrentAnswer();
-    setCurrentAnswer(answers[currentQuestion+1]);
-    setCurrentQuestion(currentQuestion+1);
-  }
-
-  const persistCurrentAnswer = () => {
-    const currentAnswers = [ ...answers ];
-
-    currentAnswers[currentQuestion] = currentAnswer;
-
-    setAnswers(currentAnswers);
-  };
-
-  const handleBackQuestion = () => {
-    if (currentQuestion - 1 < 0) {
-      return;
-    }
-
-    persistCurrentAnswer();
-    setCurrentAnswer(answers[currentQuestion-1]);
-    setCurrentQuestion(currentQuestion-1);
-  }
+  const name = extractName(data);
+  const description = extractDescription(data);
+  const questions = extractQuestions(data);
 
   return (
     <>
-      <Heading size="xl"mt={1} color="muted.800">
-        {name}
-      </Heading>
-      <Heading size="sm"  mt={1}>
-        {description}
-      </Heading>
-      <Heading size='md' mt={3}>
-        {`${currentQuestion+1}. ${questions[currentQuestion].label}`}
-      </Heading>
+      <Header 
+        name={name} 
+        description={description} 
+        currentQuestion={currentQuestion}
+        questions={questions}
+      />
       <QuestionInput 
         type={questions[currentQuestion].type}
         value={currentAnswer}
         onChange={setCurrentAnswer}
         options={questions[currentQuestion].options}
       />
-      <HStack space={3} divider={<Divider />} w="100%" paddingY="10" justifyContent='space-between'>
-        <Button onPress={handleBackQuestion} display={currentQuestion - 1 >= 0 ? 'flex' : 'none'} bgColor='#0fab7a'>
-        {localeService.translate("BACK")}
-        </Button>
-        <Button onPress={handleNextQuestion} display={currentQuestion + 1 < questions.length ? 'flex' : 'none'} bgColor='#0fab7a'>
-        {localeService.translate("NEXT")}
-        </Button>
-      </HStack>
-      {currentQuestion+1 === questions.length &&
-        <HandleSubmitProps onClick={handleSub} />
-      }
+      <NavigationButtons
+        questions={questions}
+        currentQuestion={currentQuestion}
+        onBack={() => handleBack(
+          currentQuestion, 
+          currentAnswer, 
+          setAnswers, 
+          setCurrentAnswer, 
+          answers, 
+          setCurrentQuestion
+        )}
+        onNext={() => handleNext(
+          currentQuestion, 
+          questions, 
+          currentAnswer, 
+          setAnswers, 
+          setCurrentAnswer, 
+          answers, 
+          setCurrentQuestion
+        )}
+      />
+      <SubmitButton 
+        display={currentQuestion+1 === questions.length} 
+        onClick={() => handleSub(toast, answers, currentAnswer, data, onUpdateData)} 
+      />
     </>
   );
 };
 
 export default FormContent;
 
+const Header = ({ name, description, currentQuestion, questions }: any) => (
+  <>
+    <Styled.Title size="xl">
+      {name}
+    </Styled.Title>
+    <Styled.Subtitle size="sm">
+      {description}
+    </Styled.Subtitle>
+    <Styled.NavigationStatus size='md'>
+      {`${currentQuestion + 1}. ${questions[currentQuestion].label}`}
+    </Styled.NavigationStatus>
+  </>
+);
+
 const QuestionInput = ({ type, value, onChange, options }: any) => {
-  if (type === 'text') {
-     return <Input
-        mt={3}
-        value={value}
-        onChangeText={onChange}
-        size="2xl"
-        placeholder='Type your answer'
-        multiline={false}
-      />
-  }
-  else if (type === 'text-area') {
-    return <Input
-      mt={3}
-      value={value}
-      onChangeText={onChange}
-      size='2xs'
-      placeholder='Type your answer'
-      multiline={true}
-    />
-  }
-  else if (type === 'radio') {
-    return (
-      <Radio.Group
-        name="radio"
-        value={value}
-        onChange={onChange}
-      >
-        {options.map((option: any, index: any) => (
-          <Radio value={index} my="1" key={index}>
-            {option}
-          </Radio>
-        ))}
-      </Radio.Group>
-    )
-  }
-  else if (type === 'checkbox') {
-    return (
-      <Checkbox.Group onChange={onChange} value={value}>
-        {options.map((option: any, index: any) => (
-          <Checkbox value={index} my="1" key={index}>
-            {option}
-          </Checkbox>
-        ))}
-      </Checkbox.Group>
-    );
-  }
-  else if (type === 'select') {
-    return (
-      <Select onValueChange={onChange} selectedValue={value}>
-        {options.map((option: any, index: any) => (
-          <Select.Item label={option} value={index} my="1" key={index} />
-        ))}
-      </Select>
-    );
-  }
-  
-  return <Input
-    mt={3}
-    keyboardType="numeric"
-    value={value}
-    onChangeText={onChange}
-    size='2xl'
-    placeholder='Type your answer'
-    multiline={false}
-  />
+  const parsedType = type.toUpperCase().replace('-', '_');
+
+  return inputFactory(parsedType, { value, onChange, options });
 }
 
-function buildEmptyAnswers(questions: string[]): string[] {
-  const emptyAnswers: string[] = [];
+const NavigationButtons = ({ currentQuestion, questions, onBack, onNext }: any) => (
+  <Styled.HorizontalList space={3} divider={<Divider />}>
+    <ThemeButton
+      onPress={onBack}
+      display={currentQuestion - 1 >= 0}
+      title={localeService.translate("BACK")} />
+    <ThemeButton
+      onPress={onNext}
+      display={currentQuestion + 1 < questions.length}
+      title={localeService.translate("NEXT")} />
+  </Styled.HorizontalList>
+);
 
-  for (let i = 0; i < questions.length; i++) {
+const SubmitButton = ({ display, onClick }: any) => {
+  if (!display) {
+    return (
+      <></>
+    );
+  }
+
+  return (
+    <HandleSubmitProps onClick={onClick} />
+  );
+}
+
+
+// ----------------------------------------------------------------------------
+//         Functions
+// ----------------------------------------------------------------------------
+function buildEmptyAnswers(data: any): string[] {
+  const emptyAnswers: string[] = [];
+  const questions = extractQuestions(data);
+
+  for (const _ of questions) {
     emptyAnswers.push('');
   }
 
   return emptyAnswers;
 }
 
+function extractQuestions(data: any) {
+  const questionsIdx = data.node.parameters.findIndex(
+    (parameter: any) => parameter.slug === 'questions'
+  );
+  
+  return data.node.arguments[questionsIdx];
+}
 
+function extractName(data: any) {
+  const nameIdx = data.node.parameters.findIndex(
+    (parameter: any) => parameter.slug === 'name'
+  );
+  
+  return data.node.arguments[nameIdx];
+}
+
+function extractDescription(data: any) {
+  const descriptionIdx = data.node.parameters.findIndex(
+    (parameter: any) => parameter.slug === 'description'
+  );
+  
+  return data.node.arguments[descriptionIdx];
+}
+
+function handleBack(
+  currentQuestion: number, 
+  currentAnswer: any, 
+  setAnswers: any, 
+  setCurrentAnswer: any, 
+  answers: string[], 
+  setCurrentQuestion: any
+) {
+  if (currentQuestion - 1 < 0) {
+    return;
+  }
+
+  persistCurrentAnswer(answers, currentQuestion, currentAnswer, setAnswers);
+  setCurrentAnswer(answers[currentQuestion - 1]);
+  setCurrentQuestion(currentQuestion - 1);
+}
+
+function persistCurrentAnswer(
+  answers: string[], 
+  currentQuestion: number, 
+  currentAnswer: string, 
+  setAnswers: any
+) {
+  const currentAnswers = [...answers];
+
+  currentAnswers[currentQuestion] = currentAnswer;
+
+  setAnswers(currentAnswers);
+}
+
+function handleNext(
+  currentQuestion: number, 
+  questions: any, 
+  currentAnswer: any, 
+  setAnswers: any, 
+  setCurrentAnswer: any, 
+  answers: string[], 
+  setCurrentQuestion: any
+) {
+  if (currentQuestion + 1 >= questions.length) {
+    return;
+  }
+
+  persistCurrentAnswer(answers, currentQuestion, currentAnswer, setAnswers);
+  setCurrentAnswer(answers[currentQuestion + 1]);
+  setCurrentQuestion(currentQuestion + 1);
+}
+
+async function handleSub(
+  toast: any, 
+  answers: string[], 
+  currentAnswer: string, 
+  data: any,
+  onUpdateData: any
+) {
+  toast.show({
+    description: localeService.translate("SAVING_CHANGES"),
+  });
+  const formattedAnswers = [...answers, currentAnswer].shift();
+  await boardService.postBoardResponse(data.id, formattedAnswers);
+  onUpdateData();
+}

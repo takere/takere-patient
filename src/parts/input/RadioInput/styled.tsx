@@ -6,25 +6,13 @@
  */
 
 import styled from 'styled-components/native';
-import { Box, Text, HStack, VStack } from 'native-base';
+import { Radio } from 'native-base';
 
 
 // ----------------------------------------------------------------------------
 //         Components
 // ----------------------------------------------------------------------------
-export const VerticalList = styled(VStack)`
-  width: 100%;
-  padding: 10px;
+export const RadioBody = styled(Radio)`
+  margin: 3px 0;
 `;
 
-export const HorizontalList = styled(HStack)`
-  justify-content: space-between;
-`;
-
-export const ParameterContent = styled(Box)`
-  width: 85%;
-`;
-
-export const ParameterValue = styled(Text)`
-  width: 90%;
-`;
