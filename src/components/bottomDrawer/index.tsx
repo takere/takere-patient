@@ -22,7 +22,7 @@ const localeService = new LocaleService();
 //         Components
 // ----------------------------------------------------------------------------
 const BottomDrawer = ({ board, onUpdateData }: BottomDrawerProps) => (
-  <>
+  <Styled.Container>
     <Styled.Title size="lg">
       {localeService.translate("CARE_PLAN")}: {board.name}
     </Styled.Title>
@@ -32,7 +32,7 @@ const BottomDrawer = ({ board, onUpdateData }: BottomDrawerProps) => (
     <Styled.Body>
       <Content board={board} onUpdateData={onUpdateData} />
     </Styled.Body>
-  </>
+  </Styled.Container>
 );
 
 export default BottomDrawer;

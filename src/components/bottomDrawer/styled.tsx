@@ -35,3 +35,7 @@ export const Body = styled(Box)`
   padding: 0 5px;
   height: ${height - 138}
 `;
+
+export const Container = styled(Box)`
+  padding: 15px;
+`;
