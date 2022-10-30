@@ -24,7 +24,8 @@ const inputs = {
   RADIO: RadioInput,
   CHECKBOX: CheckboxInput,
   SELECT: SelectInput,
-  NUMERIC: NumericInput 
+  NUMERIC: NumericInput,
+  NUMBER: NumericInput
 };
 
 export default inputs;
