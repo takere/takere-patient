@@ -42,8 +42,8 @@ class AuthService extends Service {
     });
 
     try {
-      if (response.token) {
-        await this.storageService.storeUser(response);
+      if (response.data.token) {
+        await this.storageService.storeUser(response.data);
 
         return true;
       } 
@@ -53,7 +53,6 @@ class AuthService extends Service {
       }
     } 
     catch (e) {
-      console.log(e);
       this.storageService.setLoading(false); 
 
       return false;
