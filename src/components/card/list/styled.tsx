@@ -18,6 +18,7 @@ export const Container = styled(SafeAreaView)`
 `;
 
 export const List = styled(VStack)`
+  margin: 0 5px;
   margin-top: 10px;
   align-items: center;
 `;

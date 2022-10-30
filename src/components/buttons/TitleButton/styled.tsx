@@ -21,9 +21,13 @@ const { width } = Dimensions.get('window');
 //         Components
 // ----------------------------------------------------------------------------
 export const Container = styled(Button)`
-  flex: 1;
+  height: ${width/2 - 20};
+  width: ${width/2 - 20};
   padding: 0;
   background-color: ${theme.primary}
+  
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Title = styled(Text)`
@@ -35,13 +39,14 @@ export const Title = styled(Text)`
 
 export const IconContainer = styled(Box)`
   justify-content: center;
-  padding-top: 30px;
-  flex: 1;
+  align-items: center;
+  margin-top: 15px;
+  margin-left: 5px;
+  flex: 2;
 `;
 
 export const Body = styled(VStack)`
   flex: 1;
-  height: ${width/2 - 20}
-  justify-content: space-between;
   align-items: center;
+  padding: 15px 0;
 `;

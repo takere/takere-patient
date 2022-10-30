@@ -21,12 +21,13 @@ import {
 export const TouchableArea = styled(Pressable)`
   width: 100%;
   padding: 0 3px;
+  border-radius: 10px;
 `;
 
 export const Container = styled(Flex)<{ bgColor: string }>`
-  padding: 5px;
+  padding: 15px 20px;
+  margin-bottom: 15px;
   border-radius: 10px;
-  background-color: ${(props: any) => props.bgColor}
   flex-direction: row;
   justify-content: space-between;
 `;
@@ -36,26 +37,27 @@ export const Header = styled(HStack)`
 `;
 
 export const Title = styled(Text)`
-  font-size: 12px;
-  color: #444;
-  font-weight: medium;
+  font-size: 15px;
+  color: white;
+  margin: 5px 0;
 `;
 
 export const Subtitle = styled(Text)`
-  font-size: 10px;
-  color: #aaa;
-  font-weight: medium;
+  font-size: 15px;
+  color: white;
+  margin: 5px 0;
 `;
 
 export const Name = styled(Text)`
   font-size: 18px;
-  color: #444;
-  font-weight: medium;
+  margin: 5px 0;
+  font-weight: bold;
+  color: white;
 `;
 
 export const Description = styled(Text)`
   font-size: 14px;
-  color: #aaa;
+  color: white;
   margin-top: 5px;
   overflow: scroll;
 `;

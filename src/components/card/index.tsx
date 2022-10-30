@@ -24,27 +24,25 @@ const Card = ({
   node,
   finished,
   onOpen,
-}: CardProps) => {
-  return (
-    <Styled.TouchableArea
-      onPress={() => onOpen({name, description, finished, id, node})}
-    >
-      <Styled.Container>
-        <Body node={node} finished={finished} />
-        <CardIcon node={node} />
-      </Styled.Container>
-    </Styled.TouchableArea>
-  );
-};
+}: CardProps) => (
+  <Styled.TouchableArea
+    onPress={() => onOpen({name, description, finished, id, node})}
+  >
+    <Styled.Container bgColor={node.color}>
+      <Body node={node} finished={finished} />
+      <CardIcon node={node} />
+    </Styled.Container>
+  </Styled.TouchableArea>
+);
 
 export default Card;
 
 const Body = ({ node, finished }: any) => (
   <Box>
     <Header node={node} finished={finished} />
-    <Styled.Title>
+    <Styled.Name>
       {node?.arguments[0]}
-    </Styled.Title>
+    </Styled.Name>
     <Styled.Subtitle>
       {node?.arguments[1]}
     </Styled.Subtitle>

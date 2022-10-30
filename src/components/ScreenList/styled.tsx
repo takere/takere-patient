@@ -13,7 +13,7 @@ import { HStack, ScrollView } from "native-base";
 //         Components
 // ----------------------------------------------------------------------------
 export const Row = styled(HStack)`
-  margin-top: 5px;
+  margin-top: 10px;
   justify-content: space-between;
   align-items: center;
 `;

@@ -19,7 +19,7 @@ interface CardProps {
     id: string;
     icon: string;
     type: string;
-    bgColor: string;
+    color: string;
     results: any;
     content_type: string;
   };

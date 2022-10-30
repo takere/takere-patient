@@ -20,7 +20,7 @@ const TileButton = ({ title, onPress, icon }: IconButton) => (
   >
     <Styled.Body>
       <Styled.IconContainer>
-        <Icon name={icon} size={50} color='#fff' />
+        <Icon name={icon} color='#fff' />
       </Styled.IconContainer>
       <Styled.Title>
         { title }

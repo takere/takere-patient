@@ -25,12 +25,6 @@ export const Background = styled(Image)`
   left: 0;
 `;
 
-export const Row = styled(HStack)`
-  margin-top: 5px;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 export const List = styled(ScrollView)`
-  margin: 0 5px;
+  margin: 15px;
 `;
