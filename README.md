@@ -14,6 +14,11 @@
 	<a href="https://github.com/takere/takere-patient/releases"><img src="https://img.shields.io/github/v/release/takere/takere-patient" alt="Release"></a>
 </p>
 
+<div height=100 align='center'>
+  <a href='https://play.google.com/store/apps/details?id=com.takerepatient'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width=172 align='center' /></a>
+  
+</div>
+
 <hr />
 
 ## ❇ Introduction
